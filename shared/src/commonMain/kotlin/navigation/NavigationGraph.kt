@@ -25,6 +25,8 @@ import screens.settings.SettingsScreen
 import screens.splash.SplashScreen
 import screens.stats.StatisticsScreen
 import com.kalyan.shared.AppRes
+import screens.login.get_sms.GetSmsScreen
+import screens.login.login.LoginScreen
 import ui.themes.JetHabitTheme
 
 @OptIn(
@@ -36,6 +38,14 @@ import ui.themes.JetHabitTheme
 internal fun RootComposeBuilder.navigationGraph() {
     screen("splash") {
         SplashScreen()
+    }
+
+    screen("login") {
+        LoginScreen()
+    }
+
+    screen("get_sms") {
+        GetSmsScreen()
     }
 
     bottomNavigation(

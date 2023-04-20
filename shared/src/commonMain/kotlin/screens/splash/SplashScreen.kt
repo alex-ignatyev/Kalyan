@@ -50,6 +50,6 @@ internal fun SplashScreen() {
     }
 
     LaunchedEffect(key1 = Unit, block = {
-        rootController.present("main", launchFlag = LaunchFlag.SingleNewTask)
+        rootController.present("login", launchFlag = LaunchFlag.SingleNewTask)
     })
 }
