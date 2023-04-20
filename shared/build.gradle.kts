@@ -1,11 +1,13 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    kotlin("plugin.serialization")
-    id("com.android.library")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.cocoapods)
+    alias(libs.plugins.compose)
     alias(libs.plugins.libres)
-    id("app.cash.sqldelight")
+    alias(libs.plugins.buildConfig)
+    alias(libs.plugins.sqlDelight)
+    //TODO add Ktor
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 version = "1.0-SNAPSHOT"
@@ -18,7 +20,7 @@ kotlin {
 
     cocoapods {
         summary = "Shared Code"
-        homepage = "https://github.com/AlexGladkov/JetpackComposeDemo"
+        homepage = "https://github.com/alex-ignatyev/Kalyan"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
 
@@ -88,7 +90,7 @@ android {
     compileSdk = 33
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
-    namespace = "tech.mobiledeveloper.shared"
+    namespace = "com.kalyan.shared"
 
     defaultConfig {
         minSdk = 24

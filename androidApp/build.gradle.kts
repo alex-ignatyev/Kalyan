@@ -19,6 +19,7 @@ kotlin {
 
 android {
     compileSdk = 33
+    namespace = "com.kalyan"
     sourceSets["main"].manifest.srcFile("src/main/AndroidManifest.xml")
 
     defaultConfig {
