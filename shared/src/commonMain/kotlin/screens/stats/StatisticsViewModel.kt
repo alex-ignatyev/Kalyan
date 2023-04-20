@@ -4,20 +4,21 @@ import com.adeo.kviewmodel.BaseSharedViewModel
 import com.soywiz.klock.DateTime
 import data.features.daily.DailyRepository
 import data.features.medication.MedicationRepository
-import di.Inject
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import screens.stats.models.StatsAction
 import screens.stats.models.StatsEvent
 import screens.stats.models.StatsViewState
 import screens.stats.views.StatisticCellModel
 import utils.getValueOrNull
 
-class StatisticsViewModel : BaseSharedViewModel<StatsViewState, StatsAction, StatsEvent>(
+class StatisticsViewModel : KoinComponent, BaseSharedViewModel<StatsViewState, StatsAction, StatsEvent>(
     initialState = StatsViewState()
 ) {
 
-    private val medicationRepository: MedicationRepository = Inject.instance()
-    private val dailyRepository: DailyRepository = Inject.instance()
+    private val medicationRepository: MedicationRepository by inject()
+    private val dailyRepository: DailyRepository by inject()
 
     init {
         loadActivities()

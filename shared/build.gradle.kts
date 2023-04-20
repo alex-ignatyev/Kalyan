@@ -5,9 +5,8 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.libres)
     alias(libs.plugins.buildConfig)
-    alias(libs.plugins.sqlDelight)
-    //TODO add Ktor
-    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 version = "1.0-SNAPSHOT"
@@ -39,33 +38,58 @@ kotlin {
                 implementation(compose.material)
                 implementation(compose.runtime)
 
-                implementation(libs.odyssey.core)
-                implementation(libs.odyssey.compose)
-
-                implementation(libs.klock.common)
+                implementation(libs.compose.imageLoader)
+                implementation(libs.compose.icons)
 
                 implementation(libs.kviewmodel.core)
                 implementation(libs.kviewmodel.compose)
                 implementation(libs.kviewmodel.odyssey)
 
+                implementation(libs.odyssey.core)
+                implementation(libs.odyssey.compose)
+
+                implementation(libs.klock.common)
+
                 implementation(libs.kodein)
-                implementation("io.github.skeptick.libres:libres-compose:1.1.8")
+                implementation(libs.koin)
+
+                implementation(libs.libres)
+
+                implementation(libs.napier)
+
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.negotiation)
+                implementation(libs.ktor.serialization)
+                implementation(libs.ktor.json)
+                implementation(libs.ktor.logging)
+
+                implementation(libs.multiplatformSettings)
+
+                implementation(libs.kstore)
+
                 implementation(libs.kotlin.serialization)
             }
         }
+
         val androidMain by getting {
             dependencies {
                 implementation("com.google.android.material:material:1.7.0")
                 implementation(libs.sqldelight.android)
+                implementation(libs.ktor.android)
             }
         }
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
         val iosMain by getting {
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation(libs.sqldelight.native)
+                implementation(libs.ktor.ios)
+                implementation(libs.sqldelight.ios)
             }
-        }
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
         }
     }
 }
@@ -88,7 +112,6 @@ libres {
 
 android {
     compileSdk = 33
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
     namespace = "com.kalyan.shared"
 

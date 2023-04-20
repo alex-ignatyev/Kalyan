@@ -1,21 +1,23 @@
 package screens.add_dates
 
 import com.adeo.kviewmodel.BaseSharedViewModel
+import com.kalyan.shared.AppRes
 import com.soywiz.klock.DateTime
 import data.features.medication.MedicationRepository
-import di.Inject
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import screens.add_dates.models.MedicationAddDateCountType
 import screens.add_dates.models.MedicationAddDatesAction
 import screens.add_dates.models.MedicationAddDatesEvent
 import screens.add_dates.models.MedicationAddDatesViewState
-import tech.mobiledeveloper.shared.AppRes
 
-class MedicationAddDatesViewModel(name: String): BaseSharedViewModel<MedicationAddDatesViewState, MedicationAddDatesAction, MedicationAddDatesEvent>(
-    initialState = MedicationAddDatesViewState(name = name)
-) {
+class MedicationAddDatesViewModel(name: String) : KoinComponent,
+    BaseSharedViewModel<MedicationAddDatesViewState, MedicationAddDatesAction, MedicationAddDatesEvent>(
+        initialState = MedicationAddDatesViewState(name = name)
+    ) {
 
-    private val medicationRepository: MedicationRepository = Inject.instance()
+    private val medicationRepository: MedicationRepository by inject()
 
     override fun obtainEvent(viewEvent: MedicationAddDatesEvent) {
         when (viewEvent) {

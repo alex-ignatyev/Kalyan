@@ -33,7 +33,7 @@ import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import screens.add_name.models.MedicationAddNameAction
 import screens.add_name.models.MedicationAddNameEvent
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.JetHabitTheme
 import ui.themes.components.JetHabitButton
 

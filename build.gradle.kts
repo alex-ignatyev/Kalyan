@@ -10,6 +10,6 @@ plugins {
     
     alias(libs.plugins.libres).apply(false)
     alias(libs.plugins.buildConfig).apply(false)
-    alias(libs.plugins.kotlinx.serialization).apply(false)
-    alias(libs.plugins.sqlDelight).apply(false)
+    alias(libs.plugins.kotlin.serialization).apply(false)
+    alias(libs.plugins.sqldelight).apply(false)
 }

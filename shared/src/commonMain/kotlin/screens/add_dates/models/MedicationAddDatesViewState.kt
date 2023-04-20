@@ -1,7 +1,7 @@
 package screens.add_dates.models
 
 import com.soywiz.klock.DateTime
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 
 data class MedicationAddDatesViewState(
     val name: String = "",

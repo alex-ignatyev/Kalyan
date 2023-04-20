@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import di.PlatformConfiguration
 import di.PlatformSDK
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 
 class MainActivity : AppCompatActivity() {
 

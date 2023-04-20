@@ -24,7 +24,7 @@ import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalSheetConfiguration
 import screens.detail.models.DetailEvent
 import screens.detail.models.DetailViewState
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.JetHabitTheme
 import ui.themes.components.CCalendar
 import ui.themes.components.JetMenu

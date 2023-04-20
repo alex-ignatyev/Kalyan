@@ -1,7 +1,7 @@
 package screens.detail.models
 
 import com.soywiz.klock.DateTime
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 
 data class DetailViewState(
     val itemTitle: String = "",

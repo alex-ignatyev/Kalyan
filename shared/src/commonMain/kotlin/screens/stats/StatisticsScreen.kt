@@ -17,7 +17,7 @@ import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import screens.stats.models.StatsEvent
 import screens.stats.models.StatsViewState
 import screens.stats.views.StatisticCell
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.JetHabitTheme
 
 @Composable

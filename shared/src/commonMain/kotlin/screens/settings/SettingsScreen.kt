@@ -22,7 +22,7 @@ import screens.daily.views.HabitCardItemModel
 import screens.settings.models.SettingsViewState
 import screens.settings.views.MenuItem
 import screens.settings.views.MenuItemModel
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.*
 import ui.themes.components.JHDivider
 

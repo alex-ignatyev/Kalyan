@@ -5,21 +5,22 @@ import com.soywiz.klock.DateTime
 import com.soywiz.klock.days
 import data.features.daily.DailyRepository
 import data.features.medication.MedicationRepository
-import di.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import screens.daily.models.DailyAction
 import screens.daily.models.DailyEvent
 import screens.daily.models.DailyViewState
 import screens.daily.views.HabitCardItemModel
 
-class DailyViewModel : BaseSharedViewModel<DailyViewState, DailyAction, DailyEvent>(
+class DailyViewModel : KoinComponent, BaseSharedViewModel<DailyViewState, DailyAction, DailyEvent>(
     initialState = DailyViewState.Loading
 ) {
 
-    private val dailyRepository: DailyRepository = Inject.instance()
-    private val medicationRepository: MedicationRepository = Inject.instance()
+    private val dailyRepository: DailyRepository by inject()
+    private val medicationRepository: MedicationRepository by inject()
 
     private var currentDate: DateTime = DateTime.now()
 

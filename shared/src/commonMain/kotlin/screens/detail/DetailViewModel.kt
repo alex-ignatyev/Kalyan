@@ -11,14 +11,16 @@ import screens.daily.views.HabitCardItemModel
 import screens.detail.models.DetailAction
 import screens.detail.models.DetailEvent
 import screens.detail.models.DetailViewState
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import utils.getValueOrNull
 
-class DetailViewModel(private val cardModel: HabitCardItemModel): BaseSharedViewModel<DetailViewState, DetailAction, DetailEvent>(
+class DetailViewModel(private val cardModel: HabitCardItemModel): KoinComponent, BaseSharedViewModel<DetailViewState, DetailAction, DetailEvent>(
     initialState = DetailViewState(itemTitle = cardModel.title)
 ) {
 
-    private val medicationRepository = Inject.instance<MedicationRepository>()
+    private val medicationRepository: MedicationRepository by inject()
 
     init {
         fetchDetailedInformation()

@@ -25,7 +25,7 @@ import com.soywiz.klock.TimeSpan
 import com.soywiz.klock.TimezoneOffset
 import com.soywiz.klock.days
 import com.soywiz.klock.months
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.JetHabitTheme
 import utils.wrap
 

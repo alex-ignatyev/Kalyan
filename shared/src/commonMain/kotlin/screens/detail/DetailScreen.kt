@@ -21,7 +21,7 @@ import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalSheetConf
 import screens.daily.views.HabitCardItemModel
 import screens.detail.models.DetailAction
 import screens.detail.models.DetailEvent
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.JetHabitTheme
 
 @Composable

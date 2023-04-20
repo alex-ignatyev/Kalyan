@@ -36,7 +36,7 @@ import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalSheetConf
 import screens.add_dates.models.MedicationAddDateCountType
 import screens.add_dates.models.MedicationAddDatesAction
 import screens.add_dates.models.MedicationAddDatesEvent
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.JetHabitTheme
 import ui.themes.components.CCalendar
 import ui.themes.components.CounterModalSheet

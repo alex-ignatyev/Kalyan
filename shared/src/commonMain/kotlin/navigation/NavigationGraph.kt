@@ -24,7 +24,7 @@ import screens.detail.DetailScreen
 import screens.settings.SettingsScreen
 import screens.splash.SplashScreen
 import screens.stats.StatisticsScreen
-import tech.mobiledeveloper.shared.AppRes
+import com.kalyan.shared.AppRes
 import ui.themes.JetHabitTheme
 
 @OptIn(
