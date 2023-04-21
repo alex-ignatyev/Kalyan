@@ -10,7 +10,7 @@ import di.Platform
 import navigation.navigationGraph
 import ru.alexgladkov.odyssey.compose.setup.OdysseyConfiguration
 import ru.alexgladkov.odyssey.compose.setup.setNavigationContent
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import ui.themes.MainTheme
 
 @Composable
@@ -27,7 +27,7 @@ fun MainView(activity: ComponentActivity) {
     ) {
         val odysseyConfiguration = OdysseyConfiguration(
             canvas = activity,
-            backgroundColor = JetHabitTheme.colors.primaryBackground
+            backgroundColor = KalyanTheme.colors.primaryBackground
         )
 
         CompositionLocalProvider(

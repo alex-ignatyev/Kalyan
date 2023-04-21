@@ -12,7 +12,7 @@ import di.LocalPlatform
 import di.Platform
 import screens.old.compose.models.ComposeError
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun ComposeViewInitialError(error: ComposeError) {
@@ -24,7 +24,7 @@ internal fun ComposeViewInitialError(error: ComposeError) {
             text = when (error) {
                 ComposeError.SendingGeneric -> if (platform == Platform.iOS) "Can't create new habit. Sorry" else AppRes.string.error_new_habit
             },
-            color = JetHabitTheme.colors.errorColor
+            color = KalyanTheme.colors.errorColor
         )
     }
 }

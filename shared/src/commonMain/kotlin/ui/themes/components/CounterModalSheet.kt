@@ -12,14 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
@@ -29,13 +26,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun CounterModalSheet(
@@ -47,7 +43,7 @@ internal fun CounterModalSheet(
 
     Column(
         modifier = Modifier
-            .background(JetHabitTheme.colors.primaryBackground),
+            .background(KalyanTheme.colors.primaryBackground),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
@@ -57,7 +53,7 @@ internal fun CounterModalSheet(
             Text(
                 modifier = Modifier.padding(horizontal = 20.dp),
                 text = title,
-                color = JetHabitTheme.colors.primaryText,
+                color = KalyanTheme.colors.primaryText,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -69,14 +65,14 @@ internal fun CounterModalSheet(
                     onCloseClick.invoke()
                 }.size(48.dp).padding(10.dp),
                 imageVector = Icons.Filled.Close,
-                tint = JetHabitTheme.colors.controlColor,
+                tint = KalyanTheme.colors.controlColor,
                 contentDescription = "Close"
             )
         }
 
         Divider(
             modifier = Modifier.fillMaxWidth().height(0.5.dp),
-            color = JetHabitTheme.colors.controlColor.copy(0.3f)
+            color = KalyanTheme.colors.controlColor.copy(0.3f)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -88,7 +84,7 @@ internal fun CounterModalSheet(
             fontSize = 20.sp,
             textAlign = TextAlign.Center,
             maxLines = 1,
-            color = JetHabitTheme.colors.primaryText
+            color = KalyanTheme.colors.primaryText
         )
 
         JetHabitButton(
@@ -101,7 +97,7 @@ internal fun CounterModalSheet(
 
         Column(
             modifier = Modifier.padding(top = 20.dp).fillMaxWidth()
-                .background(JetHabitTheme.colors.secondaryBackground)
+                .background(KalyanTheme.colors.secondaryBackground)
         ) {
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -153,7 +149,7 @@ internal fun RowScope.CardButton(value: String, onClick: (String) -> Unit) {
     Card(
         modifier = Modifier.padding(4.dp)
             .clickable { onClick.invoke(value) }.weight(1f).height(48.dp),
-        backgroundColor = JetHabitTheme.colors.primaryBackground,
+        backgroundColor = KalyanTheme.colors.primaryBackground,
         elevation = 0.dp,
         shape = RoundedCornerShape(4.dp)
     ) {
@@ -161,7 +157,7 @@ internal fun RowScope.CardButton(value: String, onClick: (String) -> Unit) {
             Text(
                 modifier = Modifier.align(Alignment.Center),
                 text = value,
-                color = JetHabitTheme.colors.primaryText,
+                color = KalyanTheme.colors.primaryText,
                 fontWeight = FontWeight.Medium,
                 fontSize = 16.sp,
             )

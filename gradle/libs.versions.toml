@@ -71,6 +71,9 @@ ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-ios = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 
+#Settings
+multiplatformSettings = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
+
 #MVI
 kviewmodel-core = { module = "com.adeo:kviewmodel", version.ref = "kviewmodel" }
 kviewmodel-compose = { module = "com.adeo:kviewmodel-compose", version.ref = "kviewmodel" }
@@ -84,11 +87,11 @@ voyager = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voy
 #Res
 libres = { module = "io.github.skeptick.libres:libres-compose", version.ref = "libres" }
 
+#Time
 klock-common = { module = "com.soywiz.korlibs.klock:klock", version.ref = "klock" }
 
 #Other
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
-multiplatformSettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 kstore = { module = "io.github.xxfast:kstore", version.ref = "kstore" }
 
 [plugins]

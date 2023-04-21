@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 data class StatisticCellModel(
     val title: String,
@@ -25,18 +25,18 @@ internal fun StatisticCell(model: StatisticCellModel) {
     Card(
         modifier = Modifier
             .padding(
-                horizontal = JetHabitTheme.shapes.padding,
-                vertical = JetHabitTheme.shapes.padding / 2
+                horizontal = KalyanTheme.shapes.padding,
+                vertical = KalyanTheme.shapes.padding / 2
             )
             .fillMaxWidth(),
         elevation = 8.dp,
-        backgroundColor = JetHabitTheme.colors.primaryBackground,
-        shape = JetHabitTheme.shapes.cornersStyle
+        backgroundColor = KalyanTheme.colors.primaryBackground,
+        shape = KalyanTheme.shapes.cornersStyle
     ) {
         Column {
             Divider(
                 modifier = Modifier.fillMaxWidth(model.percentage).height(2.dp)
-                    .background(JetHabitTheme.colors.tintColor)
+                    .background(KalyanTheme.colors.tintColor)
             )
 
             Row(
@@ -46,8 +46,8 @@ internal fun StatisticCell(model: StatisticCellModel) {
                 Text(
                     modifier = Modifier.weight(1f).padding(top = 8.dp),
                     text = model.title,
-                    style = JetHabitTheme.typography.body,
-                    color = JetHabitTheme.colors.primaryText
+                    style = KalyanTheme.typography.body,
+                    color = KalyanTheme.colors.primaryText
                 )
 
                 val countText = if (!model.isPeriodic) model.duration else
@@ -56,8 +56,8 @@ internal fun StatisticCell(model: StatisticCellModel) {
                 Text(
                     modifier = Modifier.padding(start = 16.dp),
                     text = countText,
-                    style = JetHabitTheme.typography.body,
-                    color = JetHabitTheme.colors.secondaryText
+                    style = KalyanTheme.typography.body,
+                    color = KalyanTheme.colors.secondaryText
                 )
             }
         }

@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Divider
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -17,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 data class MenuItemModel(
     val title: String,
@@ -36,7 +34,7 @@ internal fun MenuItem(
     Column {
         Box(
             modifier = Modifier
-                .background(JetHabitTheme.colors.primaryBackground)
+                .background(KalyanTheme.colors.primaryBackground)
                 .fillMaxWidth()
         ) {
             Row(
@@ -44,23 +42,23 @@ internal fun MenuItem(
                     .clickable {
                         isDropdownOpen.value = true
                     }
-                    .padding(JetHabitTheme.shapes.padding)
-                    .background(JetHabitTheme.colors.primaryBackground),
+                    .padding(KalyanTheme.shapes.padding)
+                    .background(KalyanTheme.colors.primaryBackground),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(end = JetHabitTheme.shapes.padding),
+                        .padding(end = KalyanTheme.shapes.padding),
                     text = model.title,
-                    style = JetHabitTheme.typography.body,
-                    color = JetHabitTheme.colors.primaryText
+                    style = KalyanTheme.typography.body,
+                    color = KalyanTheme.colors.primaryText
                 )
 
                 Text(
                     text = model.values[currentPosition.value],
-                    style = JetHabitTheme.typography.body,
-                    color = JetHabitTheme.colors.secondaryText
+                    style = KalyanTheme.typography.body,
+                    color = KalyanTheme.colors.secondaryText
                 )
 
 //                Icon(
@@ -79,7 +77,7 @@ internal fun MenuItem(
                     .padding(start = 16.dp)
                     .align(Alignment.BottomStart),
                 thickness = 0.5.dp,
-                color = JetHabitTheme.colors.secondaryText.copy(
+                color = KalyanTheme.colors.secondaryText.copy(
                     alpha = 0.3f
                 )
             )

@@ -7,17 +7,17 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun DailyViewLoading() {
     Box(
         modifier = Modifier.fillMaxSize()
-            .background(JetHabitTheme.colors.primaryBackground)
+            .background(KalyanTheme.colors.primaryBackground)
     ) {
         CircularProgressIndicator(
             modifier = Modifier.align(Alignment.Center),
-            color = JetHabitTheme.colors.tintColor
+            color = KalyanTheme.colors.tintColor
         )
     }
 }

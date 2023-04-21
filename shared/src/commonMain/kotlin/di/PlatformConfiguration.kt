@@ -3,7 +3,7 @@ package di
 import androidx.compose.runtime.staticCompositionLocalOf
 
 enum class Platform {
-    Android, MacOS, Desktop, iOS, Js
+    Android, iOS
 }
 
 expect class PlatformConfiguration {

@@ -3,7 +3,6 @@ package screens.old.detail
 import com.adeo.kviewmodel.BaseSharedViewModel
 import com.soywiz.klock.DateTime
 import data.features.medication.MedicationRepository
-import di.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

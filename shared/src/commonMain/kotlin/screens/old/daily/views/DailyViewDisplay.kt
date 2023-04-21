@@ -23,12 +23,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import di.LocalPlatform
-import di.Platform
 import screens.old.daily.models.DailyViewState
 import ru.alexgladkov.odyssey.compose.extensions.present
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @ExperimentalFoundationApi
 @Composable
@@ -45,7 +44,7 @@ internal fun DailyViewDisplay(
 
     Surface(
         modifier = modifier.fillMaxSize(),
-        color = JetHabitTheme.colors.primaryBackground
+        color = KalyanTheme.colors.primaryBackground
     ) {
         Box {
             LazyColumn {
@@ -57,27 +56,27 @@ internal fun DailyViewDisplay(
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 modifier = Modifier.padding(
-                                    start = JetHabitTheme.shapes.padding,
-                                    end = JetHabitTheme.shapes.padding,
-                                    top = JetHabitTheme.shapes.padding + 8.dp
+                                    start = KalyanTheme.shapes.padding,
+                                    end = KalyanTheme.shapes.padding,
+                                    top = KalyanTheme.shapes.padding + 8.dp
                                 ),
                                 text = viewState.title,
-                                style = JetHabitTheme.typography.heading,
-                                color = JetHabitTheme.colors.primaryText
+                                style = KalyanTheme.typography.heading,
+                                color = KalyanTheme.colors.primaryText
                             )
 
                             Text(
                                 modifier = Modifier
                                     .padding(
-                                        start = JetHabitTheme.shapes.padding,
-                                        end = JetHabitTheme.shapes.padding,
+                                        start = KalyanTheme.shapes.padding,
+                                        end = KalyanTheme.shapes.padding,
                                         top = 4.dp,
-                                        bottom = JetHabitTheme.shapes.padding + 8.dp
+                                        bottom = KalyanTheme.shapes.padding + 8.dp
                                     )
                                     .clickable { onPreviousDayClicked.invoke() },
                                 text = AppRes.string.daily_previous_day,
-                                style = JetHabitTheme.typography.body,
-                                color = JetHabitTheme.colors.controlColor
+                                style = KalyanTheme.typography.body,
+                                color = KalyanTheme.colors.controlColor
                             )
                         }
 
@@ -88,7 +87,7 @@ internal fun DailyViewDisplay(
                                     .padding(16.dp)
                                     .clickable { onNextDayClicked.invoke() },
                                 imageVector = Icons.Filled.ArrowForward,
-                                tint = JetHabitTheme.colors.controlColor,
+                                tint = KalyanTheme.colors.controlColor,
                                 contentDescription = "Next Day"
                             )
                         }
@@ -112,8 +111,8 @@ internal fun DailyViewDisplay(
             FloatingActionButton(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(JetHabitTheme.shapes.padding),
-                backgroundColor = JetHabitTheme.colors.tintColor,
+                    .padding(KalyanTheme.shapes.padding),
+                backgroundColor = KalyanTheme.colors.tintColor,
                 onClick = {
                     rootController.findRootController().present("medication_add_flow")
                 }) {

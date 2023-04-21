@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,7 +23,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adeo.kviewmodel.odyssey.StoredViewModel
@@ -34,7 +32,7 @@ import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import screens.old.add_name.models.MedicationAddNameAction
 import screens.old.add_name.models.MedicationAddNameEvent
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import ui.themes.components.JetHabitButton
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -48,7 +46,7 @@ internal fun MedicationAddName() {
         val viewAction by viewModel.viewActions().collectAsState(null)
 
         Column(
-            modifier = Modifier.clickable { keyboard?.hide() }.fillMaxSize().background(JetHabitTheme.colors.secondaryBackground),
+            modifier = Modifier.clickable { keyboard?.hide() }.fillMaxSize().background(KalyanTheme.colors.secondaryBackground),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(Modifier.fillMaxWidth()) {
@@ -62,7 +60,7 @@ internal fun MedicationAddName() {
                             rootController.popBackStack()
                         },
                     text = AppRes.string.action_close,
-                    color = JetHabitTheme.colors.tintColor,
+                    color = KalyanTheme.colors.tintColor,
                     fontSize = 16.sp
                 )
             }
@@ -77,7 +75,7 @@ internal fun MedicationAddName() {
                 modifier = Modifier.padding(top = 20.dp),
                 text = AppRes.string.medication_add_name,
                 fontSize = 32.sp,
-                color = JetHabitTheme.colors.primaryText,
+                color = KalyanTheme.colors.primaryText,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 0.5.sp
             )
@@ -92,13 +90,13 @@ internal fun MedicationAddName() {
                 shape = RoundedCornerShape(8.dp),
                 singleLine = true,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = JetHabitTheme.colors.primaryBackground,
-                    unfocusedBorderColor = JetHabitTheme.colors.primaryBackground,
-                    disabledBorderColor = JetHabitTheme.colors.primaryBackground,
-                    errorBorderColor = JetHabitTheme.colors.primaryBackground,
-                    backgroundColor = JetHabitTheme.colors.primaryBackground,
-                    textColor = JetHabitTheme.colors.primaryText,
-                    cursorColor = JetHabitTheme.colors.controlColor
+                    focusedBorderColor = KalyanTheme.colors.primaryBackground,
+                    unfocusedBorderColor = KalyanTheme.colors.primaryBackground,
+                    disabledBorderColor = KalyanTheme.colors.primaryBackground,
+                    errorBorderColor = KalyanTheme.colors.primaryBackground,
+                    backgroundColor = KalyanTheme.colors.primaryBackground,
+                    textColor = KalyanTheme.colors.primaryText,
+                    cursorColor = KalyanTheme.colors.controlColor
                 )
             )
 

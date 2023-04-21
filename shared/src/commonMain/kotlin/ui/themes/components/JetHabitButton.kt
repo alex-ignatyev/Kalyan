@@ -11,12 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun JetHabitButton(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = JetHabitTheme.colors.tintColor,
+    backgroundColor: Color = KalyanTheme.colors.tintColor,
     shape: Shape = RoundedCornerShape(8.dp),
     onClick: () -> Unit,
     text: String? = null,
@@ -38,7 +38,7 @@ internal fun JetHabitButton(
         text?.let {
             Text(
                 text = it,
-                style = JetHabitTheme.typography.body,
+                style = KalyanTheme.typography.body,
                 color = Color.White
             )
         } ?: content.invoke(this)

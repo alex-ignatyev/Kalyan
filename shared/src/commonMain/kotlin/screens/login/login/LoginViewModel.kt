@@ -1,15 +1,15 @@
 package screens.login.login
 
 import com.adeo.kviewmodel.BaseSharedViewModel
-import di.AuthRepository
+import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
-import utils.answer.onFailure
-import utils.answer.onSuccess
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.login.login.LoginAction.OpenSmsScreen
 import screens.login.login.LoginEvent.ChangePhone
 import screens.login.login.LoginEvent.NextClick
+import utils.answer.onFailure
+import utils.answer.onSuccess
 
 class LoginViewModel : KoinComponent, BaseSharedViewModel<LoginState, LoginAction, LoginEvent>(
     initialState = LoginState()

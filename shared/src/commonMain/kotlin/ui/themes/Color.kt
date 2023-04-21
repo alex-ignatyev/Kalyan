@@ -2,7 +2,7 @@ package ui.themes
 
 import androidx.compose.ui.graphics.Color
 
-internal val baseLightPalette = JetHabitColors(
+internal val baseLightPalette = KalyanColors(
     primaryBackground = Color(0xFFFFFFFF),
     primaryText = Color(0xFF3D454C),
     secondaryBackground = Color(0xFFF3F4F5),
@@ -12,7 +12,7 @@ internal val baseLightPalette = JetHabitColors(
     errorColor = Color(0xFFFF3377)
 )
 
-internal val baseDarkPalette = JetHabitColors(
+internal val baseDarkPalette = KalyanColors(
     primaryBackground = Color(0xFF23282D),
     primaryText = Color(0xFFF2F4F5),
     secondaryBackground = Color(0xFF191E23),

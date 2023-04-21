@@ -17,7 +17,7 @@ import navigation.navigationGraph
 import platform.UIKit.UIViewController
 import ru.alexgladkov.odyssey.compose.setup.OdysseyConfiguration
 import ru.alexgladkov.odyssey.compose.setup.setNavigationContent
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import ui.themes.MainTheme
 
 fun MainViewController(): UIViewController = ComposeUIViewController {
@@ -32,10 +32,10 @@ fun MainViewController(): UIViewController = ComposeUIViewController {
         paddingSize = currentSettings.paddingSize
     ) {
         val odysseyConfiguration = OdysseyConfiguration(
-            backgroundColor = JetHabitTheme.colors.primaryBackground
+            backgroundColor = KalyanTheme.colors.primaryBackground
         )
 
-        val backgroundColor = JetHabitTheme.colors.primaryBackground
+        val backgroundColor = KalyanTheme.colors.primaryBackground
 
         CompositionLocalProvider(
             LocalPlatform provides Platform.iOS,

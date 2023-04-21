@@ -27,7 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.style.TextAlign
 
@@ -41,7 +41,7 @@ internal fun WeekSelectionSheet(
     var isErrorDisplay by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.background(JetHabitTheme.colors.primaryBackground),
+        modifier = Modifier.background(KalyanTheme.colors.primaryBackground),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
@@ -51,7 +51,7 @@ internal fun WeekSelectionSheet(
             Text(
                 modifier = Modifier.padding(horizontal = 20.dp),
                 text = AppRes.string.medication_periodicity,
-                color = JetHabitTheme.colors.primaryText,
+                color = KalyanTheme.colors.primaryText,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -63,14 +63,14 @@ internal fun WeekSelectionSheet(
                     onCloseClick.invoke()
                 }.size(48.dp).padding(10.dp),
                 imageVector = Icons.Filled.Close,
-                tint = JetHabitTheme.colors.controlColor,
+                tint = KalyanTheme.colors.controlColor,
                 contentDescription = "Close"
             )
         }
 
         Row(
             modifier = Modifier.fillMaxWidth().height(100.dp)
-                .background(JetHabitTheme.colors.secondaryBackground),
+                .background(KalyanTheme.colors.secondaryBackground),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
@@ -116,7 +116,7 @@ internal fun WeekSelectionSheet(
             Text(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
                 text = AppRes.string.medication_periodicity_error,
-                color = JetHabitTheme.colors.errorColor,
+                color = KalyanTheme.colors.errorColor,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Light,
                 textAlign = TextAlign.Center
@@ -133,13 +133,13 @@ internal fun DayOfWeekCard(title: String, isSelected: Boolean, onDateClicked: (I
             .size(40.dp)
             .clip(RoundedCornerShape(20.dp))
             .background(
-                if (isSelected) JetHabitTheme.colors.tintColor else JetHabitTheme.colors.primaryBackground
+                if (isSelected) KalyanTheme.colors.tintColor else KalyanTheme.colors.primaryBackground
             )
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
             text = title,
-            color = JetHabitTheme.colors.primaryText,
+            color = KalyanTheme.colors.primaryText,
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium
         )

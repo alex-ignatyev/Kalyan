@@ -18,7 +18,7 @@ import screens.old.stats.models.StatsEvent
 import screens.old.stats.models.StatsViewState
 import screens.old.stats.views.StatisticCell
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun StatisticsScreen() {
@@ -41,13 +41,13 @@ internal fun StatisticsView(viewState: StatsViewState) {
     Column {
         Text(
             modifier = Modifier.padding(
-                start = JetHabitTheme.shapes.padding,
-                end = JetHabitTheme.shapes.padding,
-                top = JetHabitTheme.shapes.padding + 8.dp
+                start = KalyanTheme.shapes.padding,
+                end = KalyanTheme.shapes.padding,
+                top = KalyanTheme.shapes.padding + 8.dp
             ),
             text = AppRes.string.title_statistics,
-            style = JetHabitTheme.typography.heading,
-            color = JetHabitTheme.colors.primaryText
+            style = KalyanTheme.typography.heading,
+            color = KalyanTheme.colors.primaryText
         )
 
         Spacer(modifier = Modifier.height(24.dp))

@@ -2,7 +2,6 @@ package screens.old.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,12 +16,11 @@ import com.adeo.kviewmodel.odyssey.StoredViewModel
 import ru.alexgladkov.odyssey.compose.extensions.present
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.AlertConfiguration
-import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalSheetConfiguration
 import screens.old.daily.views.HabitCardItemModel
 import screens.old.detail.models.DetailAction
 import screens.old.detail.models.DetailEvent
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun DetailScreen(cardModel: HabitCardItemModel) {
@@ -47,21 +45,21 @@ internal fun DetailScreen(cardModel: HabitCardItemModel) {
                         modifier = Modifier
                             .clickable { modalController.popBackStack(key) }
                             .fillMaxSize()
-                            .background(JetHabitTheme.colors.primaryBackground)
+                            .background(KalyanTheme.colors.primaryBackground)
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
                             text = AppRes.string.title_error,
-                            color = JetHabitTheme.colors.primaryText,
-                            style = JetHabitTheme.typography.heading
+                            color = KalyanTheme.colors.primaryText,
+                            style = KalyanTheme.typography.heading
                         )
 
                         Text(
                             modifier = Modifier.padding(top = 24.dp),
                             text = AppRes.string.error_date,
-                            color = JetHabitTheme.colors.primaryText,
-                            style = JetHabitTheme.typography.body
+                            color = KalyanTheme.colors.primaryText,
+                            style = KalyanTheme.typography.body
                         )
                     }
                 }

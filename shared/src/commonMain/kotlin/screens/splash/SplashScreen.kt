@@ -18,7 +18,7 @@ import kotlinx.coroutines.delay
 import ru.alexgladkov.odyssey.compose.extensions.present
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.core.LaunchFlag
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun SplashScreen() {
@@ -28,14 +28,14 @@ internal fun SplashScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(JetHabitTheme.colors.primaryBackground)
+            .background(KalyanTheme.colors.primaryBackground)
     ) {
         Column(modifier = Modifier.align(Alignment.Center)) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = "Kalyan",
-                style = JetHabitTheme.typography.heading,
-                color = JetHabitTheme.colors.primaryText,
+                style = KalyanTheme.typography.heading,
+                color = KalyanTheme.colors.primaryText,
                 textAlign = TextAlign.Center
             )
             Text(
@@ -43,8 +43,8 @@ internal fun SplashScreen() {
                     .fillMaxWidth()
                     .padding(top = 4.dp),
                 text = "Full Compose Demo",
-                style = JetHabitTheme.typography.body,
-                color = JetHabitTheme.colors.secondaryText,
+                style = KalyanTheme.typography.body,
+                color = KalyanTheme.colors.secondaryText,
                 textAlign = TextAlign.Center
             )
         }

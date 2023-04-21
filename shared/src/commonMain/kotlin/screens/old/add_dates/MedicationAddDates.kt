@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -28,7 +26,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adeo.kviewmodel.odyssey.StoredViewModel
-import com.soywiz.klock.DateTime
 import io.github.skeptick.libres.compose.painterResource
 import ru.alexgladkov.odyssey.compose.extensions.present
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
@@ -37,7 +34,7 @@ import screens.old.add_dates.models.MedicationAddDateCountType
 import screens.old.add_dates.models.MedicationAddDatesAction
 import screens.old.add_dates.models.MedicationAddDatesEvent
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import ui.themes.components.CCalendar
 import ui.themes.components.CounterModalSheet
 import ui.themes.components.JetHabitButton
@@ -52,7 +49,7 @@ internal fun MedicationAddDates(title: String) {
         val rootController = LocalRootController.current
 
         Column(
-            modifier = Modifier.fillMaxSize().background(JetHabitTheme.colors.secondaryBackground),
+            modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.secondaryBackground),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(modifier = Modifier.fillMaxWidth().height(48.dp)) {
@@ -62,7 +59,7 @@ internal fun MedicationAddDates(title: String) {
                         .align(Alignment.CenterStart)
                         .padding(horizontal = 20.dp),
                     text = AppRes.string.action_back,
-                    color = JetHabitTheme.colors.tintColor,
+                    color = KalyanTheme.colors.tintColor,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Light
                 )
@@ -70,7 +67,7 @@ internal fun MedicationAddDates(title: String) {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = viewState.name,
-                    color = JetHabitTheme.colors.primaryText,
+                    color = KalyanTheme.colors.primaryText,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium
                 )
@@ -87,7 +84,7 @@ internal fun MedicationAddDates(title: String) {
                 text = AppRes.string.medication_add_dates,
                 fontSize = 32.sp,
                 textAlign = TextAlign.Center,
-                color = JetHabitTheme.colors.primaryText,
+                color = KalyanTheme.colors.primaryText,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 0.5.sp
             )
@@ -95,14 +92,14 @@ internal fun MedicationAddDates(title: String) {
             Column(
                 modifier = Modifier.padding(top = 20.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth().clip(RoundedCornerShape(8.dp))
-                    .background(JetHabitTheme.colors.primaryBackground)
+                    .background(KalyanTheme.colors.primaryBackground)
                     .padding(vertical = 16.dp)
             ) {
                 Row {
                     Text(
                         modifier = Modifier.padding(horizontal = 16.dp),
                         text = AppRes.string.medication_periodicity,
-                        color = JetHabitTheme.colors.primaryText,
+                        color = KalyanTheme.colors.primaryText,
                         fontSize = 16.sp
                     )
 
@@ -113,7 +110,7 @@ internal fun MedicationAddDates(title: String) {
                             viewModel.obtainEvent(MedicationAddDatesEvent.PeriodicityClicked)
                         }.padding(horizontal = 16.dp),
                         text = viewState.periodicity,
-                        color = JetHabitTheme.colors.tintColor,
+                        color = KalyanTheme.colors.tintColor,
                         fontSize = 16.sp
                     )
                 }
@@ -121,7 +118,7 @@ internal fun MedicationAddDates(title: String) {
                 Divider(
                     modifier = Modifier.padding(bottom = 12.dp, top = 12.dp, start = 16.dp)
                         .fillMaxWidth()
-                        .background(JetHabitTheme.colors.controlColor.copy(alpha = 0.4f)),
+                        .background(KalyanTheme.colors.controlColor.copy(alpha = 0.4f)),
                     thickness = 0.5.dp,
                 )
 
@@ -129,7 +126,7 @@ internal fun MedicationAddDates(title: String) {
                     Text(
                         modifier = Modifier.padding(horizontal = 16.dp),
                         text = AppRes.string.medication_frequency,
-                        color = JetHabitTheme.colors.primaryText,
+                        color = KalyanTheme.colors.primaryText,
                         fontSize = 16.sp
                     )
 
@@ -140,7 +137,7 @@ internal fun MedicationAddDates(title: String) {
                             viewModel.obtainEvent(MedicationAddDatesEvent.FrequencyClicked)
                         }.padding(horizontal = 16.dp),
                         text = viewState.frequency,
-                        color = JetHabitTheme.colors.tintColor,
+                        color = KalyanTheme.colors.tintColor,
                         fontSize = 16.sp
                     )
                 }
@@ -150,7 +147,7 @@ internal fun MedicationAddDates(title: String) {
                 modifier = Modifier.padding(top = 8.dp, start = 32.dp, end = 20.dp).fillMaxWidth(),
                 text = AppRes.string.medication_dates_hint,
                 fontSize = 10.sp,
-                color = JetHabitTheme.colors.controlColor
+                color = KalyanTheme.colors.controlColor
             )
 
             Text(
@@ -158,13 +155,13 @@ internal fun MedicationAddDates(title: String) {
                 text = AppRes.string.medication_dates_duration,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Medium,
-                color = JetHabitTheme.colors.primaryText
+                color = KalyanTheme.colors.primaryText
             )
 
             Column(
                 modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth().clip(RoundedCornerShape(8.dp))
-                    .background(JetHabitTheme.colors.primaryBackground)
+                    .background(KalyanTheme.colors.primaryBackground)
                     .padding(vertical = 16.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -180,14 +177,14 @@ internal fun MedicationAddDates(title: String) {
                                 viewModel.obtainEvent(MedicationAddDatesEvent.AddStartDateClicked)
                             }.padding(horizontal = 16.dp),
                             text = AppRes.string.medication_add_start_date,
-                            color = JetHabitTheme.colors.tintColor,
+                            color = KalyanTheme.colors.tintColor,
                             fontSize = 16.sp
                         )
                     } else {
                         Text(
                             modifier = Modifier.padding(start = 16.dp),
                             text = ">",
-                            color = JetHabitTheme.colors.primaryText,
+                            color = KalyanTheme.colors.primaryText,
                             fontSize = 16.sp
                         )
 
@@ -196,7 +193,7 @@ internal fun MedicationAddDates(title: String) {
                                 viewModel.obtainEvent(MedicationAddDatesEvent.AddStartDateClicked)
                             }.padding(horizontal = 16.dp),
                             text = viewState.startDate!!,
-                            color = JetHabitTheme.colors.tintColor,
+                            color = KalyanTheme.colors.tintColor,
                             fontSize = 16.sp
                         )
                     }
@@ -205,7 +202,7 @@ internal fun MedicationAddDates(title: String) {
                 Divider(
                     modifier = Modifier.padding(bottom = 12.dp, top = 12.dp, start = 16.dp)
                         .fillMaxWidth()
-                        .background(JetHabitTheme.colors.controlColor.copy(alpha = 0.4f)),
+                        .background(KalyanTheme.colors.controlColor.copy(alpha = 0.4f)),
                     thickness = 0.5.dp,
                 )
 
@@ -213,7 +210,7 @@ internal fun MedicationAddDates(title: String) {
                     Text(
                         modifier = Modifier.padding(horizontal = 16.dp),
                         text = AppRes.string.medication_week_count,
-                        color = JetHabitTheme.colors.primaryText,
+                        color = KalyanTheme.colors.primaryText,
                         fontSize = 16.sp
                     )
 
@@ -224,7 +221,7 @@ internal fun MedicationAddDates(title: String) {
                             viewModel.obtainEvent(MedicationAddDatesEvent.WeekCountClicked)
                         }.padding(horizontal = 16.dp),
                         text = viewState.weekCount,
-                        color = JetHabitTheme.colors.tintColor,
+                        color = KalyanTheme.colors.tintColor,
                         fontSize = 16.sp
                     )
                 }
@@ -248,14 +245,14 @@ internal fun MedicationAddDates(title: String) {
                 modalController.present(modalConfiguration) { key ->
                     Box(
                         modifier = Modifier
-                            .background(JetHabitTheme.colors.primaryBackground)
+                            .background(KalyanTheme.colors.primaryBackground)
                             .padding(bottom = 20.dp)
                     ) {
                         CCalendar(
                             selectedDate = viewState.calendarDate,
-                            textColor = JetHabitTheme.colors.primaryText,
-                            dayOfWeekColor = JetHabitTheme.colors.controlColor,
-                            selectedColor = JetHabitTheme.colors.tintColor,
+                            textColor = KalyanTheme.colors.primaryText,
+                            dayOfWeekColor = KalyanTheme.colors.controlColor,
+                            selectedColor = KalyanTheme.colors.tintColor,
                             allowSameDate = true
                         ) {
                             viewModel.obtainEvent(MedicationAddDatesEvent.StarDateSelected(it))

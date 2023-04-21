@@ -16,10 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import di.LocalPlatform
-import di.Platform
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import ui.themes.components.JetHabitButton
 
 @Composable
@@ -28,7 +26,7 @@ internal fun DailyViewNoItems(
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = JetHabitTheme.colors.primaryBackground
+        color = KalyanTheme.colors.primaryBackground
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(
@@ -38,21 +36,21 @@ internal fun DailyViewNoItems(
                 Icon(
                     modifier = Modifier.size(96.dp),
                     imageVector = Icons.Filled.Info,
-                    tint = JetHabitTheme.colors.controlColor,
+                    tint = KalyanTheme.colors.controlColor,
                     contentDescription = "No Items Found"
                 )
 
                 Text(
                     modifier = Modifier.padding(top = 16.dp, bottom = 24.dp),
                     text = AppRes.string.daily_no_items,
-                    style = JetHabitTheme.typography.body,
-                    color = JetHabitTheme.colors.primaryText,
+                    style = KalyanTheme.typography.body,
+                    color = KalyanTheme.colors.primaryText,
                     textAlign = TextAlign.Center
                 )
 
                 JetHabitButton(
                     modifier = Modifier.fillMaxWidth(),
-                    backgroundColor = JetHabitTheme.colors.controlColor,
+                    backgroundColor = KalyanTheme.colors.controlColor,
                     text = AppRes.string.action_add,
                     onClick = onComposeClick
                 )

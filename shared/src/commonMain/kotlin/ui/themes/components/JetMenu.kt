@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun JetMenu(
@@ -19,29 +19,29 @@ internal fun JetMenu(
 ) {
     Box(
         modifier = Modifier
-            .background(JetHabitTheme.colors.primaryBackground)
+            .background(KalyanTheme.colors.primaryBackground)
             .fillMaxWidth()
     ) {
         Row(
             Modifier
                 .clickable { onMenuClicked.invoke() }
-                .padding(JetHabitTheme.shapes.padding)
-                .background(JetHabitTheme.colors.primaryBackground),
+                .padding(KalyanTheme.shapes.padding)
+                .background(KalyanTheme.colors.primaryBackground),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = JetHabitTheme.shapes.padding),
+                    .padding(end = KalyanTheme.shapes.padding),
                 text = title,
-                style = JetHabitTheme.typography.body,
-                color = JetHabitTheme.colors.primaryText
+                style = KalyanTheme.typography.body,
+                color = KalyanTheme.colors.primaryText
             )
 
             Text(
                 text = value,
-                style = JetHabitTheme.typography.body,
-                color = JetHabitTheme.colors.secondaryText
+                style = KalyanTheme.typography.body,
+                color = KalyanTheme.colors.secondaryText
             )
         }
 
@@ -50,7 +50,7 @@ internal fun JetMenu(
                 .padding(start = 16.dp)
                 .align(Alignment.BottomStart),
             thickness = 0.5.dp,
-            color = JetHabitTheme.colors.secondaryText.copy(
+            color = KalyanTheme.colors.secondaryText.copy(
                 alpha = 0.3f
             )
         )

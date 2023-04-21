@@ -27,7 +27,7 @@ import screens.old.stats.StatisticsScreen
 import com.kalyan.shared.AppRes
 import screens.login.get_sms.GetSmsScreen
 import screens.login.login.LoginScreen
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @OptIn(
     ExperimentalComposeUiApi::class,
@@ -51,12 +51,12 @@ internal fun RootComposeBuilder.navigationGraph() {
     bottomNavigation(
         "main",
         colors = BottomBarDefaults.bottomColors(
-            backgroundColor = JetHabitTheme.colors.primaryBackground
+            backgroundColor = KalyanTheme.colors.primaryBackground
         )
     ) {
         val colors = TabDefaults.simpleTabColors(
-            selectedColor = JetHabitTheme.colors.primaryText,
-            unselectedColor = JetHabitTheme.colors.controlColor
+            selectedColor = KalyanTheme.colors.primaryText,
+            unselectedColor = KalyanTheme.colors.controlColor
         )
 
         tab(TabDefaults.content(AppRes.string.title_daily, Icons.Filled.DateRange), colors) {

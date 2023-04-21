@@ -1,8 +1,6 @@
 package screens.old.compose
 
 import com.adeo.kviewmodel.BaseSharedViewModel
-import di.Inject
-import kotlinx.coroutines.launch
 import screens.old.compose.models.ComposeAction
 import screens.old.compose.models.ComposeEvent
 import screens.old.compose.models.ComposeViewState

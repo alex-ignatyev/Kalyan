@@ -2,7 +2,7 @@ package di
 
 import data.features.daily.dailyModuleKoin
 import data.features.medication.medicationModuleKoin
-import ktor.ktoreModuleKoin
+import ktor.ktoreModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
@@ -15,12 +15,14 @@ object PlatformSDK {
         startKoin {
             modules(
                 module { single<PlatformConfiguration> { configuration } },
-                serializationModuleKoin,
-                databaseModuleKoin,
+                ktoreModule,
+                databaseModule,
+                settingsModule,
+
+                authModule,
+
                 dailyModuleKoin,
-                medicationModuleKoin,
-                ktoreModuleKoin,
-                authModule
+                medicationModuleKoin
             )
         }
     }

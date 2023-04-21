@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -25,7 +24,7 @@ import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalSheetConf
 import screens.old.detail.models.DetailEvent
 import screens.old.detail.models.DetailViewState
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import ui.themes.components.CCalendar
 import ui.themes.components.JetMenu
 
@@ -50,30 +49,30 @@ internal fun DetailView(
                         .size(56.dp).padding(16.dp),
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
-                    tint = JetHabitTheme.colors.controlColor
+                    tint = KalyanTheme.colors.controlColor
                 )
             }
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(
-                        start = JetHabitTheme.shapes.padding,
-                        end = JetHabitTheme.shapes.padding,
+                        start = KalyanTheme.shapes.padding,
+                        end = KalyanTheme.shapes.padding,
                     ),
                     text = viewState.itemTitle,
-                    style = JetHabitTheme.typography.heading,
-                    color = JetHabitTheme.colors.primaryText
+                    style = KalyanTheme.typography.heading,
+                    color = KalyanTheme.colors.primaryText
                 )
 
                 Text(
                     modifier = Modifier.padding(
-                        start = JetHabitTheme.shapes.padding,
-                        end = JetHabitTheme.shapes.padding,
+                        start = KalyanTheme.shapes.padding,
+                        end = KalyanTheme.shapes.padding,
                         top = 2.dp
                     ),
                     text = if (viewState.isGood) "Good Habit" else "Bad Habit",
-                    style = JetHabitTheme.typography.caption,
-                    color = JetHabitTheme.colors.controlColor
+                    style = KalyanTheme.typography.caption,
+                    color = KalyanTheme.colors.controlColor
                 )
             }
 
@@ -82,7 +81,7 @@ internal fun DetailView(
                     .size(56.dp).padding(16.dp),
                 imageVector = Icons.Filled.Delete,
                 contentDescription = "Delete Item",
-                tint = JetHabitTheme.colors.controlColor)
+                tint = KalyanTheme.colors.controlColor)
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -98,14 +97,14 @@ internal fun DetailView(
             modalController.present(configuration) { key ->
                 Box(
                     modifier = Modifier.fillMaxWidth()
-                        .background(JetHabitTheme.colors.primaryBackground)
+                        .background(KalyanTheme.colors.primaryBackground)
                         .padding(16.dp)
                 ) {
                     CCalendar(
                         selectedDate = viewState.start ?: DateTime.now(),
-                        textColor = JetHabitTheme.colors.primaryText,
-                        dayOfWeekColor = JetHabitTheme.colors.controlColor,
-                        selectedColor = JetHabitTheme.colors.tintColor
+                        textColor = KalyanTheme.colors.primaryText,
+                        dayOfWeekColor = KalyanTheme.colors.controlColor,
+                        selectedColor = KalyanTheme.colors.tintColor
                     ) {
                         eventHandler.invoke(DetailEvent.StartDateSelected(it))
                         modalController.popBackStack(key)
@@ -125,14 +124,14 @@ internal fun DetailView(
             modalController.present(configuration) { key ->
                 Box(
                     modifier = Modifier.fillMaxWidth()
-                        .background(JetHabitTheme.colors.primaryBackground)
+                        .background(KalyanTheme.colors.primaryBackground)
                         .padding(16.dp)
                 ) {
                     CCalendar(
                         selectedDate = viewState.end ?: DateTime.now(),
-                        textColor = JetHabitTheme.colors.primaryText,
-                        dayOfWeekColor = JetHabitTheme.colors.controlColor,
-                        selectedColor = JetHabitTheme.colors.tintColor
+                        textColor = KalyanTheme.colors.primaryText,
+                        dayOfWeekColor = KalyanTheme.colors.controlColor,
+                        selectedColor = KalyanTheme.colors.tintColor
                     ) {
                         eventHandler.invoke(DetailEvent.EndDateSelected(it))
                         modalController.popBackStack(key)
@@ -151,15 +150,15 @@ internal fun DetailView(
             onClick = { eventHandler.invoke(DetailEvent.SaveChanges) },
             enabled = !viewState.isDeleting,
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = JetHabitTheme.colors.tintColor,
-                disabledBackgroundColor = JetHabitTheme.colors.tintColor.copy(
+                backgroundColor = KalyanTheme.colors.tintColor,
+                disabledBackgroundColor = KalyanTheme.colors.tintColor.copy(
                     alpha = 0.3f
                 )
             )
         ) {
             Text(
                 text = AppRes.string.action_save,
-                style = JetHabitTheme.typography.body,
+                style = KalyanTheme.typography.body,
                 color = Color.White
             )
         }

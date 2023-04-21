@@ -20,16 +20,14 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import di.LocalPlatform
-import di.Platform
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @Composable
 internal fun ComposeViewSuccess(modifier: Modifier = Modifier, onCloseClick: () -> Unit) {
     Surface(
         modifier = modifier.fillMaxSize(),
-        color = JetHabitTheme.colors.primaryBackground
+        color = KalyanTheme.colors.primaryBackground
     ) {
         Box {
             Column(
@@ -43,15 +41,15 @@ internal fun ComposeViewSuccess(modifier: Modifier = Modifier, onCloseClick: () 
                         .size(90.dp)
                         .align(CenterHorizontally),
                     imageVector = Icons.Filled.CheckCircle,
-                    tint = JetHabitTheme.colors.controlColor,
+                    tint = KalyanTheme.colors.controlColor,
                     contentDescription = "Accepted Icon"
                 )
 
                 Text(
                     modifier = Modifier.padding(top = 24.dp),
                     text = AppRes.string.compose_success_add,
-                    style = JetHabitTheme.typography.body,
-                    color = JetHabitTheme.colors.primaryText
+                    style = KalyanTheme.typography.body,
+                    color = KalyanTheme.colors.primaryText
                 )
 
                 Button(
@@ -61,15 +59,15 @@ internal fun ComposeViewSuccess(modifier: Modifier = Modifier, onCloseClick: () 
                         .fillMaxWidth(),
                     onClick = onCloseClick,
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = JetHabitTheme.colors.controlColor,
-                        disabledBackgroundColor = JetHabitTheme.colors.controlColor.copy(
+                        backgroundColor = KalyanTheme.colors.controlColor,
+                        disabledBackgroundColor = KalyanTheme.colors.controlColor.copy(
                             alpha = 0.3f
                         )
                     )
                 ) {
                     Text(
                         text = AppRes.string.action_close,
-                        style = JetHabitTheme.typography.body,
+                        style = KalyanTheme.typography.body,
                         color = Color.White
                     )
                 }

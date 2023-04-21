@@ -21,12 +21,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.soywiz.klock.DateTime
-import com.soywiz.klock.TimeSpan
-import com.soywiz.klock.TimezoneOffset
 import com.soywiz.klock.days
 import com.soywiz.klock.months
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import utils.wrap
 
 @Composable
@@ -46,7 +44,7 @@ internal fun CCalendar(
             Text(
                 text = "${dateState.month.localShortName} ${dateState.year.year}",
                 color = textColor,
-                style = JetHabitTheme.typography.body,
+                style = KalyanTheme.typography.body,
                 fontWeight = FontWeight.Medium
             )
             Spacer(modifier = Modifier.weight(1f))
@@ -55,7 +53,7 @@ internal fun CCalendar(
                     dateState = dateState.minus(1.months)
                 },
                 imageVector = Icons.Filled.KeyboardArrowLeft,
-                tint = JetHabitTheme.colors.tintColor,
+                tint = KalyanTheme.colors.tintColor,
                 contentDescription = "Month Back"
             )
             Spacer(modifier = Modifier.width(8.dp))
@@ -64,7 +62,7 @@ internal fun CCalendar(
                     dateState = dateState.plus(1.months)
                 },
                 imageVector = Icons.Filled.KeyboardArrowRight,
-                tint = JetHabitTheme.colors.tintColor,
+                tint = KalyanTheme.colors.tintColor,
                 contentDescription = "Month Forward"
             )
         }
@@ -79,43 +77,43 @@ internal fun CCalendar(
                 modifier = Modifier.weight(1f).height(cellSize),
                 textAlign = TextAlign.Center,
                 text = AppRes.string.days_monday_short, color = dayOfWeekColor,
-                style = JetHabitTheme.typography.caption
+                style = KalyanTheme.typography.caption
             )
             Text(
                 modifier = Modifier.weight(1f).height(cellSize),
                 textAlign = TextAlign.Center,
                 text = AppRes.string.days_tuesday_short, color = dayOfWeekColor,
-                style = JetHabitTheme.typography.caption
+                style = KalyanTheme.typography.caption
             )
             Text(
                 modifier = Modifier.weight(1f).height(cellSize),
                 textAlign = TextAlign.Center,
                 text = AppRes.string.days_wednesday_short, color = dayOfWeekColor,
-                style = JetHabitTheme.typography.caption
+                style = KalyanTheme.typography.caption
             )
             Text(
                 modifier = Modifier.weight(1f).height(cellSize),
                 textAlign = TextAlign.Center,
                 text = AppRes.string.days_thursday_short, color = dayOfWeekColor,
-                style = JetHabitTheme.typography.caption
+                style = KalyanTheme.typography.caption
             )
             Text(
                 modifier = Modifier.weight(1f).height(cellSize),
                 textAlign = TextAlign.Center,
                 text = AppRes.string.days_friday_short, color = dayOfWeekColor,
-                style = JetHabitTheme.typography.caption
+                style = KalyanTheme.typography.caption
             )
             Text(
                 modifier = Modifier.weight(1f).height(cellSize),
                 textAlign = TextAlign.Center,
                 text = AppRes.string.days_saturday_short, color = dayOfWeekColor,
-                style = JetHabitTheme.typography.caption
+                style = KalyanTheme.typography.caption
             )
             Text(
                 modifier = Modifier.weight(1f).height(cellSize),
                 textAlign = TextAlign.Center,
                 text = AppRes.string.days_sunday_short, color = dayOfWeekColor,
-                style = JetHabitTheme.typography.caption
+                style = KalyanTheme.typography.caption
             )
         }
 

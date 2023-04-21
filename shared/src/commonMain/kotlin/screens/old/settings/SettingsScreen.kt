@@ -7,15 +7,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.adeo.kviewmodel.odyssey.StoredViewModel
 import data.features.settings.LocalSettingsEventBus
 import screens.old.daily.views.HabitCardItem
 import screens.old.daily.views.HabitCardItemModel
@@ -24,16 +21,16 @@ import screens.old.settings.views.MenuItem
 import screens.old.settings.views.MenuItemModel
 import com.kalyan.shared.AppRes
 import ui.themes.*
-import ui.themes.JetHabitCorners.Flat
-import ui.themes.JetHabitCorners.Rounded
-import ui.themes.JetHabitSize.Big
-import ui.themes.JetHabitSize.Medium
-import ui.themes.JetHabitSize.Small
-import ui.themes.JetHabitStyle.Blue
-import ui.themes.JetHabitStyle.Green
-import ui.themes.JetHabitStyle.Orange
-import ui.themes.JetHabitStyle.Purple
-import ui.themes.JetHabitStyle.Red
+import ui.themes.KalyanCorners.Flat
+import ui.themes.KalyanCorners.Rounded
+import ui.themes.KalyanSize.Big
+import ui.themes.KalyanSize.Medium
+import ui.themes.KalyanSize.Small
+import ui.themes.KalyanStyle.Blue
+import ui.themes.KalyanStyle.Green
+import ui.themes.KalyanStyle.Orange
+import ui.themes.KalyanStyle.Purple
+import ui.themes.KalyanStyle.Red
 import ui.themes.components.JHDivider
 
 @ExperimentalMaterialApi
@@ -51,50 +48,50 @@ internal fun SettingsScreen() {
     val currentSettings = settingsEventBus.currentSettings.value
 
     Surface(
-        color = JetHabitTheme.colors.primaryBackground,
+        color = KalyanTheme.colors.primaryBackground,
     ) {
         Column(
             Modifier.fillMaxSize()
         ) {
             TopAppBar(
-                backgroundColor = JetHabitTheme.colors.primaryBackground,
+                backgroundColor = KalyanTheme.colors.primaryBackground,
                 elevation = 8.dp
             ) {
                 Text(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(start = JetHabitTheme.shapes.padding),
+                        .padding(start = KalyanTheme.shapes.padding),
                     text = AppRes.string.title_settings,
-                    color = JetHabitTheme.colors.primaryText,
-                    style = JetHabitTheme.typography.toolbar
+                    color = KalyanTheme.colors.primaryText,
+                    style = KalyanTheme.typography.toolbar
                 )
             }
 
             Row(
-                modifier = Modifier.padding(JetHabitTheme.shapes.padding),
+                modifier = Modifier.padding(KalyanTheme.shapes.padding),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     modifier = Modifier.weight(1f),
                     text = AppRes.string.action_dark_theme_enable,
-                    color = JetHabitTheme.colors.primaryText,
-                    style = JetHabitTheme.typography.body
+                    color = KalyanTheme.colors.primaryText,
+                    style = KalyanTheme.typography.body
                 )
                 Checkbox(
                     checked = currentSettings.isDarkMode, onCheckedChange = {
                         settingsEventBus.updateDarkMode(!currentSettings.isDarkMode)
                     },
                     colors = CheckboxDefaults.colors(
-                        checkedColor = JetHabitTheme.colors.tintColor,
-                        uncheckedColor = JetHabitTheme.colors.secondaryText
+                        checkedColor = KalyanTheme.colors.tintColor,
+                        uncheckedColor = KalyanTheme.colors.secondaryText
                     )
                 )
             }
 
             Divider(
-                modifier = Modifier.padding(start = JetHabitTheme.shapes.padding),
+                modifier = Modifier.padding(start = KalyanTheme.shapes.padding),
                 thickness = 0.5.dp,
-                color = JetHabitTheme.colors.secondaryText.copy(
+                color = KalyanTheme.colors.secondaryText.copy(
                     alpha = 0.3f
                 )
             )
@@ -176,7 +173,7 @@ internal fun SettingsScreen() {
 
             Row(
                 modifier = Modifier
-                    .padding(JetHabitTheme.shapes.padding)
+                    .padding(KalyanTheme.shapes.padding)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
@@ -196,7 +193,7 @@ internal fun SettingsScreen() {
 
             Row(
                 modifier = Modifier
-                    .padding(JetHabitTheme.shapes.padding)
+                    .padding(KalyanTheme.shapes.padding)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
@@ -223,13 +220,13 @@ internal fun SettingsScreen() {
 
 @Composable
 private fun SettingsView(viewState: SettingsViewState) {
-    Column(modifier = Modifier.fillMaxSize().background(JetHabitTheme.colors.secondaryBackground)) {
+    Column(modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.secondaryBackground)) {
         Spacer(modifier = Modifier.height(12.dp))
 
         Row(modifier = Modifier.padding(20.dp)) {
             Card(
                 modifier = Modifier.weight(1f).height(80.dp),
-                backgroundColor = JetHabitTheme.colors.primaryBackground,
+                backgroundColor = KalyanTheme.colors.primaryBackground,
                 elevation = 4.dp,
                 shape = RoundedCornerShape(10.dp)
             ) {
@@ -240,7 +237,7 @@ private fun SettingsView(viewState: SettingsViewState) {
 
             Card(
                 modifier = Modifier.size(80.dp),
-                backgroundColor = JetHabitTheme.colors.primaryBackground,
+                backgroundColor = KalyanTheme.colors.primaryBackground,
                 elevation = 4.dp,
                 shape = RoundedCornerShape(10.dp)
             ) {
@@ -249,7 +246,7 @@ private fun SettingsView(viewState: SettingsViewState) {
                         modifier = Modifier.align(Alignment.Center),
                         text = "${viewState.healthPercentage}",
                         fontSize = 20.sp,
-                        color = JetHabitTheme.colors.tintColor,
+                        color = KalyanTheme.colors.tintColor,
                         fontWeight = FontWeight.Medium
                     )
                 }
@@ -258,7 +255,7 @@ private fun SettingsView(viewState: SettingsViewState) {
 
         Card(
             modifier = Modifier.padding(horizontal = 20.dp).fillMaxWidth(),
-            backgroundColor = JetHabitTheme.colors.primaryBackground,
+            backgroundColor = KalyanTheme.colors.primaryBackground,
             elevation = 4.dp,
             shape = RoundedCornerShape(10.dp)
         ) {
@@ -268,7 +265,7 @@ private fun SettingsView(viewState: SettingsViewState) {
                         text = AppRes.string.settings_body_metrics,
                         fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
-                        color = JetHabitTheme.colors.primaryText
+                        color = KalyanTheme.colors.primaryText
                     )
                 }
 
@@ -279,7 +276,7 @@ private fun SettingsView(viewState: SettingsViewState) {
                         text = AppRes.string.settings_theme,
                         fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
-                        color = JetHabitTheme.colors.primaryText
+                        color = KalyanTheme.colors.primaryText
                     )
                 }
 
@@ -302,6 +299,6 @@ internal fun ColorCard(
             },
         backgroundColor = color,
         elevation = 8.dp,
-        shape = JetHabitTheme.shapes.cornersStyle
+        shape = KalyanTheme.shapes.cornersStyle
     ) { }
 }

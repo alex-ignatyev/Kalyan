@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 data class HabitCardItemModel(
     val habitId: Long,
@@ -28,33 +28,33 @@ internal fun HabitCardItem(
         modifier = Modifier
             .clickable { onCardClicked?.invoke() }
             .padding(
-                horizontal = JetHabitTheme.shapes.padding,
-                vertical = JetHabitTheme.shapes.padding / 2
+                horizontal = KalyanTheme.shapes.padding,
+                vertical = KalyanTheme.shapes.padding / 2
             )
             .fillMaxWidth(),
         elevation = 8.dp,
-        backgroundColor = JetHabitTheme.colors.primaryBackground,
-        shape = JetHabitTheme.shapes.cornersStyle
+        backgroundColor = KalyanTheme.colors.primaryBackground,
+        shape = KalyanTheme.shapes.cornersStyle
     ) {
         Row(
             modifier = Modifier
-                .padding(JetHabitTheme.shapes.padding)
+                .padding(KalyanTheme.shapes.padding)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 modifier = Modifier.weight(1f),
                 text = model.title,
-                style = JetHabitTheme.typography.body,
-                color = JetHabitTheme.colors.primaryText
+                style = KalyanTheme.typography.body,
+                color = KalyanTheme.colors.primaryText
             )
 
             Checkbox(
                 checked = model.isChecked,
                 onCheckedChange = onCheckedChange,
                 colors = CheckboxDefaults.colors(
-                    checkedColor = JetHabitTheme.colors.tintColor,
-                    uncheckedColor = JetHabitTheme.colors.secondaryText
+                    checkedColor = KalyanTheme.colors.tintColor,
+                    uncheckedColor = KalyanTheme.colors.secondaryText
                 )
             )
         }

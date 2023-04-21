@@ -29,11 +29,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import di.LocalPlatform
-import di.Platform
 import screens.old.compose.models.ComposeViewState
 import com.kalyan.shared.AppRes
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 
 @ExperimentalFoundationApi
 @Composable
@@ -46,20 +44,20 @@ internal fun ComposeViewInitial(
     onCloseClicked: () -> Unit,
     onClearClicked: () -> Unit
 ) {
-    Surface(modifier = modifier.fillMaxSize(), color = JetHabitTheme.colors.primaryBackground) {
+    Surface(modifier = modifier.fillMaxSize(), color = KalyanTheme.colors.primaryBackground) {
         Box {
             LazyColumn(
-                Modifier.background(JetHabitTheme.colors.primaryBackground),
+                Modifier.background(KalyanTheme.colors.primaryBackground),
                 content = {
                     stickyHeader {
                         Text(
                             modifier = Modifier.padding(
-                                horizontal = JetHabitTheme.shapes.padding,
-                                vertical = JetHabitTheme.shapes.padding + 8.dp
+                                horizontal = KalyanTheme.shapes.padding,
+                                vertical = KalyanTheme.shapes.padding + 8.dp
                             ),
                             text = AppRes.string.compose_new_record,
-                            style = JetHabitTheme.typography.heading,
-                            color = JetHabitTheme.colors.primaryText
+                            style = KalyanTheme.typography.heading,
+                            color = KalyanTheme.colors.primaryText
                         )
                     }
 
@@ -67,8 +65,8 @@ internal fun ComposeViewInitial(
                         Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
                             Text(
                                 text = AppRes.string.compose_title,
-                                style = JetHabitTheme.typography.caption,
-                                color = JetHabitTheme.colors.secondaryText
+                                style = KalyanTheme.typography.caption,
+                                color = KalyanTheme.colors.secondaryText
                             )
 
                             TextField(
@@ -84,17 +82,17 @@ internal fun ComposeViewInitial(
                                             modifier = Modifier.clickable { onClearClicked.invoke() },
                                             imageVector = Icons.Default.Clear,
                                             contentDescription = "Close",
-                                            tint = JetHabitTheme.colors.controlColor
+                                            tint = KalyanTheme.colors.controlColor
                                         )
                                     }
                                 },
                                 onValueChange = onTitleChanged,
                                 colors = TextFieldDefaults.textFieldColors(
-                                    backgroundColor = JetHabitTheme.colors.primaryBackground,
-                                    textColor = JetHabitTheme.colors.primaryText,
-                                    focusedIndicatorColor = JetHabitTheme.colors.tintColor,
-                                    disabledIndicatorColor = JetHabitTheme.colors.controlColor,
-                                    cursorColor = JetHabitTheme.colors.tintColor
+                                    backgroundColor = KalyanTheme.colors.primaryBackground,
+                                    textColor = KalyanTheme.colors.primaryText,
+                                    focusedIndicatorColor = KalyanTheme.colors.tintColor,
+                                    disabledIndicatorColor = KalyanTheme.colors.controlColor,
+                                    cursorColor = KalyanTheme.colors.tintColor
                                 )
                             )
                         }
@@ -108,8 +106,8 @@ internal fun ComposeViewInitial(
                             Text(
                                 modifier = Modifier.padding(end = 16.dp),
                                 text = AppRes.string.compose_is_good,
-                                style = JetHabitTheme.typography.body,
-                                color = JetHabitTheme.colors.primaryText
+                                style = KalyanTheme.typography.body,
+                                color = KalyanTheme.colors.primaryText
                             )
 
                             Checkbox(
@@ -117,9 +115,9 @@ internal fun ComposeViewInitial(
                                 enabled = !state.isSending,
                                 onCheckedChange = onCheckedChange,
                                 colors = CheckboxDefaults.colors(
-                                    checkedColor = JetHabitTheme.colors.tintColor,
-                                    uncheckedColor = JetHabitTheme.colors.secondaryText,
-                                    disabledColor = JetHabitTheme.colors.tintColor.copy(
+                                    checkedColor = KalyanTheme.colors.tintColor,
+                                    uncheckedColor = KalyanTheme.colors.secondaryText,
+                                    disabledColor = KalyanTheme.colors.tintColor.copy(
                                         alpha = 0.3f
                                     )
                                 )
@@ -136,8 +134,8 @@ internal fun ComposeViewInitial(
                             onClick = onSaveClicked,
                             enabled = !state.isSending && state.habitTitle.isNotBlank(),
                             colors = ButtonDefaults.buttonColors(
-                                backgroundColor = JetHabitTheme.colors.tintColor,
-                                disabledBackgroundColor = JetHabitTheme.colors.tintColor.copy(
+                                backgroundColor = KalyanTheme.colors.tintColor,
+                                disabledBackgroundColor = KalyanTheme.colors.tintColor.copy(
                                     alpha = 0.3f
                                 )
                             )
@@ -151,7 +149,7 @@ internal fun ComposeViewInitial(
                             } else {
                                 Text(
                                     text = AppRes.string.action_add,
-                                    style = JetHabitTheme.typography.body,
+                                    style = KalyanTheme.typography.body,
                                     color = Color.White
                                 )
                             }
@@ -167,15 +165,15 @@ internal fun ComposeViewInitial(
                             onClick = onCloseClicked,
                             enabled = !state.isSending,
                             colors = ButtonDefaults.buttonColors(
-                                backgroundColor = JetHabitTheme.colors.controlColor,
-                                disabledBackgroundColor = JetHabitTheme.colors.controlColor.copy(
+                                backgroundColor = KalyanTheme.colors.controlColor,
+                                disabledBackgroundColor = KalyanTheme.colors.controlColor.copy(
                                     alpha = 0.3f
                                 )
                             )
                         ) {
                             Text(
                                 text = AppRes.string.action_close,
-                                style = JetHabitTheme.typography.body,
+                                style = KalyanTheme.typography.body,
                                 color = Color.White
                             )
                         }

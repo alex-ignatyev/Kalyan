@@ -27,7 +27,7 @@ import ru.alexgladkov.odyssey.core.LaunchFlag.SingleNewTask
 import screens.login.get_sms.GetSmsAction.OpenMainScreen
 import screens.login.get_sms.GetSmsEvent.ChangeCode
 import screens.login.get_sms.GetSmsEvent.NextClick
-import ui.themes.JetHabitTheme
+import ui.themes.KalyanTheme
 import ui.themes.components.JetHabitButton
 
 @Composable
@@ -39,7 +39,7 @@ internal fun GetSmsScreen() {
         val viewAction by viewModel.viewActions().collectAsState(null)
 
         Column(
-            modifier = Modifier.fillMaxSize().background(JetHabitTheme.colors.secondaryBackground),
+            modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.secondaryBackground),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -47,7 +47,7 @@ internal fun GetSmsScreen() {
                 modifier = Modifier.padding(top = 20.dp),
                 text = "Get Sms",
                 fontSize = 32.sp,
-                color = JetHabitTheme.colors.primaryText,
+                color = KalyanTheme.colors.primaryText,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 0.5.sp
             )
@@ -62,13 +62,13 @@ internal fun GetSmsScreen() {
                 shape = RoundedCornerShape(8.dp),
                 singleLine = true,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = JetHabitTheme.colors.primaryBackground,
-                    unfocusedBorderColor = JetHabitTheme.colors.primaryBackground,
-                    disabledBorderColor = JetHabitTheme.colors.primaryBackground,
-                    errorBorderColor = JetHabitTheme.colors.primaryBackground,
-                    backgroundColor = JetHabitTheme.colors.primaryBackground,
-                    textColor = JetHabitTheme.colors.primaryText,
-                    cursorColor = JetHabitTheme.colors.controlColor
+                    focusedBorderColor = KalyanTheme.colors.primaryBackground,
+                    unfocusedBorderColor = KalyanTheme.colors.primaryBackground,
+                    disabledBorderColor = KalyanTheme.colors.primaryBackground,
+                    errorBorderColor = KalyanTheme.colors.primaryBackground,
+                    backgroundColor = KalyanTheme.colors.primaryBackground,
+                    textColor = KalyanTheme.colors.primaryText,
+                    cursorColor = KalyanTheme.colors.controlColor
                 )
             )
 
