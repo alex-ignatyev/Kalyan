@@ -1,7 +1,7 @@
 package di
 
 import Database
-import data.DriverFactory
+import database.DriverFactory
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance

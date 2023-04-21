@@ -20,35 +20,34 @@ import ru.alexgladkov.odyssey.compose.setup.setNavigationContent
 import ui.themes.JetHabitTheme
 import ui.themes.MainTheme
 
-fun MainViewController(): UIViewController =
-    ComposeUIViewController {
-        val settingsEventBus = remember { SettingsEventBus() }
-        val currentSettings = settingsEventBus.currentSettings.collectAsState().value
+fun MainViewController(): UIViewController = ComposeUIViewController {
+    val settingsEventBus = remember { SettingsEventBus() }
+    val currentSettings = settingsEventBus.currentSettings.collectAsState().value
 
-        MainTheme(
-            style = currentSettings.style,
-            darkTheme = currentSettings.isDarkMode,
-            corners = currentSettings.cornerStyle,
-            textSize = currentSettings.textSize,
-            paddingSize = currentSettings.paddingSize
+    MainTheme(
+        style = currentSettings.style,
+        darkTheme = currentSettings.isDarkMode,
+        corners = currentSettings.cornerStyle,
+        textSize = currentSettings.textSize,
+        paddingSize = currentSettings.paddingSize
+    ) {
+        val odysseyConfiguration = OdysseyConfiguration(
+            backgroundColor = JetHabitTheme.colors.primaryBackground
+        )
+
+        val backgroundColor = JetHabitTheme.colors.primaryBackground
+
+        CompositionLocalProvider(
+            LocalPlatform provides Platform.iOS,
+            LocalSettingsEventBus provides settingsEventBus
         ) {
-            val odysseyConfiguration = OdysseyConfiguration(
-                backgroundColor = JetHabitTheme.colors.primaryBackground
-            )
-
-            val backgroundColor = JetHabitTheme.colors.primaryBackground
-
-            CompositionLocalProvider(
-                LocalPlatform provides Platform.iOS,
-                LocalSettingsEventBus provides settingsEventBus
-            ) {
-                Column {
-                    Box(modifier = Modifier.fillMaxWidth().height(30.dp).background(backgroundColor))
-                    setNavigationContent(odysseyConfiguration) {
-                        navigationGraph()
-                    }
-                    Box(modifier = Modifier.fillMaxWidth().height(30.dp).background(backgroundColor))
+            Column {
+                Box(modifier = Modifier.fillMaxWidth().height(30.dp).background(backgroundColor))
+                setNavigationContent(odysseyConfiguration) {
+                    navigationGraph()
                 }
+                Box(modifier = Modifier.fillMaxWidth().height(30.dp).background(backgroundColor))
             }
         }
     }
+}

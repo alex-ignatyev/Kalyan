@@ -2,7 +2,6 @@ package ktor
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
-import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
@@ -12,43 +11,9 @@ import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.kodein.di.DI
-import org.kodein.di.bind
-import org.kodein.di.singleton
 import org.koin.dsl.module
 
 //FIXME настроить ktor client
-internal val ktoreModule = DI.Module("ktorModule") {
-    bind<HttpClient>() with singleton {
-        HttpClient(HttpEngineFactory().createEngine()) {
-            install(Logging) {
-                logger = Logger.SIMPLE
-                level = LogLevel.ALL
-            }
-
-            install(DefaultRequest) //FIXME Зачем ?
-
-            install(ContentNegotiation) {
-                json(Json {
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                    //prettyPrint = true
-                })
-            }
-
-            install(HttpTimeout) {
-                connectTimeoutMillis = 15000
-                requestTimeoutMillis = 30000
-            }
-
-            defaultRequest {
-                header("Content-Type", "application/json; charset=UTF-8")
-                url("http://10.0.2.2:8100")
-            }
-        }
-    }
-}
-
 internal val ktoreModuleKoin = module {
     single {
         HttpClient(HttpEngineFactory().createEngine()) {
@@ -57,7 +22,7 @@ internal val ktoreModuleKoin = module {
                 level = LogLevel.ALL
             }
 
-            install(DefaultRequest) //FIXME Зачем ?
+            expectSuccess = false
 
             install(ContentNegotiation) {
                 json(Json {
@@ -67,14 +32,10 @@ internal val ktoreModuleKoin = module {
                 })
             }
 
-            install(HttpTimeout) {
-                connectTimeoutMillis = 15000
-                requestTimeoutMillis = 30000
-            }
-
+            install(DefaultRequest) //FIXME Зачем ?
             defaultRequest {
                 header("Content-Type", "application/json; charset=UTF-8")
-                url("http://10.0.2.2:8100")
+                url(createBaseUrl())
             }
         }
     }

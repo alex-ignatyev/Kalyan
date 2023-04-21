@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import di.LocalPlatform
+import kotlinx.coroutines.delay
 import ru.alexgladkov.odyssey.compose.extensions.present
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.core.LaunchFlag
@@ -32,7 +33,7 @@ internal fun SplashScreen() {
         Column(modifier = Modifier.align(Alignment.Center)) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = "Jet Habit",
+                text = "Kalyan",
                 style = JetHabitTheme.typography.heading,
                 color = JetHabitTheme.colors.primaryText,
                 textAlign = TextAlign.Center
@@ -50,6 +51,7 @@ internal fun SplashScreen() {
     }
 
     LaunchedEffect(key1 = Unit, block = {
+        delay(2000L)
         rootController.present("login", launchFlag = LaunchFlag.SingleNewTask)
     })
 }
