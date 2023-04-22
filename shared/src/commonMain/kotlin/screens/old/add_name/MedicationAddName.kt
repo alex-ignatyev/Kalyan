@@ -33,7 +33,7 @@ import screens.old.add_name.models.MedicationAddNameAction
 import screens.old.add_name.models.MedicationAddNameEvent
 import com.kalyan.shared.AppRes
 import ui.themes.KalyanTheme
-import ui.themes.components.JetHabitButton
+import ui.themes.components.KalyanButton
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -102,7 +102,7 @@ internal fun MedicationAddName() {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            JetHabitButton(
+            KalyanButton(
                 modifier = Modifier.padding(vertical = 44.dp, horizontal = 20.dp)
                     .fillMaxWidth(),
                 text = AppRes.string.action_next,

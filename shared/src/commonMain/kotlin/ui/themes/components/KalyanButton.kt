@@ -1,7 +1,9 @@
 package ui.themes.components
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -14,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import ui.themes.KalyanTheme
 
 @Composable
-internal fun JetHabitButton(
+internal fun KalyanButton(
     modifier: Modifier = Modifier,
     backgroundColor: Color = KalyanTheme.colors.tintColor,
     shape: Shape = RoundedCornerShape(8.dp),
@@ -24,7 +26,7 @@ internal fun JetHabitButton(
     content: @Composable RowScope.() -> Unit = {}
 ) {
     Button(
-        modifier = modifier.height(48.dp),
+        modifier = modifier.height(48.dp).fillMaxWidth().padding(horizontal = 16.dp),
         onClick = onClick,
         enabled = enabled,
         shape = shape,
@@ -44,4 +46,3 @@ internal fun JetHabitButton(
         } ?: content.invoke(this)
     }
 }
-

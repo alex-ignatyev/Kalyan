@@ -128,7 +128,7 @@ internal fun CCalendar(
                     selectedDate.dayOfMonth == dateState.dayOfMonth
         }
 
-        JetHabitButton(
+        KalyanButton(
             modifier = Modifier.padding(16.dp).fillMaxWidth(),
             text = AppRes.string.action_save,
             enabled = if (allowSameDate) true else !isSame,

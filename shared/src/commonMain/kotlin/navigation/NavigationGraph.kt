@@ -25,8 +25,9 @@ import screens.old.settings.SettingsScreen
 import screens.splash.SplashScreen
 import screens.old.stats.StatisticsScreen
 import com.kalyan.shared.AppRes
-import screens.login.get_sms.GetSmsScreen
-import screens.login.login.LoginScreen
+import screens.auth.get_sms.GetSmsScreen
+import screens.auth.login.LoginScreen
+import screens.main.MainScreen
 import ui.themes.KalyanTheme
 
 @OptIn(
@@ -61,7 +62,7 @@ internal fun RootComposeBuilder.navigationGraph() {
 
         tab(TabDefaults.content(AppRes.string.title_daily, Icons.Filled.DateRange), colors) {
             screen("daily") {
-                DailyScreen()
+                MainScreen()
             }
 
             screen("detail") {

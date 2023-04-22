@@ -1,4 +1,4 @@
-package screens.login.login
+package screens.auth.get_sms
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -21,19 +21,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adeo.kviewmodel.odyssey.StoredViewModel
 import com.kalyan.shared.AppRes
-import ru.alexgladkov.odyssey.compose.extensions.push
+import ru.alexgladkov.odyssey.compose.extensions.present
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
-import screens.login.login.LoginAction.OpenSmsScreen
-import screens.login.login.LoginEvent.ChangePhone
-import screens.login.login.LoginEvent.NextClick
+import ru.alexgladkov.odyssey.core.LaunchFlag.SingleNewTask
+import screens.auth.get_sms.GetSmsAction.OpenMainScreen
+import screens.auth.get_sms.GetSmsEvent.ChangeCode
+import screens.auth.get_sms.GetSmsEvent.NextClick
 import ui.themes.KalyanTheme
-import ui.themes.components.JetHabitButton
+import ui.themes.components.KalyanButton
 
 @Composable
-internal fun LoginScreen() {
+internal fun GetSmsScreen() {
     val rootController = LocalRootController.current
 
-    StoredViewModel(factory = { LoginViewModel() }) { viewModel ->
+    StoredViewModel(factory = { GetSmsViewModel() }) { viewModel ->
         val viewState by viewModel.viewStates().collectAsState()
         val viewAction by viewModel.viewActions().collectAsState(null)
 
@@ -44,7 +45,7 @@ internal fun LoginScreen() {
 
             Text(
                 modifier = Modifier.padding(top = 20.dp),
-                text = "Login",
+                text = viewState.text,
                 fontSize = 32.sp,
                 color = KalyanTheme.colors.primaryText,
                 fontWeight = FontWeight.Bold,
@@ -54,9 +55,9 @@ internal fun LoginScreen() {
             OutlinedTextField(
                 modifier = Modifier.padding(top = 20.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth().height(48.dp),
-                value = viewState.phone,
+                value = viewState.code,
                 onValueChange = {
-                    viewModel.obtainEvent(ChangePhone(it))
+                    viewModel.obtainEvent(ChangeCode(it))
                 },
                 shape = RoundedCornerShape(8.dp),
                 singleLine = true,
@@ -71,9 +72,7 @@ internal fun LoginScreen() {
                 )
             )
 
-            Spacer(modifier = Modifier.weight(1f))
-
-            JetHabitButton(
+            KalyanButton(
                 modifier = Modifier.padding(vertical = 44.dp, horizontal = 20.dp)
                     .fillMaxWidth(),
                 text = AppRes.string.action_next,
@@ -84,7 +83,7 @@ internal fun LoginScreen() {
         }
 
         when (viewAction) {
-            is OpenSmsScreen -> rootController.push("get_sms")
+            is OpenMainScreen -> rootController.present("main", launchFlag = SingleNewTask)
             null -> {}
         }
     }

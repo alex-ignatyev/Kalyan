@@ -1,15 +1,19 @@
 package domain.repository
 
 import data.RemoteAuthDataSource
-import data.SettingsAuthDataSource
+import data.SettingsDataSource
 import model.TokenResponse
 import utils.answer.Answer
 import utils.answer.onSuccess
 
 class AuthRepositoryImpl(
     private val remote: RemoteAuthDataSource,
-    private val settings: SettingsAuthDataSource
+    private val settings: SettingsDataSource
 ) : AuthRepository {
+
+    override suspend fun test(): Answer<Unit> {
+        return remote.test(settings.getToken())
+    }
 
     override suspend fun logIn(phone: String): Answer<Unit> {
         return remote.logIn(phone)
@@ -27,4 +31,5 @@ class AuthRepositoryImpl(
 interface AuthRepository {
     suspend fun logIn(phone: String): Answer<Unit>
     suspend fun sendSmsCode(code: String): Answer<TokenResponse>
+    suspend fun test(): Answer<Unit>
 }

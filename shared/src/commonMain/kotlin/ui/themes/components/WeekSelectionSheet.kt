@@ -99,7 +99,7 @@ internal fun WeekSelectionSheet(
             }
         }
 
-        JetHabitButton(modifier = Modifier
+        KalyanButton(modifier = Modifier
             .padding(horizontal = 20.dp, vertical = 20.dp)
             .fillMaxWidth(),
             text = AppRes.string.action_save,

@@ -3,7 +3,7 @@ package data
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.get
 
-class SettingsAuthDataSource(
+class SettingsDataSource(
     private val settings: Settings
 ) {
 

@@ -20,6 +20,7 @@ object PlatformSDK {
                 settingsModule,
 
                 authModule,
+                mainModule,
 
                 dailyModuleKoin,
                 medicationModuleKoin

@@ -1,4 +1,4 @@
-package screens.login.get_sms
+package screens.auth.get_sms
 
 sealed class GetSmsEvent {
     data class ChangeCode(val value: String) : GetSmsEvent()
@@ -7,6 +7,7 @@ sealed class GetSmsEvent {
 
 data class GetSmsState(
     val code: String = "",
+    val text :String = "Sms Code",
     val isButtonEnabled: Boolean = false
 )
 

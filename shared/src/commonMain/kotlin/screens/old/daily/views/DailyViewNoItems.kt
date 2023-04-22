@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import ui.themes.KalyanTheme
-import ui.themes.components.JetHabitButton
+import ui.themes.components.KalyanButton
 
 @Composable
 internal fun DailyViewNoItems(
@@ -48,7 +48,7 @@ internal fun DailyViewNoItems(
                     textAlign = TextAlign.Center
                 )
 
-                JetHabitButton(
+                KalyanButton(
                     modifier = Modifier.fillMaxWidth(),
                     backgroundColor = KalyanTheme.colors.controlColor,
                     text = AppRes.string.action_add,

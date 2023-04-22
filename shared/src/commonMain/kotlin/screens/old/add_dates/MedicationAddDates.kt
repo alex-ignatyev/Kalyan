@@ -37,7 +37,7 @@ import com.kalyan.shared.AppRes
 import ui.themes.KalyanTheme
 import ui.themes.components.CCalendar
 import ui.themes.components.CounterModalSheet
-import ui.themes.components.JetHabitButton
+import ui.themes.components.KalyanButton
 import ui.themes.components.WeekSelectionSheet
 
 @Composable
@@ -229,7 +229,7 @@ internal fun MedicationAddDates(title: String) {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            JetHabitButton(
+            KalyanButton(
                 modifier = Modifier.padding(bottom = 40.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth(),
                 text = AppRes.string.action_add,

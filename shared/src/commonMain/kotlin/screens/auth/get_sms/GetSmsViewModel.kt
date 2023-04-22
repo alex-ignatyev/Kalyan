@@ -1,13 +1,13 @@
-package screens.login.get_sms
+package screens.auth.get_sms
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import screens.login.get_sms.GetSmsAction.OpenMainScreen
-import screens.login.get_sms.GetSmsEvent.ChangeCode
-import screens.login.get_sms.GetSmsEvent.NextClick
+import screens.auth.get_sms.GetSmsAction.OpenMainScreen
+import screens.auth.get_sms.GetSmsEvent.ChangeCode
+import screens.auth.get_sms.GetSmsEvent.NextClick
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -33,7 +33,7 @@ class GetSmsViewModel : KoinComponent, BaseSharedViewModel<GetSmsState, GetSmsAc
             repository.sendSmsCode(viewState.code).onSuccess {
                 viewAction = OpenMainScreen()
             }.onFailure {
-                print(it.message)
+                viewState = viewState.copy(text = it.message)
             }
         }
     }

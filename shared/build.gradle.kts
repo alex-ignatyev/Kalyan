@@ -107,7 +107,7 @@ sqldelight {
 libres {
     generatedClassName = "AppRes"
     generateNamedArguments = true
-    baseLocaleLanguageCode = "en"
+    baseLocaleLanguageCode = "ru"
 }
 
 android {
