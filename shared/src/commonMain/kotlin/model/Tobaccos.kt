@@ -10,7 +10,7 @@ data class Tobaccos(
 
 @Serializable
 data class Tobacco(
-    @SerialName("id") val id: String,
+    @SerialName("id") val id: String = "",
     @SerialName("company") val company: String,
     @SerialName("taste") val taste: String,
     @SerialName("strength") val strength: Int,

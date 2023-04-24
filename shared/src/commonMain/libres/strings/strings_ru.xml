@@ -2,6 +2,10 @@
 <resources>
     <string name="app_name">Kalyan</string>
 
+    <string name="title_rating">Рейтинг</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_profile">Профиль</string>
+
     <string name="days_today">Today</string>
     <string name="title_font_size">Font size</string>
     <string name="title_font_size_small">Small</string>

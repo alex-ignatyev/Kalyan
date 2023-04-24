@@ -5,7 +5,7 @@ import domain.repository.MainRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import screens.main.MainEvent.TestClick
+import screens.main.MainEvent.TestCreate
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -15,9 +15,13 @@ class MainViewModel : KoinComponent, BaseSharedViewModel<MainState, MainAction, 
 
     private val repository: MainRepository by inject()
 
+    init {
+        testClick()
+    }
+
     override fun obtainEvent(viewEvent: MainEvent) {
         when (viewEvent) {
-            is TestClick -> testClick()
+            is TestCreate -> test()
         }
     }
 
@@ -27,6 +31,14 @@ class MainViewModel : KoinComponent, BaseSharedViewModel<MainState, MainAction, 
                 viewState = viewState.copy(tobaccos = it.tobaccos ?: listOf())
             }.onFailure {
 
+            }
+        }
+    }
+
+    private fun test() {
+        viewModelScope.launch {
+            repository.createTobacco().onSuccess {
+                testClick()
             }
         }
     }

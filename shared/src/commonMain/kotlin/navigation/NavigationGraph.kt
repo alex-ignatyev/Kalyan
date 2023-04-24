@@ -4,6 +4,8 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
@@ -52,31 +54,40 @@ internal fun RootComposeBuilder.navigationGraph() {
     bottomNavigation(
         "main",
         colors = BottomBarDefaults.bottomColors(
-            backgroundColor = KalyanTheme.colors.primaryBackground
+            backgroundColor = KalyanTheme.colors.generalColor
         )
     ) {
         val colors = TabDefaults.simpleTabColors(
             selectedColor = KalyanTheme.colors.primaryText,
-            unselectedColor = KalyanTheme.colors.controlColor
+            unselectedColor = KalyanTheme.colors.secondaryText
         )
 
-        tab(TabDefaults.content(AppRes.string.title_daily, Icons.Filled.DateRange), colors) {
-            screen("daily") {
+        tab(TabDefaults.content(AppRes.string.title_rating, Icons.Filled.Star), colors) {
+            screen("rating") {
                 MainScreen()
             }
 
-            screen("detail") {
+            /*screen("detail") {
                 DetailScreen(it as HabitCardItemModel)
-            }
+            }*/
         }
 
-        tab(TabDefaults.content(AppRes.string.title_statistics, Icons.Filled.Star), colors) {
-            screen("statistics") {
+        tab(TabDefaults.content(AppRes.string.title_search, Icons.Filled.Search), colors) {
+            screen("search") {
                 StatisticsScreen()
             }
         }
 
-        tab(TabDefaults.content(AppRes.string.title_settings, Icons.Filled.Settings), colors) {
+        // Избранное
+        /*tab(TabDefaults.content(AppRes.string.title_search, Icons.Filled.Search), colors) {
+            screen("search") {
+                StatisticsScreen()
+            }
+        }*/
+
+        // Хочу покурить / Покурил
+
+        tab(TabDefaults.content(AppRes.string.title_profile, Icons.Filled.Person), colors) {
             screen("settings") {
                 SettingsScreen()
             }

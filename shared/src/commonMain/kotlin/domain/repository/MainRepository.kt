@@ -13,8 +13,13 @@ class MainRepositoryImpl(
     override suspend fun getTobaccos(): Answer<Tobaccos> {
         return remote.getTobaccos(settings.getToken())
     }
+
+    override suspend fun createTobacco(): Answer<Unit> {
+        return remote.createTobacco(settings.getToken())
+    }
 }
 
 interface MainRepository {
     suspend fun getTobaccos(): Answer<Tobaccos>
+    suspend fun createTobacco(): Answer<Unit>
 }

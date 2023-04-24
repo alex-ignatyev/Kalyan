@@ -3,7 +3,7 @@ package screens.main
 import model.Tobacco
 
 sealed class MainEvent {
-    class TestClick : MainEvent()
+    class TestCreate: MainEvent()
 }
 
 data class MainState(

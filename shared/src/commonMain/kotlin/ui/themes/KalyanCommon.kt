@@ -8,10 +8,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 
 data class KalyanColors(
-    val primaryText: Color,
     val primaryBackground: Color,
-    val secondaryText: Color,
     val secondaryBackground: Color,
+
+    val generalColor: Color,
+
+    val primaryText: Color,
+    val secondaryText: Color,
     val tintColor: Color,
     val controlColor: Color,
     val errorColor: Color,

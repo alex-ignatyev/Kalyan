@@ -18,7 +18,7 @@ import ui.themes.KalyanTheme
 @Composable
 internal fun KalyanButton(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = KalyanTheme.colors.tintColor,
+    backgroundColor: Color = KalyanTheme.colors.generalColor,
     shape: Shape = RoundedCornerShape(8.dp),
     onClick: () -> Unit,
     text: String? = null,

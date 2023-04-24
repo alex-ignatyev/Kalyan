@@ -3,9 +3,12 @@ package ui.themes
 import androidx.compose.ui.graphics.Color
 
 internal val baseLightPalette = KalyanColors(
-    primaryBackground = Color(0xFFFFFFFF),
+    primaryBackground = Color(0xFFFAFAFA),
+    secondaryBackground = Color(0xFFEEEEEE),
+
+    generalColor = Color(0xFFB3E5FC),
+
     primaryText = Color(0xFF3D454C),
-    secondaryBackground = Color(0xFFF3F4F5),
     secondaryText = Color(0xCC7A8A99),
     tintColor = Color.Magenta,
     controlColor = Color(0xFF7A8A99),
@@ -13,9 +16,12 @@ internal val baseLightPalette = KalyanColors(
 )
 
 internal val baseDarkPalette = KalyanColors(
-    primaryBackground = Color(0xFF23282D),
+    primaryBackground = Color(0xFF0B0C10),
+    secondaryBackground = Color(0xFF303643),
+
+    generalColor = Color(0xFF199FE2),
+
     primaryText = Color(0xFFF2F4F5),
-    secondaryBackground = Color(0xFF191E23),
     secondaryText = Color(0xCC7A8A99),
     tintColor = Color.Magenta,
     controlColor = Color(0xFF7A8A99),

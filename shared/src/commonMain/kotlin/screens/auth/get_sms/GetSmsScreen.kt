@@ -1,16 +1,10 @@
 package screens.auth.get_sms
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -29,6 +23,7 @@ import screens.auth.get_sms.GetSmsEvent.ChangeCode
 import screens.auth.get_sms.GetSmsEvent.NextClick
 import ui.themes.KalyanTheme
 import ui.themes.components.KalyanButton
+import ui.themes.components.KalyanTextField
 
 @Composable
 internal fun GetSmsScreen() {
@@ -39,7 +34,7 @@ internal fun GetSmsScreen() {
         val viewAction by viewModel.viewActions().collectAsState(null)
 
         Column(
-            modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.secondaryBackground),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -52,31 +47,17 @@ internal fun GetSmsScreen() {
                 letterSpacing = 0.5.sp
             )
 
-            OutlinedTextField(
-                modifier = Modifier.padding(top = 20.dp, start = 16.dp, end = 16.dp)
-                    .fillMaxWidth().height(48.dp),
-                value = viewState.code,
-                onValueChange = {
-                    viewModel.obtainEvent(ChangeCode(it))
-                },
-                shape = RoundedCornerShape(8.dp),
-                singleLine = true,
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = KalyanTheme.colors.primaryBackground,
-                    unfocusedBorderColor = KalyanTheme.colors.primaryBackground,
-                    disabledBorderColor = KalyanTheme.colors.primaryBackground,
-                    errorBorderColor = KalyanTheme.colors.primaryBackground,
-                    backgroundColor = KalyanTheme.colors.primaryBackground,
-                    textColor = KalyanTheme.colors.primaryText,
-                    cursorColor = KalyanTheme.colors.controlColor
-                )
-            )
+            KalyanTextField(viewState.code) {
+                viewModel.obtainEvent(ChangeCode(it))
+            }
 
             KalyanButton(
-                modifier = Modifier.padding(vertical = 44.dp, horizontal = 20.dp)
-                    .fillMaxWidth(),
-                text = AppRes.string.action_next,
+                modifier = Modifier.padding(vertical = 32.dp),
+                text = AppRes.string.action_send,
                 enabled = viewState.isButtonEnabled,
+                content = {
+                    CircularProgressIndicator()
+                },
                 onClick = {
                     viewModel.obtainEvent(NextClick())
                 })
