@@ -51,7 +51,7 @@ internal fun SplashScreen() {
     }
 
     LaunchedEffect(key1 = Unit, block = {
-        delay(2000L)
-        rootController.present("login", launchFlag = LaunchFlag.SingleNewTask)
+        delay(1000L)
+        rootController.present("account_login", launchFlag = LaunchFlag.SingleNewTask)
     })
 }

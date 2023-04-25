@@ -20,6 +20,7 @@ abstract class BaseRemoteDataSource {
 
         return when (response.status.value) {
             200 -> Answer.success(response.body())
+            201 -> Answer.success(response.body())
 
             400 -> Answer.failure(
                 code = BadRequest,

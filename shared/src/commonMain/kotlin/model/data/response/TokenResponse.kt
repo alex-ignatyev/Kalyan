@@ -1,4 +1,4 @@
-package model
+package model.data.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

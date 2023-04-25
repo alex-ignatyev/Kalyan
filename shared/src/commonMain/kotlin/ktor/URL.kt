@@ -1,5 +1,5 @@
 package ktor
 
-const val PORT = ":8100"
+const val PORT = ":8080"
 expect fun getBaseUrl(): String
 fun createBaseUrl(): String = getBaseUrl() + PORT
