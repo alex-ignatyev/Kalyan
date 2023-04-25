@@ -40,7 +40,7 @@ internal fun MainTheme(
     }
 
     val typography = KalyanTypography(
-        heading = TextStyle(
+        header = TextStyle(
             fontSize = when (textSize) {
                 KalyanSize.Small -> 24.sp
                 KalyanSize.Medium -> 28.sp

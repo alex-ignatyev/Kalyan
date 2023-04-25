@@ -1,7 +1,6 @@
 package ui.themes.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,6 +9,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import ui.themes.KalyanTheme
 
@@ -17,7 +18,11 @@ import ui.themes.KalyanTheme
 fun KalyanTextField(
     value: String,
     modifier: Modifier = Modifier,
-    hint: String = "",
+    placeholder: String = "",
+    enabled: Boolean = true,
+    isError: Boolean = false,
+    fieldType: TextFieldType = TextFieldType.Text,
+    startIcon: @Composable () -> Unit = {},
     onValueChange: (String) -> Unit
 ) {
     OutlinedTextField(
@@ -27,15 +32,28 @@ fun KalyanTextField(
         onValueChange = onValueChange,
         shape = RoundedCornerShape(8.dp),
         singleLine = true,
-        placeholder = { Text(hint)},
+        isError = isError,
+        enabled = enabled,
+        placeholder = { Text(text = placeholder, color = KalyanTheme.colors.secondaryText) },
+        visualTransformation = if (fieldType is TextFieldType.Password && fieldType.passwordState) {
+            PasswordVisualTransformation()
+        } else {
+            VisualTransformation.None
+        },
+        trailingIcon = startIcon,
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = KalyanTheme.colors.secondaryBackground,
             unfocusedBorderColor = KalyanTheme.colors.secondaryBackground,
             disabledBorderColor = KalyanTheme.colors.secondaryBackground,
-            errorBorderColor = KalyanTheme.colors.secondaryBackground,
+            errorBorderColor = KalyanTheme.colors.errorColor,
             backgroundColor = KalyanTheme.colors.secondaryBackground,
             textColor = KalyanTheme.colors.primaryText,
             cursorColor = KalyanTheme.colors.controlColor
         )
     )
+}
+
+sealed interface TextFieldType {
+    object Text : TextFieldType
+    data class Password(val passwordState: Boolean) : TextFieldType
 }

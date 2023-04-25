@@ -34,7 +34,7 @@ internal fun SplashScreen() {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = "Kalyan",
-                style = KalyanTheme.typography.heading,
+                style = KalyanTheme.typography.header,
                 color = KalyanTheme.colors.primaryText,
                 textAlign = TextAlign.Center
             )

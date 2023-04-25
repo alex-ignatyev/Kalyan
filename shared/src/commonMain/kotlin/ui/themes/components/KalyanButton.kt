@@ -32,9 +32,7 @@ internal fun KalyanButton(
         shape = shape,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
-            disabledBackgroundColor = backgroundColor.copy(
-                alpha = 0.3f
-            )
+            disabledBackgroundColor = backgroundColor
         )
     ) {
         text?.let {

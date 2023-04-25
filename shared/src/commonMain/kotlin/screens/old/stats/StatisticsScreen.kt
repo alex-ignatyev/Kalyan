@@ -46,7 +46,7 @@ internal fun StatisticsView(viewState: StatsViewState) {
                 top = KalyanTheme.shapes.padding + 8.dp
             ),
             text = AppRes.string.title_statistics,
-            style = KalyanTheme.typography.heading,
+            style = KalyanTheme.typography.header,
             color = KalyanTheme.colors.primaryText
         )
 

@@ -61,7 +61,7 @@ internal fun DailyViewDisplay(
                                     top = KalyanTheme.shapes.padding + 8.dp
                                 ),
                                 text = viewState.title,
-                                style = KalyanTheme.typography.heading,
+                                style = KalyanTheme.typography.header,
                                 color = KalyanTheme.colors.primaryText
                             )
 

@@ -52,7 +52,7 @@ internal fun DetailScreen(cardModel: HabitCardItemModel) {
                         Text(
                             text = AppRes.string.title_error,
                             color = KalyanTheme.colors.primaryText,
-                            style = KalyanTheme.typography.heading
+                            style = KalyanTheme.typography.header
                         )
 
                         Text(

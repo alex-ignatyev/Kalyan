@@ -24,19 +24,19 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (AccountCreateEven
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        KalyanTextField(state.login, hint = "Логин") {
+        KalyanTextField(state.login, placeholder = "Логин") {
             obtainEvent(ChangeLogin(it))
         }
 
-        KalyanTextField(state.name, hint = "Имя") {
+        KalyanTextField(state.name, placeholder = "Имя") {
             obtainEvent(ChangeName(it))
         }
 
-        KalyanTextField(state.password, hint = "Пароль") {
+        KalyanTextField(state.password, placeholder = "Пароль") {
             obtainEvent(ChangePassword(it))
         }
 
-        KalyanTextField(state.repeatPassword, hint = "Повторить пароль") {
+        KalyanTextField(state.repeatPassword, placeholder = "Повторить пароль") {
             obtainEvent(ChangeRepeatPassword(it))
         }
 

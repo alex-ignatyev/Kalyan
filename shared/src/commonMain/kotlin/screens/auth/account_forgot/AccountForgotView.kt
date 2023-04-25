@@ -23,15 +23,15 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEven
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        KalyanTextField(state.login, hint = "Логин") {
+        KalyanTextField(state.login, placeholder = "Логин") {
             obtainEvent(ChangeLogin(it))
         }
 
-        KalyanTextField(state.newPassword, hint = "Новый пароль") {
+        KalyanTextField(state.newPassword, placeholder = "Новый пароль") {
             obtainEvent(ChangeNewPassword(it))
         }
 
-        KalyanTextField(state.repeatNewPassword, hint = "Повторите новый пароль") {
+        KalyanTextField(state.repeatNewPassword, placeholder = "Повторите новый пароль") {
             obtainEvent(ChangeRepeatNewPassword(it))
         }
 

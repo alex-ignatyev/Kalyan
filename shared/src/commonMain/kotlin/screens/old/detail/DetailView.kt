@@ -60,7 +60,7 @@ internal fun DetailView(
                         end = KalyanTheme.shapes.padding,
                     ),
                     text = viewState.itemTitle,
-                    style = KalyanTheme.typography.heading,
+                    style = KalyanTheme.typography.header,
                     color = KalyanTheme.colors.primaryText
                 )
 

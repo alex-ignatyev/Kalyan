@@ -3,6 +3,7 @@ package screens.auth.account_login
 sealed class AccountLoginEvent {
     data class ChangeLogin(val value: String) : AccountLoginEvent()
     data class ChangePassword(val value: String) : AccountLoginEvent()
+    class PasswordShowClick : AccountLoginEvent()
     class CreateAccountClick : AccountLoginEvent()
     class ForgotPasswordClick : AccountLoginEvent()
     class SendClick : AccountLoginEvent()
@@ -13,6 +14,7 @@ data class AccountLoginState(
     val isLoading: Boolean = false,
     val login: String = "",
     val password: String = "",
+    val isPasswordHidden: Boolean = false,
     val error: String = "",
     val isButtonEnabled: Boolean = false
 )

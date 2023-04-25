@@ -14,6 +14,7 @@ import screens.auth.account_login.AccountLoginEvent.ChangePassword
 import screens.auth.account_login.AccountLoginEvent.ClearActions
 import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
 import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
+import screens.auth.account_login.AccountLoginEvent.PasswordShowClick
 import screens.auth.account_login.AccountLoginEvent.SendClick
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -31,23 +32,23 @@ class AccountLoginViewModel : KoinComponent,
             is ChangePassword -> changePassword(viewEvent.value)
             is CreateAccountClick -> openCreateAccountScreen()
             is ForgotPasswordClick -> openForgotPasswordScreen()
+            is PasswordShowClick -> changePasswordVisible()
             is SendClick -> login()
             is ClearActions -> clearActions()
         }
     }
 
     private fun changeLogin(login: String) {
-        viewState = viewState.copy(login = login, isButtonEnabled = isButtonEnabled())
-        viewState = viewState.copy(isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(login = login, error = "")
     }
 
     private fun changePassword(password: String) {
-        viewState = viewState.copy(password = password, isButtonEnabled = isButtonEnabled())
-        viewState = viewState.copy(isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(password = password, error = "")
     }
 
-    private fun isButtonEnabled(): Boolean {
-        return viewState.login.length >= 4 && viewState.password.length >= 4
+    private fun changePasswordVisible() {
+        val passwordVisible = !viewState.isPasswordHidden
+        viewState = viewState.copy(isPasswordHidden = passwordVisible)
     }
 
     private fun login() {
@@ -60,7 +61,7 @@ class AccountLoginViewModel : KoinComponent,
             repository.login(request).onSuccess {
                 viewAction = OpenMainScreen()
             }.onFailure {
-                viewState = viewState.copy(isLoading = false, isButtonEnabled = isButtonEnabled(), error = it.message)
+                viewState = viewState.copy(isLoading = false, error = it.message)
             }
         }
     }
@@ -75,6 +76,6 @@ class AccountLoginViewModel : KoinComponent,
 
     private fun clearActions() {
         viewAction = null
-        viewState = viewState.copy(isLoading = false, isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(isLoading = false, error = "")
     }
 }

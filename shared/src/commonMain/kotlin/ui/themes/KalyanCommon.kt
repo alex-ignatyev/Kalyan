@@ -13,18 +13,22 @@ data class KalyanColors(
 
     val generalColor: Color,
 
+    val buttonDisable: Color,
+
     val primaryText: Color,
     val secondaryText: Color,
+
     val tintColor: Color,
     val controlColor: Color,
     val errorColor: Color,
 )
 
 data class KalyanTypography(
-    val heading: TextStyle,
+    val header: TextStyle,
     val body: TextStyle,
-    val toolbar: TextStyle,
-    val caption: TextStyle
+    val caption: TextStyle,
+
+    val toolbar: TextStyle
 )
 
 data class KalyanShape(

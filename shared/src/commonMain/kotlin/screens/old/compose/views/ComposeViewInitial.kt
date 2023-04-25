@@ -56,7 +56,7 @@ internal fun ComposeViewInitial(
                                 vertical = KalyanTheme.shapes.padding + 8.dp
                             ),
                             text = AppRes.string.compose_new_record,
-                            style = KalyanTheme.typography.heading,
+                            style = KalyanTheme.typography.header,
                             color = KalyanTheme.colors.primaryText
                         )
                     }
