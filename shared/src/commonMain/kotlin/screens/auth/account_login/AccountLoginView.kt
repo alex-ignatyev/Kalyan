@@ -134,7 +134,7 @@ fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) 
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = AppResStrings.text_account_create,
+                text = AppResStrings.text_account_create_one,
                 color = KalyanTheme.colors.generalColor,
                 style = KalyanTheme.typography.body,
                 fontWeight = FontWeight.Bold,

@@ -2,17 +2,33 @@
 <resources>
     <string name="app_name">Kalyan</string>
 
-    <string name="title_login">Login Now</string>
-    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
+    // Auth
     <string name="text_login">Логин</string>
     <string name="text_password">Пароль</string>
-    <string name="text_password_forgot">Забыл Пароль</string>
-    <string name="text_account_dont_have">Нет аккаунта ?</string>
-    <string name="text_account_create">Создать</string>
+    <string name="text_password_repeat">Повторите пароль</string>
 
+    // Create Account
+    <string name="text_account_name">Имя</string>
+    <string name="text_account_create">Создать Аккаунт</string>
+
+    // Login
+    <string name="title_login">Авторизоваться</string>
+    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
+    <string name="text_password_forgot">Забыли Пароль ?</string>
+    <string name="text_account_dont_have">Нет аккаунта ?</string>
+    <string name="text_account_create_one">Создать</string>
+
+    // Forgot
+    <string name="title_forgot">Восстановить Пароль</string>
+    <string name="subtitle_forgot">Введите существующий Логин и новый Пароль</string>
+
+    // Main
     <string name="title_rating">Рейтинг</string>
     <string name="title_search">Поиск</string>
     <string name="title_profile">Профиль</string>
+
+    // Error
+    <string name="error_something_went_wrong">Что-то пошло не так, попробуйте позже</string>
 
     <string name="days_today">Today</string>
     <string name="title_font_size">Font size</string>
@@ -55,8 +71,12 @@
     <string name="medication_dates_duration">Duration</string>
     <string name="medication_add_start_date">Add a start date</string>
     <string name="medication_week_count">Week count</string>
-    <string name="medication_dates_hint">Once you setup frequency, you can change it anytime you want</string>
-    <string name="medication_periodicity_error">You should select at least one day to add medication</string>
+    <string name="medication_dates_hint">Once you setup frequency, you can change it anytime you
+        want
+    </string>
+    <string name="medication_periodicity_error">You should select at least one day to add
+        medication
+    </string>
 
     <string name="compose_new_record">New habit</string>
     <string name="compose_title">Title</string>
@@ -78,7 +98,9 @@
 
     <string name="error_new_habit">Can\'t create new habit. Sorry</string>
 
-    <string name="daily_no_items">You haven't any habits to track. Please add new habit to use application</string>
+    <string name="daily_no_items">You haven't any habits to track. Please add new habit to use
+        application
+    </string>
     <string name="daily_error_loading">Error while loading data. Try to refresh</string>
     <string name="daily_previous_day">Show previous day</string>
 

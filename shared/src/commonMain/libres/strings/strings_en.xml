@@ -2,17 +2,33 @@
 <resources>
     <string name="app_name">Kalyan</string>
 
-    <string name="title_login">Login Now</string>
-    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
+    // Auth
     <string name="text_login">Login</string>
     <string name="text_password">Password</string>
-    <string name="text_password_forgot">Forgot Password</string>
-    <string name="text_account_dont_have">Don't have account ?</string>
-    <string name="text_account_create">Create one</string>
+    <string name="text_password_repeat">Repeat password</string>
 
+    // Create Account
+    <string name="text_account_name">Name</string>
+    <string name="text_account_create">Create an Account</string>
+
+    // Login
+    <string name="title_login">Login Now</string>
+    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
+    <string name="text_password_forgot">Forgot Password ?</string>
+    <string name="text_account_dont_have">Don't have account ?</string>
+    <string name="text_account_create_one">Create one</string>
+
+    // Forgot
+    <string name="title_forgot">Forgot Password</string>
+    <string name="subtitle_forgot">Enter right Login and change your Password</string>
+
+    // Main
     <string name="title_rating">Rating</string>
     <string name="title_search">Search</string>
     <string name="title_profile">Profile</string>
+
+    // Error
+    <string name="error_something_went_wrong">Something went wrong, try later</string>
 
     <string name="days_today">Today</string>
     <string name="title_font_size">Font size</string>

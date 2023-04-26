@@ -2,7 +2,6 @@ package screens.auth.account_login
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.AuthRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import model.data.request.AccountLoginRequest
 import org.koin.core.component.KoinComponent
@@ -17,6 +16,7 @@ import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
 import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
 import screens.auth.account_login.AccountLoginEvent.PasswordShowClick
 import screens.auth.account_login.AccountLoginEvent.SendClick
+import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -40,11 +40,11 @@ class AccountLoginViewModel : KoinComponent,
     }
 
     private fun changeLogin(login: String) {
-        viewState = viewState.copy(login = login, error = "")
+        viewState = viewState.copy(login = login, error = EMPTY)
     }
 
     private fun changePassword(password: String) {
-        viewState = viewState.copy(password = password, error = "")
+        viewState = viewState.copy(password = password, error = EMPTY)
     }
 
     private fun changePasswordVisible() {
@@ -54,7 +54,7 @@ class AccountLoginViewModel : KoinComponent,
 
     private fun login() {
         viewModelScope.launch {
-            viewState = viewState.copy(isLoading = true, isButtonEnabled = false)
+            viewState = viewState.copy(isLoading = true, error = EMPTY)
             val request = AccountLoginRequest(
                 login = viewState.login,
                 password = viewState.password
@@ -77,6 +77,6 @@ class AccountLoginViewModel : KoinComponent,
 
     private fun clearActions() {
         viewAction = null
-        viewState = viewState.copy(isLoading = false, error = "")
+        viewState = viewState.copy(isLoading = false, error = EMPTY)
     }
 }

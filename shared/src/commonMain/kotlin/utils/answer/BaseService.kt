@@ -1,5 +1,6 @@
 package utils.answer
 
+import com.kalyan.shared.AppRes
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import utils.answer.ErrorCode.BadRequest
@@ -15,7 +16,7 @@ abstract class BaseRemoteDataSource {
         val response = try {
             call.invoke()
         } catch (e: Exception) {
-            return Answer.failure(code = InternalError)
+            return Answer.failure(code = InternalError, message = AppRes.string.error_something_went_wrong)
         }
 
         return when (response.status.value) {
@@ -47,7 +48,7 @@ abstract class BaseRemoteDataSource {
                 message = response.body()
             )
 
-            else -> Answer.failure(code = InternalError)
+            else -> Answer.failure(code = InternalError, message = AppRes.string.error_something_went_wrong)
         }
     }
 }

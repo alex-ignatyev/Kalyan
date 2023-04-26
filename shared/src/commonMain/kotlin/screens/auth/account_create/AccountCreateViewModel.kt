@@ -12,11 +12,13 @@ import screens.auth.account_create.AccountCreateEvent.ChangeName
 import screens.auth.account_create.AccountCreateEvent.ChangePassword
 import screens.auth.account_create.AccountCreateEvent.ChangeRepeatPassword
 import screens.auth.account_create.AccountCreateEvent.ClearActions
-import screens.auth.account_create.AccountCreateEvent.SendClick
+import screens.auth.account_create.AccountCreateEvent.CreateAccountClick
+import screens.auth.account_create.AccountCreateEvent.PasswordShowClick
+import screens.auth.account_create.AccountCreateEvent.RepeatPasswordShowClick
+import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
-//TODO Обработать все кейсы
 class AccountCreateViewModel : KoinComponent,
     BaseSharedViewModel<AccountCreateState, AccountCreateAction, AccountCreateEvent>(
         initialState = AccountCreateState()
@@ -29,39 +31,43 @@ class AccountCreateViewModel : KoinComponent,
             is ChangeLogin -> changeLogin(viewEvent.value)
             is ChangeName -> changeName(viewEvent.value)
             is ChangePassword -> changePassword(viewEvent.value)
+            is PasswordShowClick -> changePasswordVisible()
             is ChangeRepeatPassword -> changeRepeatPassword(viewEvent.value)
-            is SendClick -> createAccount()
+            is RepeatPasswordShowClick -> changeRepeatPasswordVisible()
+            is CreateAccountClick -> createAccount()
             is ClearActions -> clearActions()
         }
     }
 
     private fun changeLogin(login: String) {
-        viewState = viewState.copy(login = login)
-        viewState = viewState.copy(isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(login = login, error = EMPTY)
     }
 
     private fun changeName(name: String) {
-        viewState = viewState.copy(name = name)
-        viewState = viewState.copy(isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(name = name, error = EMPTY)
     }
 
     private fun changePassword(password: String) {
-        viewState = viewState.copy(password = password)
-        viewState = viewState.copy(isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(password = password, error = EMPTY)
     }
 
     private fun changeRepeatPassword(repeatPassword: String) {
-        viewState = viewState.copy(repeatPassword = repeatPassword)
-        viewState = viewState.copy(isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(repeatPassword = repeatPassword, error = EMPTY)
     }
 
-    private fun isButtonEnabled(): Boolean {
-        return viewState.login.length >= 4 && viewState.name.length >= 4 && viewState.password.length >= 4 && viewState.repeatPassword.length >= 4
+    private fun changePasswordVisible() {
+        val passwordVisible = !viewState.isPasswordHidden
+        viewState = viewState.copy(isPasswordHidden = passwordVisible)
+    }
+
+    private fun changeRepeatPasswordVisible() {
+        val passwordVisible = !viewState.isRepeatPasswordHidden
+        viewState = viewState.copy(isRepeatPasswordHidden = passwordVisible)
     }
 
     private fun createAccount() {
         viewModelScope.launch {
-            viewState = viewState.copy(isLoading = true, isButtonEnabled = false)
+            viewState = viewState.copy(isLoading = true)
             val request = AccountCreateRequest(
                 login = viewState.login,
                 name = viewState.name,
@@ -71,13 +77,13 @@ class AccountCreateViewModel : KoinComponent,
             repository.create(request).onSuccess {
                 viewAction = OpenLoginScreen()
             }.onFailure {
-                viewState = viewState.copy(isLoading = false, isButtonEnabled = isButtonEnabled(), error = it.message)
+                viewState = viewState.copy(isLoading = false, error = it.message)
             }
         }
     }
 
     private fun clearActions() {
         viewAction = null
-        viewState = viewState.copy(isLoading = false, isButtonEnabled = isButtonEnabled())
+        viewState = viewState.copy(isLoading = false, error = EMPTY)
     }
 }

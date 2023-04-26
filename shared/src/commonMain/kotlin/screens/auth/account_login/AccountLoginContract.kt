@@ -14,9 +14,8 @@ data class AccountLoginState(
     val isLoading: Boolean = false,
     val login: String = "",
     val password: String = "",
-    val isPasswordHidden: Boolean = false,
-    val error: String = "",
-    val isButtonEnabled: Boolean = false
+    val isPasswordHidden: Boolean = true,
+    val error: String = ""
 )
 
 sealed class AccountLoginAction {
