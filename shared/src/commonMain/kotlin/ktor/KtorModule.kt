@@ -30,7 +30,7 @@ internal val ktoreModule = module {
 
             defaultRequest {
                 header("Content-Type", "application/json; charset=UTF-8")
-                url(createBaseUrl())
+                url(getBaseUrl())
             }
         }
     }

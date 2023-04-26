@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -26,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kalyan.shared.strings.AppResStrings
 import screens.auth.account_login.AccountLoginEvent.ChangeLogin
 import screens.auth.account_login.AccountLoginEvent.ChangePassword
 import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
@@ -34,6 +34,7 @@ import screens.auth.account_login.AccountLoginEvent.PasswordShowClick
 import screens.auth.account_login.AccountLoginEvent.SendClick
 import ui.themes.KalyanTheme
 import ui.themes.components.KalyanButton
+import ui.themes.components.KalyanCircularProgress
 import ui.themes.components.KalyanTextField
 import ui.themes.components.TextFieldType
 
@@ -45,14 +46,14 @@ fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) 
     ) {
 
         Text(
-            text = "Login Now",
+            text = AppResStrings.title_login,
             modifier = Modifier.padding(top = 32.dp),
             style = KalyanTheme.typography.header,
             color = KalyanTheme.colors.primaryText
         )
 
         Text(
-            text = "Welcome back! Enter your login and password to enjoy the latest features",
+            text = AppResStrings.subtitle_login,
             modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
             style = KalyanTheme.typography.body,
             textAlign = TextAlign.Center,
@@ -63,73 +64,53 @@ fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) 
 
         KalyanTextField(
             value = state.login,
-            placeholder = "Логин",
+            placeholder = AppResStrings.text_login,
             enabled = !state.isLoading,
             isError = state.error.isNotBlank(),
         ) {
             obtainEvent(ChangeLogin(it))
         }
 
-        KalyanTextField(value = state.password,
-            placeholder = "Пароль",
+        KalyanTextField(
+            value = state.password,
+            placeholder = AppResStrings.text_password,
             enabled = !state.isLoading,
             isError = state.error.isNotBlank(),
             fieldType = TextFieldType.Password(state.isPasswordHidden),
-            startIcon = {
-                Icon(
-                    modifier = Modifier.clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = null
-                    ) {
-                        obtainEvent.invoke(PasswordShowClick())
-                    },
-                    imageVector = if (state.isPasswordHidden) {
-                        Icons.Sharp.KeyboardArrowUp
-                    } else {
-                        Icons.Default.KeyboardArrowDown
-                    },
-                    contentDescription = null,
-                    tint = KalyanTheme.colors.secondaryText
-                )
-            },
-            onValueChange = {
-                obtainEvent(ChangePassword(it))
-            })
+            endIcon = { PasswordShowIcon(state.isPasswordHidden, obtainEvent) }
+        ) {
+            obtainEvent(ChangePassword(it))
+        }
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Row(modifier = Modifier.padding(end = 16.dp).fillMaxWidth()) {
+        Row(modifier = Modifier.padding(end = 16.dp, top = 16.dp).fillMaxWidth()) {
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
+                text = AppResStrings.text_password_forgot,
+                color = KalyanTheme.colors.generalColor,
+                fontSize = 12.sp,
                 modifier = Modifier.clickable {
                     obtainEvent.invoke(ForgotPasswordClick())
-                },
-                text = "Forgot Password",
-                color = KalyanTheme.colors.generalColor,
-                fontSize = 12.sp
+                }
             )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
-
         KalyanButton(
-            modifier = Modifier.padding(vertical = 32.dp),
+            modifier = Modifier.padding(vertical = 32.dp).padding(top = 24.dp),
             enabled = !state.isLoading,
             content = {
                 if (state.isLoading) {
-                    CircularProgressIndicator()
+                    KalyanCircularProgress()
                 } else {
                     Text(
-                        text = "Login Now",
+                        text = AppResStrings.title_login,
                         style = KalyanTheme.typography.body,
                         color = KalyanTheme.colors.primaryText
                     )
                 }
             },
-            onClick = {
-                obtainEvent(SendClick())
-            })
+            onClick = { obtainEvent(SendClick()) }
+        )
 
         Text(
             text = state.error,
@@ -146,12 +127,14 @@ fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) 
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Don't have account ?",
+                text = AppResStrings.text_account_dont_have,
                 color = KalyanTheme.colors.secondaryText
             )
+
             Spacer(modifier = Modifier.width(8.dp))
+
             Text(
-                text = "Create one",
+                text = AppResStrings.text_account_create,
                 color = KalyanTheme.colors.generalColor,
                 style = KalyanTheme.typography.body,
                 fontWeight = FontWeight.Bold,
@@ -161,4 +144,23 @@ fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) 
             )
         }
     }
+}
+
+@Composable
+fun PasswordShowIcon(isPasswordHidden: Boolean, obtainEvent: (AccountLoginEvent) -> Unit) {
+    Icon(
+        modifier = Modifier.clickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null
+        ) {
+            obtainEvent.invoke(PasswordShowClick())
+        },
+        imageVector = if (isPasswordHidden) {
+            Icons.Sharp.KeyboardArrowUp
+        } else {
+            Icons.Default.KeyboardArrowDown
+        },
+        contentDescription = null,
+        tint = KalyanTheme.colors.secondaryText
+    )
 }

@@ -22,7 +22,7 @@ fun KalyanTextField(
     enabled: Boolean = true,
     isError: Boolean = false,
     fieldType: TextFieldType = TextFieldType.Text,
-    startIcon: @Composable () -> Unit = {},
+    endIcon: @Composable () -> Unit = {},
     onValueChange: (String) -> Unit
 ) {
     OutlinedTextField(
@@ -40,7 +40,7 @@ fun KalyanTextField(
         } else {
             VisualTransformation.None
         },
-        trailingIcon = startIcon,
+        trailingIcon = endIcon,
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = KalyanTheme.colors.secondaryBackground,
             unfocusedBorderColor = KalyanTheme.colors.secondaryBackground,

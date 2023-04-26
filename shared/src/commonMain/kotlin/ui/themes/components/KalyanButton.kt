@@ -20,10 +20,10 @@ internal fun KalyanButton(
     modifier: Modifier = Modifier,
     backgroundColor: Color = KalyanTheme.colors.generalColor,
     shape: Shape = RoundedCornerShape(8.dp),
-    onClick: () -> Unit,
     text: String? = null,
     enabled: Boolean = true,
-    content: @Composable RowScope.() -> Unit = {}
+    content: @Composable RowScope.() -> Unit = {},
+    onClick: () -> Unit
 ) {
     Button(
         modifier = modifier.height(48.dp).fillMaxWidth().padding(horizontal = 16.dp),

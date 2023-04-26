@@ -4,15 +4,15 @@
 
     <string name="title_login">Login Now</string>
     <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
-    <string name="text_login">Логин</string>
-    <string name="text_password">Пароль</string>
-    <string name="text_password_forgot">Забыл Пароль</string>
-    <string name="text_account_dont_have">Нет аккаунта ?</string>
-    <string name="text_account_create">Создать</string>
+    <string name="text_login">Login</string>
+    <string name="text_password">Password</string>
+    <string name="text_password_forgot">Forgot Password</string>
+    <string name="text_account_dont_have">Don't have account ?</string>
+    <string name="text_account_create">Create one</string>
 
-    <string name="title_rating">Рейтинг</string>
-    <string name="title_search">Поиск</string>
-    <string name="title_profile">Профиль</string>
+    <string name="title_rating">Rating</string>
+    <string name="title_search">Search</string>
+    <string name="title_profile">Profile</string>
 
     <string name="days_today">Today</string>
     <string name="title_font_size">Font size</string>
