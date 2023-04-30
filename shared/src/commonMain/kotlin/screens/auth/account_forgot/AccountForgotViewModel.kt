@@ -7,13 +7,15 @@ import model.data.request.AccountForgotRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.auth.account_forgot.AccountForgotAction.OpenLoginScreen
+import screens.auth.account_forgot.AccountForgotAction.ReturnToPreviousScreen
 import screens.auth.account_forgot.AccountForgotEvent.ChangeLogin
-import screens.auth.account_forgot.AccountForgotEvent.ChangeNewPassword
-import screens.auth.account_forgot.AccountForgotEvent.ChangeRepeatNewPassword
+import screens.auth.account_forgot.AccountForgotEvent.ChangePassword
+import screens.auth.account_forgot.AccountForgotEvent.ChangePasswordRepeat
 import screens.auth.account_forgot.AccountForgotEvent.ClearActions
-import screens.auth.account_forgot.AccountForgotEvent.NewPasswordShowClick
-import screens.auth.account_forgot.AccountForgotEvent.RepeatNewPasswordShowClick
-import screens.auth.account_forgot.AccountForgotEvent.SendClick
+import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordClick
+import screens.auth.account_forgot.AccountForgotEvent.OnBackClick
+import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
+import screens.auth.account_forgot.AccountForgotEvent.ResetPasswordClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -28,11 +30,12 @@ class AccountForgotViewModel : KoinComponent,
     override fun obtainEvent(viewEvent: AccountForgotEvent) {
         when (viewEvent) {
             is ChangeLogin -> changeLogin(viewEvent.value)
-            is ChangeNewPassword -> changeNewPassword(viewEvent.value)
-            is NewPasswordShowClick -> changeNewPasswordVisibility()
-            is ChangeRepeatNewPassword -> changeRepeatNewPassword(viewEvent.value)
-            is RepeatNewPasswordShowClick -> changeRepeatNewPasswordVisibility()
-            is SendClick -> resetPassword()
+            is ChangePassword -> changeNewPassword(viewEvent.value)
+            is ShowPasswordClick -> changeNewPasswordVisibility()
+            is ChangePasswordRepeat -> changeRepeatNewPassword(viewEvent.value)
+            is ShowPasswordRepeatClick -> changeRepeatNewPasswordVisibility()
+            is ResetPasswordClick -> resetPassword()
+            is OnBackClick -> returnToPreviousScreen()
             is ClearActions -> clearActions()
         }
     }
@@ -42,21 +45,21 @@ class AccountForgotViewModel : KoinComponent,
     }
 
     private fun changeNewPassword(newPassword: String) {
-        viewState = viewState.copy(newPassword = newPassword, error = EMPTY)
+        viewState = viewState.copy(password = newPassword, error = EMPTY)
     }
 
     private fun changeRepeatNewPassword(repeatNewPassword: String) {
-        viewState = viewState.copy(repeatNewPassword = repeatNewPassword, error = EMPTY)
+        viewState = viewState.copy(passwordRepeat = repeatNewPassword, error = EMPTY)
     }
 
     private fun changeNewPasswordVisibility() {
-        val passwordVisible = !viewState.isNewPasswordHidden
-        viewState = viewState.copy(isNewPasswordHidden = passwordVisible)
+        val passwordVisible = !viewState.isPasswordHidden
+        viewState = viewState.copy(isPasswordHidden = passwordVisible)
     }
 
     private fun changeRepeatNewPasswordVisibility() {
-        val passwordVisible = !viewState.isRepeatNewPasswordHidden
-        viewState = viewState.copy(isRepeatNewPasswordHidden = passwordVisible)
+        val passwordVisible = !viewState.isPasswordRepeatHidden
+        viewState = viewState.copy(isPasswordRepeatHidden = passwordVisible)
     }
 
     private fun resetPassword() {
@@ -64,8 +67,8 @@ class AccountForgotViewModel : KoinComponent,
             viewState = viewState.copy(isLoading = true)
             val request = AccountForgotRequest(
                 login = viewState.login,
-                newPassword = viewState.newPassword,
-                repeatNewPassword = viewState.repeatNewPassword
+                newPassword = viewState.password,
+                repeatNewPassword = viewState.passwordRepeat
             )
             repository.forgot(request).onSuccess {
                 viewAction = OpenLoginScreen()
@@ -73,6 +76,10 @@ class AccountForgotViewModel : KoinComponent,
                 viewState = viewState.copy(isLoading = false, error = it.message)
             }
         }
+    }
+
+    private fun returnToPreviousScreen() {
+        viewAction = ReturnToPreviousScreen()
     }
 
     private fun clearActions() {

@@ -4,6 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.adeo.kviewmodel.odyssey.StoredViewModel
+import navigation.FLOW_MAIN
+import navigation.SCREEN_CREATE
+import navigation.SCREEN_FORGOT
 import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import screens.auth.account_login.AccountLoginAction.OpenCreateAccountScreen
@@ -25,17 +28,17 @@ internal fun AccountLoginScreen() {
 
         when (action) {
             is OpenMainScreen -> {
-                rootController.push("main")
+                rootController.push(FLOW_MAIN)
                 viewModel.obtainEvent(ClearActions())
             }
 
             is OpenCreateAccountScreen -> {
-                rootController.push("account_create")
+                rootController.push(SCREEN_CREATE)
                 viewModel.obtainEvent(ClearActions())
             }
 
             is OpenForgotPasswordScreen -> {
-                rootController.push("account_forgot")
+                rootController.push(SCREEN_FORGOT)
                 viewModel.obtainEvent(ClearActions())
             }
 

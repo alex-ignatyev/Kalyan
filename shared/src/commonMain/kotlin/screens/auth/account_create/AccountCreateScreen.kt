@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.adeo.kviewmodel.odyssey.StoredViewModel
+import navigation.SCREEN_LOGIN
 import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import screens.auth.account_create.AccountCreateAction.OpenLoginScreen
+import screens.auth.account_create.AccountCreateAction.ReturnToPreviousScreen
 import screens.auth.account_create.AccountCreateEvent.ClearActions
 
 @Composable
@@ -23,10 +25,11 @@ internal fun AccountCreateScreen() {
 
         when (action) {
             is OpenLoginScreen -> {
-                rootController.push("account_login")
+                rootController.push(SCREEN_LOGIN)
                 viewModel.obtainEvent(ClearActions())
             }
 
+            is ReturnToPreviousScreen -> rootController.popBackStack()
             null -> {}
         }
     }

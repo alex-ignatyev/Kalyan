@@ -14,8 +14,8 @@ import screens.auth.account_login.AccountLoginEvent.ChangePassword
 import screens.auth.account_login.AccountLoginEvent.ClearActions
 import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
 import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
-import screens.auth.account_login.AccountLoginEvent.PasswordShowClick
-import screens.auth.account_login.AccountLoginEvent.SendClick
+import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
+import screens.auth.account_login.AccountLoginEvent.LoginClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -33,8 +33,8 @@ class AccountLoginViewModel : KoinComponent,
             is ChangePassword -> changePassword(viewEvent.value)
             is CreateAccountClick -> openCreateAccountScreen()
             is ForgotPasswordClick -> openForgotPasswordScreen()
-            is PasswordShowClick -> changePasswordVisible()
-            is SendClick -> login()
+            is ShowPasswordClick -> changePasswordVisible()
+            is LoginClick -> login()
             is ClearActions -> clearActions()
         }
     }

@@ -1,16 +1,16 @@
-package screens.main
+package screens.main.rating
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.MainRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import screens.main.MainEvent.TestCreate
+import screens.main.rating.RatingEvent.TestCreate
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
-class MainViewModel : KoinComponent, BaseSharedViewModel<MainState, MainAction, MainEvent>(
-    initialState = MainState()
+class RatingViewModel : KoinComponent, BaseSharedViewModel<RatingState, RatingAction, RatingEvent>(
+    initialState = RatingState()
 ) {
 
     private val repository: MainRepository by inject()
@@ -19,7 +19,7 @@ class MainViewModel : KoinComponent, BaseSharedViewModel<MainState, MainAction, 
         testClick()
     }
 
-    override fun obtainEvent(viewEvent: MainEvent) {
+    override fun obtainEvent(viewEvent: RatingEvent) {
         when (viewEvent) {
             is TestCreate -> test()
         }

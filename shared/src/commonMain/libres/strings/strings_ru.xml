@@ -10,6 +10,7 @@
     // Create Account
     <string name="text_account_name">Имя</string>
     <string name="text_account_create">Создать Аккаунт</string>
+    <string name="text_account_create_different">Логин и имя должны отличаться</string>
 
     // Login
     <string name="title_login">Авторизоваться</string>
@@ -21,6 +22,7 @@
     // Forgot
     <string name="title_forgot">Восстановить Пароль</string>
     <string name="subtitle_forgot">Введите существующий Логин и новый Пароль</string>
+    <string name="text_forgot_reset">Сбросить Пароль</string>
 
     // Main
     <string name="title_rating">Рейтинг</string>

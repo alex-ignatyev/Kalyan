@@ -10,6 +10,7 @@
     // Create Account
     <string name="text_account_name">Name</string>
     <string name="text_account_create">Create an Account</string>
+    <string name="text_account_create_different">Login and name should be different</string>
 
     // Login
     <string name="title_login">Login Now</string>
@@ -21,6 +22,7 @@
     // Forgot
     <string name="title_forgot">Forgot Password</string>
     <string name="subtitle_forgot">Enter right Login and change your Password</string>
+    <string name="text_forgot_reset">Reset Password</string>
 
     // Main
     <string name="title_rating">Rating</string>

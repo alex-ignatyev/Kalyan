@@ -30,8 +30,8 @@ import screens.auth.account_login.AccountLoginEvent.ChangeLogin
 import screens.auth.account_login.AccountLoginEvent.ChangePassword
 import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
 import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
-import screens.auth.account_login.AccountLoginEvent.PasswordShowClick
-import screens.auth.account_login.AccountLoginEvent.SendClick
+import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
+import screens.auth.account_login.AccountLoginEvent.LoginClick
 import ui.themes.KalyanTheme
 import ui.themes.components.KalyanButton
 import ui.themes.components.KalyanCircularProgress
@@ -109,7 +109,7 @@ fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) 
                     )
                 }
             },
-            onClick = { obtainEvent(SendClick()) }
+            onClick = { obtainEvent(LoginClick()) }
         )
 
         Text(
@@ -153,7 +153,7 @@ fun PasswordShowIcon(isPasswordHidden: Boolean, obtainEvent: (AccountLoginEvent)
             interactionSource = remember { MutableInteractionSource() },
             indication = null
         ) {
-            obtainEvent.invoke(PasswordShowClick())
+            obtainEvent.invoke(ShowPasswordClick())
         },
         imageVector = if (isPasswordHidden) {
             Icons.Sharp.KeyboardArrowUp

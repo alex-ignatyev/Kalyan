@@ -7,14 +7,16 @@ import model.data.request.AccountCreateRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.auth.account_create.AccountCreateAction.OpenLoginScreen
+import screens.auth.account_create.AccountCreateAction.ReturnToPreviousScreen
 import screens.auth.account_create.AccountCreateEvent.ChangeLogin
 import screens.auth.account_create.AccountCreateEvent.ChangeName
 import screens.auth.account_create.AccountCreateEvent.ChangePassword
-import screens.auth.account_create.AccountCreateEvent.ChangeRepeatPassword
+import screens.auth.account_create.AccountCreateEvent.ChangePasswordRepeat
 import screens.auth.account_create.AccountCreateEvent.ClearActions
 import screens.auth.account_create.AccountCreateEvent.CreateAccountClick
-import screens.auth.account_create.AccountCreateEvent.PasswordShowClick
-import screens.auth.account_create.AccountCreateEvent.RepeatPasswordShowClick
+import screens.auth.account_create.AccountCreateEvent.OnBackClick
+import screens.auth.account_create.AccountCreateEvent.ShowPasswordClick
+import screens.auth.account_create.AccountCreateEvent.ShowPasswordRepeatClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -31,10 +33,11 @@ class AccountCreateViewModel : KoinComponent,
             is ChangeLogin -> changeLogin(viewEvent.value)
             is ChangeName -> changeName(viewEvent.value)
             is ChangePassword -> changePassword(viewEvent.value)
-            is PasswordShowClick -> changePasswordVisible()
-            is ChangeRepeatPassword -> changeRepeatPassword(viewEvent.value)
-            is RepeatPasswordShowClick -> changeRepeatPasswordVisible()
+            is ShowPasswordClick -> changePasswordVisible()
+            is ChangePasswordRepeat -> changeRepeatPassword(viewEvent.value)
+            is ShowPasswordRepeatClick -> changeRepeatPasswordVisible()
             is CreateAccountClick -> createAccount()
+            is OnBackClick -> returnToPreviousScreen()
             is ClearActions -> clearActions()
         }
     }
@@ -52,7 +55,7 @@ class AccountCreateViewModel : KoinComponent,
     }
 
     private fun changeRepeatPassword(repeatPassword: String) {
-        viewState = viewState.copy(repeatPassword = repeatPassword, error = EMPTY)
+        viewState = viewState.copy(passwordRepeat = repeatPassword, error = EMPTY)
     }
 
     private fun changePasswordVisible() {
@@ -61,8 +64,8 @@ class AccountCreateViewModel : KoinComponent,
     }
 
     private fun changeRepeatPasswordVisible() {
-        val passwordVisible = !viewState.isRepeatPasswordHidden
-        viewState = viewState.copy(isRepeatPasswordHidden = passwordVisible)
+        val passwordVisible = !viewState.isPasswordRepeatHidden
+        viewState = viewState.copy(isPasswordRepeatHidden = passwordVisible)
     }
 
     private fun createAccount() {
@@ -72,7 +75,7 @@ class AccountCreateViewModel : KoinComponent,
                 login = viewState.login,
                 name = viewState.name,
                 password = viewState.password,
-                repeatPassword = viewState.repeatPassword
+                repeatPassword = viewState.passwordRepeat
             )
             repository.create(request).onSuccess {
                 viewAction = OpenLoginScreen()
@@ -80,6 +83,10 @@ class AccountCreateViewModel : KoinComponent,
                 viewState = viewState.copy(isLoading = false, error = it.message)
             }
         }
+    }
+
+    private fun returnToPreviousScreen() {
+        viewAction = ReturnToPreviousScreen()
     }
 
     private fun clearActions() {

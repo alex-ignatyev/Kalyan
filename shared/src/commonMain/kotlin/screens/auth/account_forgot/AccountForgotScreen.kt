@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.adeo.kviewmodel.odyssey.StoredViewModel
+import navigation.SCREEN_LOGIN
 import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import screens.auth.account_forgot.AccountForgotAction.OpenLoginScreen
+import screens.auth.account_forgot.AccountForgotAction.ReturnToPreviousScreen
 import screens.auth.account_forgot.AccountForgotEvent.ClearActions
 
 @Composable
@@ -23,11 +25,13 @@ internal fun AccountForgotScreen() {
 
         when (action) {
             is OpenLoginScreen -> {
-                rootController.push("account_login")
+                rootController.push(SCREEN_LOGIN)
                 viewModel.obtainEvent(ClearActions())
             }
 
+            is ReturnToPreviousScreen -> rootController.popBackStack()
             null -> {}
         }
+
     }
 }

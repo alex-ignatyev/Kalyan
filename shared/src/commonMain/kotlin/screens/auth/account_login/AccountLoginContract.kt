@@ -3,10 +3,10 @@ package screens.auth.account_login
 sealed class AccountLoginEvent {
     data class ChangeLogin(val value: String) : AccountLoginEvent()
     data class ChangePassword(val value: String) : AccountLoginEvent()
-    class PasswordShowClick : AccountLoginEvent()
+    class ShowPasswordClick : AccountLoginEvent()
     class CreateAccountClick : AccountLoginEvent()
     class ForgotPasswordClick : AccountLoginEvent()
-    class SendClick : AccountLoginEvent()
+    class LoginClick : AccountLoginEvent()
     class ClearActions : AccountLoginEvent()
 }
 

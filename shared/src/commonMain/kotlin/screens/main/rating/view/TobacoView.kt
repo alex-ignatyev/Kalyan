@@ -1,4 +1,4 @@
-package screens.main
+package screens.main.rating.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

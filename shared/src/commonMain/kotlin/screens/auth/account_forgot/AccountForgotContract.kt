@@ -2,24 +2,26 @@ package screens.auth.account_forgot
 
 sealed class AccountForgotEvent {
     data class ChangeLogin(val value: String) : AccountForgotEvent()
-    data class ChangeNewPassword(val value: String) : AccountForgotEvent()
-    class NewPasswordShowClick : AccountForgotEvent()
-    data class ChangeRepeatNewPassword(val value: String) : AccountForgotEvent()
-    class RepeatNewPasswordShowClick : AccountForgotEvent()
-    class SendClick : AccountForgotEvent()
+    data class ChangePassword(val value: String) : AccountForgotEvent()
+    class ShowPasswordClick : AccountForgotEvent()
+    data class ChangePasswordRepeat(val value: String) : AccountForgotEvent()
+    class ShowPasswordRepeatClick : AccountForgotEvent()
+    class ResetPasswordClick : AccountForgotEvent()
+    class OnBackClick : AccountForgotEvent()
     class ClearActions : AccountForgotEvent()
 }
 
 data class AccountForgotState(
     val isLoading: Boolean = false,
     val login: String = "",
-    val newPassword: String = "",
-    val isNewPasswordHidden: Boolean = true,
-    val repeatNewPassword: String = "",
-    val isRepeatNewPasswordHidden: Boolean = true,
+    val password: String = "",
+    val isPasswordHidden: Boolean = true,
+    val passwordRepeat: String = "",
+    val isPasswordRepeatHidden: Boolean = true,
     val error: String = ""
 )
 
 sealed class AccountForgotAction {
     class OpenLoginScreen : AccountForgotAction()
+    class ReturnToPreviousScreen : AccountForgotAction()
 }

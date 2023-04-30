@@ -1,4 +1,4 @@
-package screens.main
+package screens.main.profile
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -7,19 +7,19 @@ import com.adeo.kviewmodel.odyssey.StoredViewModel
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 
 @Composable
-internal fun MainScreen() {
+internal fun ProfileScreen() {
     val rootController = LocalRootController.current
 
-    StoredViewModel(factory = { MainViewModel() }) { viewModel ->
+    StoredViewModel(factory = { ProfileViewModel() }) { viewModel ->
         val state by viewModel.viewStates().collectAsState()
         val action by viewModel.viewActions().collectAsState(null)
 
-        MainView(state) { event ->
-            viewModel.obtainEvent(event)
+        ProfileView(state) {
+            viewModel.obtainEvent(it)
         }
 
         when (action) {
-            else -> Unit
+            else -> {}
         }
     }
 }

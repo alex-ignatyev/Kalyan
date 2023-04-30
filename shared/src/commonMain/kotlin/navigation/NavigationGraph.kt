@@ -13,18 +13,17 @@ import ru.alexgladkov.odyssey.compose.extensions.bottomNavigation
 import ru.alexgladkov.odyssey.compose.extensions.flow
 import ru.alexgladkov.odyssey.compose.extensions.screen
 import ru.alexgladkov.odyssey.compose.extensions.tab
+import ru.alexgladkov.odyssey.compose.helpers.FlowBuilder
 import ru.alexgladkov.odyssey.compose.navigation.RootComposeBuilder
 import ru.alexgladkov.odyssey.compose.navigation.bottom_bar_navigation.BottomBarDefaults
 import ru.alexgladkov.odyssey.compose.navigation.tabs.TabDefaults
 import screens.auth.account_create.AccountCreateScreen
 import screens.auth.account_forgot.AccountForgotScreen
 import screens.auth.account_login.AccountLoginScreen
-import screens.main.MainScreen
-import screens.old.add_dates.MedicationAddDates
-import screens.old.add_name.MedicationAddName
-import screens.old.compose.ComposeScreen
-import screens.old.settings.SettingsScreen
+import screens.main.profile.ProfileScreen
+import screens.main.rating.MainScreen
 import screens.old.stats.StatisticsScreen
+import screens.settings.SettingsScreen
 import screens.splash.SplashScreen
 import ui.themes.KalyanTheme
 
@@ -35,25 +34,15 @@ import ui.themes.KalyanTheme
 )
 @Composable
 internal fun RootComposeBuilder.navigationGraph() {
-    screen("splash") {
+
+    screen(SCREEN_SPLASH) {
         SplashScreen()
     }
 
-    //TODO Переделать на authFlow
-    screen("account_create") {
-        AccountCreateScreen()
-    }
-
-    screen("account_login") {
-        AccountLoginScreen()
-    }
-
-    screen("account_forgot") {
-        AccountForgotScreen()
-    }
+    authFlow()
 
     bottomNavigation(
-        "main",
+        FLOW_MAIN,
         colors = BottomBarDefaults.bottomColors(
             backgroundColor = KalyanTheme.colors.generalColor
         )
@@ -79,37 +68,34 @@ internal fun RootComposeBuilder.navigationGraph() {
             }
         }
 
-        // Избранное
-        /*tab(TabDefaults.content(AppRes.string.title_search, Icons.Filled.Search), colors) {
-            screen("search") {
-                StatisticsScreen()
-            }
-        }*/
-
-        // Хочу покурить / Покурил
-
         tab(TabDefaults.content(AppRes.string.title_profile, Icons.Filled.Person), colors) {
-            screen("settings") {
-                SettingsScreen()
-            }
+            profileFlow()
         }
     }
-
-    screen("compose") {
-        ComposeScreen()
-    }
-
-    medicationAddFlow()
 }
 
-internal fun RootComposeBuilder.medicationAddFlow() {
-    flow("medication_add_flow") {
-        screen("medication_name") {
-            MedicationAddName()
+internal fun RootComposeBuilder.authFlow() {
+    flow(FLOW_AUTH) {
+        screen(SCREEN_LOGIN) {
+            AccountLoginScreen()
         }
 
-        screen("medication_add_dates") {
-            MedicationAddDates(title = it as String)
+        screen(SCREEN_CREATE) {
+            AccountCreateScreen()
         }
+
+        screen(SCREEN_FORGOT) {
+            AccountForgotScreen()
+        }
+    }
+}
+
+internal fun FlowBuilder.profileFlow() {
+    screen(SCREEN_PROFILE) {
+        ProfileScreen()
+    }
+
+    screen(SCREEN_SETTINGS) {
+        SettingsScreen()
     }
 }
