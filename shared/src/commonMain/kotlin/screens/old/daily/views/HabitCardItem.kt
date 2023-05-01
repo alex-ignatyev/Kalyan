@@ -27,18 +27,12 @@ internal fun HabitCardItem(
     Card(
         modifier = Modifier
             .clickable { onCardClicked?.invoke() }
-            .padding(
-                horizontal = KalyanTheme.shapes.padding,
-                vertical = KalyanTheme.shapes.padding / 2
-            )
             .fillMaxWidth(),
         elevation = 8.dp,
-        backgroundColor = KalyanTheme.colors.primaryBackground,
-        shape = KalyanTheme.shapes.cornersStyle
+        backgroundColor = KalyanTheme.colors.primaryBackground
     ) {
         Row(
             modifier = Modifier
-                .padding(KalyanTheme.shapes.padding)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {

@@ -4,7 +4,6 @@ package navigation
 const val SCREEN_SPLASH = "splash"
 
 // Auth
-const val FLOW_AUTH = "auth_flow"
 const val SCREEN_LOGIN = "account_login"
 const val SCREEN_CREATE = "account_create"
 const val SCREEN_FORGOT = "account_forgot"

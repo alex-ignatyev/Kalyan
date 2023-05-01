@@ -24,14 +24,9 @@ data class StatisticCellModel(
 internal fun StatisticCell(model: StatisticCellModel) {
     Card(
         modifier = Modifier
-            .padding(
-                horizontal = KalyanTheme.shapes.padding,
-                vertical = KalyanTheme.shapes.padding / 2
-            )
             .fillMaxWidth(),
         elevation = 8.dp,
-        backgroundColor = KalyanTheme.colors.primaryBackground,
-        shape = KalyanTheme.shapes.cornersStyle
+        backgroundColor = KalyanTheme.colors.primaryBackground
     ) {
         Column {
             Divider(

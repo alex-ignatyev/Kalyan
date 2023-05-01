@@ -2,8 +2,8 @@ package screens.splash
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import data.SettingsDataSource
-import navigation.FLOW_AUTH
 import navigation.FLOW_MAIN
+import navigation.SCREEN_LOGIN
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.splash.SplashAction.OpenFlow
@@ -23,12 +23,12 @@ class SplashViewModel : KoinComponent, BaseSharedViewModel<SplashState, SplashAc
 
     private fun fetchAuthorization() {
         val token = settings.getToken()
-        val screenFlow = if (token.isBlank()) {
-            FLOW_AUTH
+        val screen = if (token.isBlank()) {
+            SCREEN_LOGIN
         } else {
             FLOW_MAIN
         }
 
-        viewAction = OpenFlow(screenFlow)
+        viewAction = OpenFlow(screen)
     }
 }

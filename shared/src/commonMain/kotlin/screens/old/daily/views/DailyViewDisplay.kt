@@ -55,11 +55,6 @@ internal fun DailyViewDisplay(
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                modifier = Modifier.padding(
-                                    start = KalyanTheme.shapes.padding,
-                                    end = KalyanTheme.shapes.padding,
-                                    top = KalyanTheme.shapes.padding + 8.dp
-                                ),
                                 text = viewState.title,
                                 style = KalyanTheme.typography.header,
                                 color = KalyanTheme.colors.primaryText
@@ -67,12 +62,6 @@ internal fun DailyViewDisplay(
 
                             Text(
                                 modifier = Modifier
-                                    .padding(
-                                        start = KalyanTheme.shapes.padding,
-                                        end = KalyanTheme.shapes.padding,
-                                        top = 4.dp,
-                                        bottom = KalyanTheme.shapes.padding + 8.dp
-                                    )
                                     .clickable { onPreviousDayClicked.invoke() },
                                 text = AppRes.string.daily_previous_day,
                                 style = KalyanTheme.typography.body,
@@ -110,8 +99,7 @@ internal fun DailyViewDisplay(
 
             FloatingActionButton(
                 modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(KalyanTheme.shapes.padding),
+                    .align(Alignment.BottomEnd),
                 backgroundColor = KalyanTheme.colors.tintColor,
                 onClick = {
                     rootController.findRootController().present("medication_add_flow")

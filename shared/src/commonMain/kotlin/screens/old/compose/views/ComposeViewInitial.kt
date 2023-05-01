@@ -51,10 +51,6 @@ internal fun ComposeViewInitial(
                 content = {
                     stickyHeader {
                         Text(
-                            modifier = Modifier.padding(
-                                horizontal = KalyanTheme.shapes.padding,
-                                vertical = KalyanTheme.shapes.padding + 8.dp
-                            ),
                             text = AppRes.string.compose_new_record,
                             style = KalyanTheme.typography.header,
                             color = KalyanTheme.colors.primaryText

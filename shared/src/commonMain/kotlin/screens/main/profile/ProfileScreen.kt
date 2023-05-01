@@ -4,7 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.adeo.kviewmodel.odyssey.StoredViewModel
+import navigation.SCREEN_SETTINGS
+import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import screens.main.profile.ProfileAction.OpenSettingsScreen
+import screens.main.profile.ProfileEvent.ClearActions
 
 @Composable
 internal fun ProfileScreen() {
@@ -19,6 +23,11 @@ internal fun ProfileScreen() {
         }
 
         when (action) {
+            is OpenSettingsScreen -> {
+                rootController.push(SCREEN_SETTINGS)
+                viewModel.obtainEvent(ClearActions())
+            }
+
             else -> {}
         }
     }

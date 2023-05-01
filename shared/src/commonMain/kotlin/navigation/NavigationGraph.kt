@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import com.kalyan.shared.AppRes
 import ru.alexgladkov.odyssey.compose.extensions.bottomNavigation
-import ru.alexgladkov.odyssey.compose.extensions.flow
 import ru.alexgladkov.odyssey.compose.extensions.screen
 import ru.alexgladkov.odyssey.compose.extensions.tab
 import ru.alexgladkov.odyssey.compose.helpers.FlowBuilder
@@ -39,7 +38,17 @@ internal fun RootComposeBuilder.navigationGraph() {
         SplashScreen()
     }
 
-    authFlow()
+    screen(SCREEN_LOGIN) {
+        AccountLoginScreen()
+    }
+
+    screen(SCREEN_CREATE) {
+        AccountCreateScreen()
+    }
+
+    screen(SCREEN_FORGOT) {
+        AccountForgotScreen()
+    }
 
     bottomNavigation(
         FLOW_MAIN,
@@ -70,22 +79,6 @@ internal fun RootComposeBuilder.navigationGraph() {
 
         tab(TabDefaults.content(AppRes.string.title_profile, Icons.Filled.Person), colors) {
             profileFlow()
-        }
-    }
-}
-
-internal fun RootComposeBuilder.authFlow() {
-    flow(FLOW_AUTH) {
-        screen(SCREEN_LOGIN) {
-            AccountLoginScreen()
-        }
-
-        screen(SCREEN_CREATE) {
-            AccountCreateScreen()
-        }
-
-        screen(SCREEN_FORGOT) {
-            AccountForgotScreen()
         }
     }
 }

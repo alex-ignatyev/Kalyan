@@ -46,9 +46,9 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (AccountCreateEven
     Scaffold(
         modifier = Modifier.padding(top = if (platformProvider == iOS) 32.dp else 0.dp),
         topBar = {
-            KalyanToolbar() {
+            KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
-            }
+            })
         },
         backgroundColor = KalyanTheme.colors.primaryBackground
     ) {

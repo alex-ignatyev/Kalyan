@@ -20,3 +20,4 @@ rootProject.name = "Kalyan"
 
 include(":androidApp")
 include(":shared")
+include(":iosAppp")

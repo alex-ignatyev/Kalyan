@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.adeo.kviewmodel.odyssey.StoredViewModel
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import screens.settings.SettingsAction.ReturnBack
 
 @Composable
 internal fun SettingsScreen() {
@@ -19,6 +20,7 @@ internal fun SettingsScreen() {
         }
 
         when (action) {
+            is ReturnBack -> rootController.popBackStack()
             else -> {}
         }
     }

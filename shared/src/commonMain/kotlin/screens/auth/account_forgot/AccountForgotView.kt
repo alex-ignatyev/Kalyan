@@ -40,9 +40,9 @@ import ui.themes.components.TextFieldType
 fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEvent) -> Unit) {
     Scaffold(
         topBar = {
-            KalyanToolbar() {
+            KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
-            }
+            })
         },
         backgroundColor = KalyanTheme.colors.primaryBackground
     ) {

@@ -19,11 +19,7 @@ fun MainView(activity: ComponentActivity) {
     val currentSettings = settingsEventBus.currentSettings.collectAsState().value
 
     MainTheme(
-        style = currentSettings.style,
-        darkTheme = currentSettings.isDarkMode,
-        corners = currentSettings.cornerStyle,
-        textSize = currentSettings.textSize,
-        paddingSize = currentSettings.paddingSize
+        darkTheme = currentSettings.isDarkMode
     ) {
         val odysseyConfiguration = OdysseyConfiguration(
             canvas = activity,

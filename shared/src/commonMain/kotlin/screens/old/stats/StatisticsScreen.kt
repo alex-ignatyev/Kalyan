@@ -40,11 +40,6 @@ internal fun StatisticsScreen() {
 internal fun StatisticsView(viewState: StatsViewState) {
     Column {
         Text(
-            modifier = Modifier.padding(
-                start = KalyanTheme.shapes.padding,
-                end = KalyanTheme.shapes.padding,
-                top = KalyanTheme.shapes.padding + 8.dp
-            ),
             text = AppRes.string.title_statistics,
             style = KalyanTheme.typography.header,
             color = KalyanTheme.colors.primaryText

@@ -25,14 +25,12 @@ internal fun JetMenu(
         Row(
             Modifier
                 .clickable { onMenuClicked.invoke() }
-                .padding(KalyanTheme.shapes.padding)
                 .background(KalyanTheme.colors.primaryBackground),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 modifier = Modifier
-                    .weight(1f)
-                    .padding(end = KalyanTheme.shapes.padding),
+                    .weight(1f),
                 text = title,
                 style = KalyanTheme.typography.body,
                 color = KalyanTheme.colors.primaryText

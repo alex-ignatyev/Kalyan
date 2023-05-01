@@ -2,7 +2,15 @@ package screens.old.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
@@ -15,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.kalyan.shared.AppRes
 import com.soywiz.klock.DateTime
 import di.LocalPlatform
 import di.Platform
@@ -23,7 +32,6 @@ import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalSheetConfiguration
 import screens.old.detail.models.DetailEvent
 import screens.old.detail.models.DetailViewState
-import com.kalyan.shared.AppRes
 import ui.themes.KalyanTheme
 import ui.themes.components.CCalendar
 import ui.themes.components.JetMenu
@@ -55,21 +63,12 @@ internal fun DetailView(
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    modifier = Modifier.padding(
-                        start = KalyanTheme.shapes.padding,
-                        end = KalyanTheme.shapes.padding,
-                    ),
                     text = viewState.itemTitle,
                     style = KalyanTheme.typography.header,
                     color = KalyanTheme.colors.primaryText
                 )
 
                 Text(
-                    modifier = Modifier.padding(
-                        start = KalyanTheme.shapes.padding,
-                        end = KalyanTheme.shapes.padding,
-                        top = 2.dp
-                    ),
                     text = if (viewState.isGood) "Good Habit" else "Bad Habit",
                     style = KalyanTheme.typography.caption,
                     color = KalyanTheme.colors.controlColor

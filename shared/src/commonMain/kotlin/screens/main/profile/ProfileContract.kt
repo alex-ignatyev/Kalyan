@@ -2,6 +2,8 @@ package screens.main.profile
 
 sealed class ProfileEvent {
     class InitProfileScreen : ProfileEvent()
+    class ClickOnSettings : ProfileEvent()
+    class ClearActions : ProfileEvent()
 }
 
 data class ProfileState(
@@ -9,4 +11,6 @@ data class ProfileState(
     val name: String = "Test Name"
 )
 
-sealed class ProfileAction
+sealed class ProfileAction {
+    class OpenSettingsScreen() : ProfileAction()
+}

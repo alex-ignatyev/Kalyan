@@ -7,8 +7,10 @@ import com.adeo.kviewmodel.odyssey.StoredViewModel
 import navigation.FLOW_MAIN
 import navigation.SCREEN_CREATE
 import navigation.SCREEN_FORGOT
+import ru.alexgladkov.odyssey.compose.extensions.present
 import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import ru.alexgladkov.odyssey.core.LaunchFlag
 import screens.auth.account_login.AccountLoginAction.OpenCreateAccountScreen
 import screens.auth.account_login.AccountLoginAction.OpenForgotPasswordScreen
 import screens.auth.account_login.AccountLoginAction.OpenMainScreen
@@ -28,7 +30,7 @@ internal fun AccountLoginScreen() {
 
         when (action) {
             is OpenMainScreen -> {
-                rootController.push(FLOW_MAIN)
+                rootController.present(FLOW_MAIN, launchFlag = LaunchFlag.SingleNewTask)
                 viewModel.obtainEvent(ClearActions())
             }
 
