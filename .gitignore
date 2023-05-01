@@ -15,7 +15,7 @@ Pods/
 
 iosApp/Podfile.lock
 iosApp/Pods/*
-iosApp/JetHabit.xcworkspace/*
-iosApp/JetHabit.xcodeproj/*
-!iosApp/JetHabit.xcodeproj/project.pbxproj
+iosApp/Kalyan.xcworkspace/*
+iosApp/Kalyan.xcodeproj/*
+!iosApp/Kalyan.xcodeproj/project.pbxproj
 shared/shared.podspec

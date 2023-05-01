@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iosApp.swift */; };
-		E65616186BE3A8769D3B8021 /* Pods_JetHabit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391F22A26208BE13439C4626 /* Pods_JetHabit.framework */; };
+		B2D97CA2238E7BB8F04C10C6 /* Pods_Kalyan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFCDB54B3189CD122A740C8 /* Pods_Kalyan.framework */; };
 		FAEB08E429A3B06700B1FB06 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEB08E229A3B05400B1FB06 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		12372A7B7FF813EC8E4E4824 /* Pods-JetHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JetHabit.release.xcconfig"; path = "Target Support Files/Pods-JetHabit/Pods-JetHabit.release.xcconfig"; sourceTree = "<group>"; };
+		1EDD93D8AAE159F8A0E8C5D7 /* Pods-Kalyan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalyan.release.xcconfig"; path = "Target Support Files/Pods-Kalyan/Pods-Kalyan.release.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosApp.swift; sourceTree = "<group>"; };
-		391F22A26208BE13439C4626 /* Pods_JetHabit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JetHabit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FFCDB54B3189CD122A740C8 /* Pods_Kalyan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kalyan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* TeamId.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = TeamId.xcconfig; sourceTree = "<group>"; };
+		B49A6339723EAA2B15B35D39 /* Pods-Kalyan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalyan.debug.xcconfig"; path = "Target Support Files/Pods-Kalyan/Pods-Kalyan.debug.xcconfig"; sourceTree = "<group>"; };
 		E3820D5A5448932A88ED7B69 /* Pods-JetHabit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JetHabit.debug.xcconfig"; path = "Target Support Files/Pods-JetHabit/Pods-JetHabit.debug.xcconfig"; sourceTree = "<group>"; };
-		FA19FA7729A4F070006648F6 /* JetHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JetHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA19FA7729A4F070006648F6 /* Kalyan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalyan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEB08E229A3B05400B1FB06 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -29,7 +31,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEB08E429A3B06700B1FB06 /* libsqlite3.tbd in Frameworks */,
-				E65616186BE3A8769D3B8021 /* Pods_JetHabit.framework in Frameworks */,
+				B2D97CA2238E7BB8F04C10C6 /* Pods_Kalyan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +45,7 @@
 				7555FF7D242A565900829871 /* iosApp */,
 				E1DAFBE8E1CFC0878361EF0E /* Pods */,
 				B62309C7396AD7BF607A63B2 /* Frameworks */,
-				FA19FA7729A4F070006648F6 /* JetHabit.app */,
+				FA19FA7729A4F070006648F6 /* Kalyan.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				FAEB08E229A3B05400B1FB06 /* libsqlite3.tbd */,
-				391F22A26208BE13439C4626 /* Pods_JetHabit.framework */,
+				5FFCDB54B3189CD122A740C8 /* Pods_Kalyan.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -78,6 +80,8 @@
 			children = (
 				E3820D5A5448932A88ED7B69 /* Pods-JetHabit.debug.xcconfig */,
 				12372A7B7FF813EC8E4E4824 /* Pods-JetHabit.release.xcconfig */,
+				B49A6339723EAA2B15B35D39 /* Pods-Kalyan.debug.xcconfig */,
+				1EDD93D8AAE159F8A0E8C5D7 /* Pods-Kalyan.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -85,9 +89,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7555FF7A242A565900829871 /* JetHabit */ = {
+		7555FF7A242A565900829871 /* Kalyan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "JetHabit" */;
+			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "Kalyan" */;
 			buildPhases = (
 				E8D673591E7196AEA2EA10E2 /* [CP] Check Pods Manifest.lock */,
 				7555FF77242A565900829871 /* Sources */,
@@ -99,9 +103,9 @@
 			);
 			dependencies = (
 			);
-			name = JetHabit;
+			name = Kalyan;
 			productName = iosApp;
-			productReference = FA19FA7729A4F070006648F6 /* JetHabit.app */;
+			productReference = FA19FA7729A4F070006648F6 /* Kalyan.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -119,7 +123,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7555FF76242A565900829871 /* Build configuration list for PBXProject "JetHabit" */;
+			buildConfigurationList = 7555FF76242A565900829871 /* Build configuration list for PBXProject "Kalyan" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -132,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7555FF7A242A565900829871 /* JetHabit */,
+				7555FF7A242A565900829871 /* Kalyan */,
 			);
 		};
 /* End PBXProject section */
@@ -154,15 +158,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JetHabit/Pods-JetHabit-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kalyan/Pods-Kalyan-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JetHabit/Pods-JetHabit-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kalyan/Pods-Kalyan-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JetHabit/Pods-JetHabit-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kalyan/Pods-Kalyan-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E8D673591E7196AEA2EA10E2 /* [CP] Check Pods Manifest.lock */ = {
@@ -180,7 +184,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JetHabit-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kalyan-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -321,7 +325,7 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3820D5A5448932A88ED7B69 /* Pods-JetHabit.debug.xcconfig */;
+			baseConfigurationReference = B49A6339723EAA2B15B35D39 /* Pods-Kalyan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -335,17 +339,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tech.mobiledeveloper.JetHabit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kalyan.Kalyan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12372A7B7FF813EC8E4E4824 /* Pods-JetHabit.release.xcconfig */;
+			baseConfigurationReference = 1EDD93D8AAE159F8A0E8C5D7 /* Pods-Kalyan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -359,18 +363,18 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tech.mobiledeveloper.JetHabit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kalyan.Kalyan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7555FF76242A565900829871 /* Build configuration list for PBXProject "JetHabit" */ = {
+		7555FF76242A565900829871 /* Build configuration list for PBXProject "Kalyan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7555FFA3242A565B00829871 /* Debug */,
@@ -379,7 +383,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "JetHabit" */ = {
+		7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "Kalyan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7555FFA6242A565B00829871 /* Debug */,
