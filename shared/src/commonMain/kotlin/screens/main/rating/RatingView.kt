@@ -6,29 +6,27 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import screens.main.rating.RatingEvent.TestCreate
+import di.LocalPlatform
+import di.Platform.iOS
 import screens.main.rating.view.TobaccoView
-import ui.themes.components.KalyanButton
 
 @Composable
-fun MainView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
+fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
+    val platformProvider = LocalPlatform.current
+
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(top = if (platformProvider == iOS) 32.dp else 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LazyColumn(modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(16.dp)) {
-            items(state.tobaccos) {
-                TobaccoView(it)
+        LazyColumn(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
+            itemsIndexed(state.data) { index, item ->
+                TobaccoView(item, index + 1)
             }
         }
-
-        KalyanButton(onClick = {
-            obtainEvent.invoke(TestCreate())
-        })
     }
 }

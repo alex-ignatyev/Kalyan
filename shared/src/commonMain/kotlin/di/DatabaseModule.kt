@@ -10,8 +10,7 @@ val databaseModule = module {
 
     single {
         val driverFactory: DriverFactory = get()
-        val driver = driverFactory
-            .createDriver("lm_customer.db") //TODO что это ?
+        val driver = driverFactory.createDriver("lm_customer.db") //TODO что это ?
 
         Database(driver)
     }

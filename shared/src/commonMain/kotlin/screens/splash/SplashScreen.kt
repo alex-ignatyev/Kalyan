@@ -16,7 +16,7 @@ import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.core.LaunchFlag
 import screens.splash.SplashAction.OpenFlow
 import screens.splash.SplashEvent.InitSplashScreen
-import ui.themes.KalyanTheme
+import ui.KalyanTheme
 
 @Composable
 internal fun SplashScreen() {

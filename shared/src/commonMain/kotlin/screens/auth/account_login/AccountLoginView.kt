@@ -32,11 +32,11 @@ import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
 import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
 import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
 import screens.auth.account_login.AccountLoginEvent.LoginClick
-import ui.themes.KalyanTheme
-import ui.themes.components.KalyanButton
-import ui.themes.components.KalyanCircularProgress
-import ui.themes.components.KalyanTextField
-import ui.themes.components.TextFieldType
+import ui.KalyanTheme
+import ui.components.KalyanButton
+import ui.components.KalyanCircularProgress
+import ui.components.KalyanTextField
+import ui.components.TextFieldType.Password
 
 @Composable
 fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) -> Unit) {
@@ -76,7 +76,7 @@ fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) 
             placeholder = AppResStrings.text_password,
             enabled = !state.isLoading,
             isError = state.error.isNotBlank(),
-            fieldType = TextFieldType.Password(state.isPasswordHidden),
+            fieldType = Password(state.isPasswordHidden),
             endIcon = { PasswordShowIcon(state.isPasswordHidden, obtainEvent) }
         ) {
             obtainEvent(ChangePassword(it))

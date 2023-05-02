@@ -3,7 +3,7 @@ package screens.auth.account_forgot
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
-import model.data.request.AccountForgotRequest
+import model.auth.request.AccountForgotRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.auth.account_forgot.AccountForgotAction.OpenLoginScreen

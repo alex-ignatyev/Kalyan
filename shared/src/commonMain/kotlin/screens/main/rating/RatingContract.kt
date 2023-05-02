@@ -1,13 +1,13 @@
 package screens.main.rating
 
-import model.Tobacco
+import model.tobacco.TobaccoResponse
 
 sealed class RatingEvent {
-    class TestCreate : RatingEvent()
+    class InitRatingScreen : RatingEvent()
 }
 
 data class RatingState(
-    val tobaccos: List<Tobacco> = emptyList()
+    val data: List<TobaccoResponse> = emptyList()
 )
 
 sealed class RatingAction

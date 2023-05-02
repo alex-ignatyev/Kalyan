@@ -32,12 +32,12 @@ import screens.auth.account_create.AccountCreateEvent.CreateAccountClick
 import screens.auth.account_create.AccountCreateEvent.OnBackClick
 import screens.auth.account_create.AccountCreateEvent.ShowPasswordClick
 import screens.auth.account_create.AccountCreateEvent.ShowPasswordRepeatClick
-import ui.themes.KalyanTheme
-import ui.themes.components.KalyanButton
-import ui.themes.components.KalyanCircularProgress
-import ui.themes.components.KalyanTextField
-import ui.themes.components.KalyanToolbar
-import ui.themes.components.TextFieldType.Password
+import ui.KalyanTheme
+import ui.components.KalyanButton
+import ui.components.KalyanCircularProgress
+import ui.components.KalyanTextField
+import ui.components.KalyanToolbar
+import ui.components.TextFieldType.Password
 
 @Composable
 fun AccountCreateView(state: AccountCreateState, obtainEvent: (AccountCreateEvent) -> Unit) {

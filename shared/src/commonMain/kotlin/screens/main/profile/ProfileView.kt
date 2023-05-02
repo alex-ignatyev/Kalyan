@@ -21,8 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kalyan.shared.strings.AppResStrings
 import screens.main.profile.ProfileEvent.ClickOnSettings
-import ui.themes.KalyanTheme
-import ui.themes.components.KalyanToolbar
+import ui.KalyanTheme
+import ui.components.KalyanToolbar
 
 @Composable
 fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {

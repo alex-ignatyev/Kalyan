@@ -15,6 +15,10 @@ class SettingsDataSource(
         return settings[TOKEN_KEY, ""]
     }
 
+    fun clear() {
+        settings.clear()
+    }
+
     companion object {
         private const val TOKEN_KEY = "tokenKey"
     }

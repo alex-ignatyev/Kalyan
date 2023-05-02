@@ -39,6 +39,7 @@ kotlin {
                 implementation(compose.runtime)
 
                 implementation(libs.compose.imageLoader)
+                //implementation(libs.compose.imageLoaderBlur)
                 implementation(libs.compose.icons)
 
                 implementation(libs.kviewmodel.core)

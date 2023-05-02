@@ -1,11 +1,11 @@
 package screens.main.rating
 
 import com.adeo.kviewmodel.BaseSharedViewModel
-import domain.repository.MainRepository
+import domain.repository.RatingRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import screens.main.rating.RatingEvent.TestCreate
+import screens.main.rating.RatingEvent.InitRatingScreen
 import utils.answer.onFailure
 import utils.answer.onSuccess
 
@@ -13,32 +13,20 @@ class RatingViewModel : KoinComponent, BaseSharedViewModel<RatingState, RatingAc
     initialState = RatingState()
 ) {
 
-    private val repository: MainRepository by inject()
-
-    init {
-        testClick()
-    }
+    private val repository: RatingRepository by inject()
 
     override fun obtainEvent(viewEvent: RatingEvent) {
         when (viewEvent) {
-            is TestCreate -> test()
+            is InitRatingScreen -> fetchData()
         }
     }
 
-    private fun testClick() {
+    private fun fetchData() {
         viewModelScope.launch {
-            repository.getTobaccos().onSuccess {
-                viewState = viewState.copy(tobaccos = it.tobaccos ?: listOf())
+            repository.getTobaccoFeed().onSuccess {
+                viewState = viewState.copy(data = it)
             }.onFailure {
-
-            }
-        }
-    }
-
-    private fun test() {
-        viewModelScope.launch {
-            repository.createTobacco().onSuccess {
-                testClick()
+                //TODO Show error
             }
         }
     }

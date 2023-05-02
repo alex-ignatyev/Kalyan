@@ -6,12 +6,12 @@ import androidx.compose.runtime.remember
 import data.features.settings.LocalSettingsEventBus
 import data.features.settings.SettingsEventBus
 import di.LocalPlatform
-import di.Platform
+import di.Platform.Android
 import navigation.navigationGraph
 import ru.alexgladkov.odyssey.compose.setup.OdysseyConfiguration
 import ru.alexgladkov.odyssey.compose.setup.setNavigationContent
-import ui.themes.KalyanTheme
-import ui.themes.MainTheme
+import ui.KalyanTheme
+import ui.MainTheme
 
 @Composable
 fun MainView(activity: ComponentActivity) {
@@ -27,7 +27,7 @@ fun MainView(activity: ComponentActivity) {
         )
 
         CompositionLocalProvider(
-            LocalPlatform provides Platform.Android,
+            LocalPlatform provides Android,
             LocalSettingsEventBus provides settingsEventBus
         ) {
             setNavigationContent(odysseyConfiguration, onApplicationFinish = {

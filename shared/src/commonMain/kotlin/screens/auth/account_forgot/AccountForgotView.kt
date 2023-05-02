@@ -22,6 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
+import di.LocalPlatform
+import di.Platform.iOS
 import screens.auth.account_forgot.AccountForgotEvent.ChangeLogin
 import screens.auth.account_forgot.AccountForgotEvent.ChangePassword
 import screens.auth.account_forgot.AccountForgotEvent.ChangePasswordRepeat
@@ -29,16 +31,19 @@ import screens.auth.account_forgot.AccountForgotEvent.OnBackClick
 import screens.auth.account_forgot.AccountForgotEvent.ResetPasswordClick
 import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordClick
 import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
-import ui.themes.KalyanTheme
-import ui.themes.components.KalyanButton
-import ui.themes.components.KalyanCircularProgress
-import ui.themes.components.KalyanTextField
-import ui.themes.components.KalyanToolbar
-import ui.themes.components.TextFieldType
+import ui.KalyanTheme
+import ui.components.KalyanButton
+import ui.components.KalyanCircularProgress
+import ui.components.KalyanTextField
+import ui.components.KalyanToolbar
+import ui.components.TextFieldType.Password
 
 @Composable
 fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEvent) -> Unit) {
+    val platformProvider = LocalPlatform.current
+
     Scaffold(
+        modifier = Modifier.padding(top = if (platformProvider == iOS) 32.dp else 0.dp),
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
@@ -80,7 +85,7 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEven
                 placeholder = AppResStrings.text_password,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
-                fieldType = TextFieldType.Password(state.isPasswordHidden),
+                fieldType = Password(state.isPasswordHidden),
                 endIcon = {
                     Icon(
                         modifier = Modifier.clickable(
@@ -107,7 +112,7 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEven
                 placeholder = AppResStrings.text_password_repeat,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
-                fieldType = TextFieldType.Password(state.isPasswordRepeatHidden),
+                fieldType = Password(state.isPasswordRepeatHidden),
                 endIcon = {
                     Icon(
                         modifier = Modifier.clickable(

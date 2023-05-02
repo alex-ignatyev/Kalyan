@@ -5,13 +5,13 @@ import androidx.compose.ui.window.ComposeUIViewController
 import data.features.settings.LocalSettingsEventBus
 import data.features.settings.SettingsEventBus
 import di.LocalPlatform
-import di.Platform
+import di.Platform.iOS
 import navigation.navigationGraph
 import platform.UIKit.UIViewController
 import ru.alexgladkov.odyssey.compose.setup.OdysseyConfiguration
 import ru.alexgladkov.odyssey.compose.setup.setNavigationContent
-import ui.themes.KalyanTheme
-import ui.themes.MainTheme
+import ui.KalyanTheme
+import ui.MainTheme
 
 fun MainViewController(): UIViewController = ComposeUIViewController {
     val settingsEventBus = remember { SettingsEventBus() }
@@ -25,7 +25,7 @@ fun MainViewController(): UIViewController = ComposeUIViewController {
         )
 
         CompositionLocalProvider(
-            LocalPlatform provides Platform.iOS,
+            LocalPlatform provides iOS,
             LocalSettingsEventBus provides settingsEventBus
         ) {
             setNavigationContent(odysseyConfiguration) {

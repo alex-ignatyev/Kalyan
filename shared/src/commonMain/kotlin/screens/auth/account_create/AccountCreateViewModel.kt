@@ -3,7 +3,7 @@ package screens.auth.account_create
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
-import model.data.request.AccountCreateRequest
+import model.auth.request.AccountCreateRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.auth.account_create.AccountCreateAction.OpenLoginScreen

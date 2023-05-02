@@ -2,10 +2,10 @@ package domain.repository
 
 import data.RemoteAuthDataSource
 import data.SettingsDataSource
-import model.data.request.AccountCreateRequest
-import model.data.request.AccountForgotRequest
-import model.data.request.AccountLoginRequest
-import model.data.response.TokenResponse
+import model.auth.request.AccountCreateRequest
+import model.auth.request.AccountForgotRequest
+import model.auth.request.AccountLoginRequest
+import model.auth.TokenResponse
 import utils.answer.Answer
 import utils.answer.onSuccess
 
@@ -15,7 +15,7 @@ class AuthRepositoryImpl(
 ) : AuthRepository {
 
     override suspend fun create(request: AccountCreateRequest): Answer<Unit> {
-        return remote.create(request)
+        return remote.createAccount(request)
     }
 
     override suspend fun login(request: AccountLoginRequest): Answer<TokenResponse> {
@@ -27,7 +27,7 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun forgot(request: AccountForgotRequest): Answer<Unit> {
-        return remote.forgot(request)
+        return remote.forgotPassword(request)
     }
 }
 

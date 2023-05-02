@@ -1,13 +1,10 @@
 package navigation
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
 import com.kalyan.shared.AppRes
 import ru.alexgladkov.odyssey.compose.extensions.bottomNavigation
 import ru.alexgladkov.odyssey.compose.extensions.screen
@@ -21,16 +18,11 @@ import screens.auth.account_forgot.AccountForgotScreen
 import screens.auth.account_login.AccountLoginScreen
 import screens.main.profile.ProfileScreen
 import screens.main.rating.MainScreen
-import screens.old.stats.StatisticsScreen
-import screens.settings.SettingsScreen
+import screens.main.search.SearchScreen
+import screens.main.settings.SettingsScreen
 import screens.splash.SplashScreen
-import ui.themes.KalyanTheme
+import ui.KalyanTheme
 
-@OptIn(
-    ExperimentalComposeUiApi::class,
-    ExperimentalFoundationApi::class,
-    ExperimentalMaterialApi::class
-)
 @Composable
 internal fun RootComposeBuilder.navigationGraph() {
 
@@ -73,7 +65,7 @@ internal fun RootComposeBuilder.navigationGraph() {
 
         tab(TabDefaults.content(AppRes.string.title_search, Icons.Filled.Search), colors) {
             screen("search") {
-                StatisticsScreen()
+                SearchScreen()
             }
         }
 
