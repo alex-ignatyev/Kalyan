@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TokenResponse(
-    @SerialName("token") val token: String
+    @SerialName("token") val token: String,
+    @SerialName("isAdmin") val isAdmin: Boolean
 )

@@ -5,13 +5,15 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
-import ru.alexgladkov.odyssey.compose.extensions.bottomNavigation
+import ru.alexgladkov.odyssey.compose.base.BottomBarNavigator
+import ru.alexgladkov.odyssey.compose.extensions.customNavigation
 import ru.alexgladkov.odyssey.compose.extensions.screen
 import ru.alexgladkov.odyssey.compose.extensions.tab
 import ru.alexgladkov.odyssey.compose.helpers.FlowBuilder
 import ru.alexgladkov.odyssey.compose.navigation.RootComposeBuilder
-import ru.alexgladkov.odyssey.compose.navigation.bottom_bar_navigation.BottomBarDefaults
+import ru.alexgladkov.odyssey.compose.navigation.bottom_bar_navigation.MultiStackConfiguration
 import ru.alexgladkov.odyssey.compose.navigation.tabs.TabDefaults
 import screens.auth.account_create.AccountCreateScreen
 import screens.auth.account_forgot.AccountForgotScreen
@@ -42,14 +44,23 @@ internal fun RootComposeBuilder.navigationGraph() {
         AccountForgotScreen()
     }
 
-    bottomNavigation(
+    customNavigation(
         FLOW_MAIN,
-        colors = BottomBarDefaults.bottomColors(
-            backgroundColor = KalyanTheme.colors.generalColor
-        )
+        content = {
+            val configuration = MultiStackConfiguration.BottomNavConfiguration(
+                backgroundColor = KalyanTheme.colors.primaryBackground,
+                defaultElevation = 8.dp
+            )
+
+            BottomBarNavigator(
+                startScreen = null,
+                bottomNavConfiguration = configuration
+            )
+
+        }
     ) {
         val colors = TabDefaults.simpleTabColors(
-            selectedColor = KalyanTheme.colors.primaryText,
+            selectedColor = KalyanTheme.colors.generalColor,
             unselectedColor = KalyanTheme.colors.secondaryText
         )
 

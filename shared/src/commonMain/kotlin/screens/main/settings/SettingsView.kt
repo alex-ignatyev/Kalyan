@@ -2,6 +2,7 @@ package screens.main.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Checkbox
@@ -16,6 +17,7 @@ import com.kalyan.shared.strings.AppResStrings
 import data.features.settings.LocalSettingsEventBus
 import screens.main.settings.SettingsEvent.OnBackClick
 import ui.KalyanTheme
+import ui.components.KalyanButton
 import ui.components.KalyanDivider
 import ui.components.KalyanToolbar
 
@@ -51,6 +53,16 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
         }
 
         KalyanDivider()
+
+        Spacer(Modifier.weight(1f))
+
+        KalyanButton(
+            modifier = Modifier.padding(bottom = 16.dp),
+            backgroundColor = KalyanTheme.colors.errorColor,
+            text = AppResStrings.text_logout
+        ) {
+
+        }
 
         //TODO Добавить смену пароля
     }

@@ -75,6 +75,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("com.google.android.material:material:1.7.0")
+                implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
                 implementation(libs.sqldelight.android)
                 implementation(libs.ktor.android)
             }

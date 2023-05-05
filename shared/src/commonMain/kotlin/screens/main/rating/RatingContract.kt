@@ -7,7 +7,8 @@ sealed class RatingEvent {
 }
 
 data class RatingState(
-    val data: List<TobaccoResponse> = emptyList()
+    val data: List<TobaccoResponse> = emptyList(),
+    val isAdmin: Boolean = false
 )
 
 sealed class RatingAction

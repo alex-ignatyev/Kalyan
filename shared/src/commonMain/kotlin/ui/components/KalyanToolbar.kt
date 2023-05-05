@@ -27,7 +27,7 @@ fun KalyanToolbar(
     onFirstIconClick: (() -> Unit)? = null
 ) {
     TopAppBar(
-        backgroundColor = if (isTransparent) Color.Transparent else KalyanTheme.colors.secondaryBackground,
+        backgroundColor = if (isTransparent) Color.Transparent else KalyanTheme.colors.primaryBackground,
         elevation = 8.dp
     ) {
         Row(

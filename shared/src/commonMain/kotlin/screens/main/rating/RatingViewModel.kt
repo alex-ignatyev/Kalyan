@@ -1,6 +1,7 @@
 package screens.main.rating
 
 import com.adeo.kviewmodel.BaseSharedViewModel
+import data.SettingsDataSource
 import domain.repository.RatingRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -14,6 +15,7 @@ class RatingViewModel : KoinComponent, BaseSharedViewModel<RatingState, RatingAc
 ) {
 
     private val repository: RatingRepository by inject()
+    private val settings: SettingsDataSource by inject()
 
     override fun obtainEvent(viewEvent: RatingEvent) {
         when (viewEvent) {
@@ -24,7 +26,7 @@ class RatingViewModel : KoinComponent, BaseSharedViewModel<RatingState, RatingAc
     private fun fetchData() {
         viewModelScope.launch {
             repository.getTobaccoFeed().onSuccess {
-                viewState = viewState.copy(data = it)
+                viewState = viewState.copy(data = it, isAdmin = settings.getAdmin())
             }.onFailure {
                 //TODO Show error
             }

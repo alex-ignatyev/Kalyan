@@ -44,7 +44,7 @@ fun KalyanImage(
         Image(
             painter = painter,
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Fit,
             modifier = modifier.size(size.dp),
         )
 

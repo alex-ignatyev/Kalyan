@@ -30,8 +30,10 @@
     <string name="title_profile">Profile</string>
     <string name="title_settings">Settings</string>
 
+    //Settings
+    <string name="action_dark_theme_enable">Enable dark theme</string>
+    <string name="text_logout">Log Out</string>
+
     // Error
     <string name="error_something_went_wrong">Something went wrong, try later</string>
-
-    <string name="action_dark_theme_enable">Enable dark theme</string>
 </resources>

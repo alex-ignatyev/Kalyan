@@ -3,6 +3,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import data.features.settings.LocalSettingsEventBus
 import data.features.settings.SettingsEventBus
 import di.LocalPlatform
@@ -15,12 +16,17 @@ import ui.MainTheme
 
 @Composable
 fun MainView(activity: ComponentActivity) {
+    val systemUiController = rememberSystemUiController()
     val settingsEventBus = remember { SettingsEventBus() }
     val currentSettings = settingsEventBus.currentSettings.collectAsState().value
 
     MainTheme(
         darkTheme = currentSettings.isDarkMode
     ) {
+        systemUiController.setSystemBarsColor(
+            color = KalyanTheme.colors.primaryBackground
+        )
+
         val odysseyConfiguration = OdysseyConfiguration(
             canvas = activity,
             backgroundColor = KalyanTheme.colors.primaryBackground
