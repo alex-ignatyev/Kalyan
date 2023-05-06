@@ -18,6 +18,7 @@ import ru.alexgladkov.odyssey.compose.navigation.tabs.TabDefaults
 import screens.auth.account_create.AccountCreateScreen
 import screens.auth.account_forgot.AccountForgotScreen
 import screens.auth.account_login.AccountLoginScreen
+import screens.main.admin_add_tabacco.AdminAddTobaccoScreen
 import screens.main.profile.ProfileScreen
 import screens.main.rating.MainScreen
 import screens.main.search.SearchScreen
@@ -67,6 +68,10 @@ internal fun RootComposeBuilder.navigationGraph() {
         tab(TabDefaults.content(AppRes.string.title_rating, Icons.Filled.Star), colors) {
             screen("rating") {
                 MainScreen()
+            }
+
+            screen("admin_add_tobacco") {
+                AdminAddTobaccoScreen()
             }
 
             /*screen("detail") {

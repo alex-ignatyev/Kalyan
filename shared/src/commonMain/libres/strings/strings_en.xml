@@ -30,6 +30,14 @@
     <string name="title_profile">Profile</string>
     <string name="title_settings">Settings</string>
 
+    //Admin
+    <string name="title_admin_add_tobacco">Add tobacco</string>
+    <string name="text_admin_empty_choose">Has not chose</string>
+    <string name="text_admin_company">Company</string>
+    <string name="text_admin_taste">Taste</string>
+    <string name="text_admin_line">Line</string>
+    <string name="text_admin_straight">Straight</string>
+
     //Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
     <string name="text_logout">Log Out</string>

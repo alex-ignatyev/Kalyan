@@ -1,4 +1,4 @@
-package data.features.settings
+package data
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -4,31 +4,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.adeo.kviewmodel.odyssey.StoredViewModel
-import navigation.SCREEN_LOGIN
-import ru.alexgladkov.odyssey.compose.extensions.push
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
-import screens.auth.account_create.AccountCreateAction.OpenLoginScreen
-import screens.auth.account_create.AccountCreateAction.ReturnToPreviousScreen
-import screens.auth.account_create.AccountCreateEvent.ClearActions
+import screens.main.admin_add_tabacco.AdminAddTobaccoAction.ReturnToPreviousScreen
+import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.InitAdminAddTobaccoScreen
 
 @Composable
-internal fun AccountCreateScreen() {
+internal fun AdminAddTobaccoScreen() {
     val rootController = LocalRootController.current
 
-    StoredViewModel(factory = { AccountCreateViewModel() }) { viewModel ->
+    StoredViewModel(factory = { AdminAddTobaccoViewModel() }) { viewModel ->
         val state by viewModel.viewStates().collectAsState()
         val action by viewModel.viewActions().collectAsState(null)
 
-        AccountCreateView(state) { event ->
+        AdminAddTobaccoView(state) { event ->
             viewModel.obtainEvent(event)
         }
 
-        when (action) {
-            is OpenLoginScreen -> {
-                rootController.push(SCREEN_LOGIN)
-                viewModel.obtainEvent(ClearActions())
-            }
+        viewModel.obtainEvent(InitAdminAddTobaccoScreen())
 
+        when (action) {
             is ReturnToPreviousScreen -> rootController.popBackStack()
             null -> {}
         }

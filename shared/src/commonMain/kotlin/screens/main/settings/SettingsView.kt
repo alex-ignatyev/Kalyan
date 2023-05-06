@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
-import data.features.settings.LocalSettingsEventBus
+import data.LocalSettingsEventBus
 import screens.main.settings.SettingsEvent.OnBackClick
 import ui.KalyanTheme
 import ui.components.KalyanButton

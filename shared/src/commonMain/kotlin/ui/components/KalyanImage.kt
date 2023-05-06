@@ -3,7 +3,6 @@ package ui.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,7 +33,7 @@ fun KalyanImage(
                 data(url)
                 addInterceptor(NullDataInterceptor)
                 if (blurRadius > 0) {
-                   // blur(blurRadius)
+                    // blur(blurRadius)
                 }
             }
         }
@@ -56,11 +55,8 @@ fun KalyanImage(
                 }
             }
 
-            is ImageRequestState.Failure -> {
-                Text(requestState.error.message ?: "Error")
-            }
-
-            ImageRequestState.Success -> Unit
+            is ImageRequestState.Failure -> Unit //Text(requestState.error.message ?: "Error")
+            is ImageRequestState.Success -> Unit
         }
     }
 }

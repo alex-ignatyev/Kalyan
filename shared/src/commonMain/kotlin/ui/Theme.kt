@@ -20,18 +20,22 @@ internal fun MainTheme(
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         ),
-        body = TextStyle(
-            color = colors.primaryText,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Normal
-        ),
         toolbar = TextStyle(
             color = colors.primaryText,
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium
         ),
+        body = TextStyle(
+            color = colors.primaryText,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Normal
+        ),
         caption = TextStyle(
             color = colors.primaryText,
+            fontSize = 12.sp
+        ),
+        hint = TextStyle(
+            color = colors.secondaryText,
             fontSize = 12.sp
         )
     )

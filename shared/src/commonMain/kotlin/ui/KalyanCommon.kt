@@ -23,9 +23,10 @@ data class KalyanColors(
 
 data class KalyanTypography(
     val header: TextStyle,
+    val toolbar: TextStyle,
     val body: TextStyle,
     val caption: TextStyle,
-    val toolbar: TextStyle
+    val hint: TextStyle
 )
 
 object KalyanTheme {

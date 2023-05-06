@@ -2,8 +2,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
-import data.features.settings.LocalSettingsEventBus
-import data.features.settings.SettingsEventBus
+import data.LocalSettingsEventBus
+import data.SettingsEventBus
 import di.LocalPlatform
 import di.Platform.iOS
 import navigation.navigationGraph

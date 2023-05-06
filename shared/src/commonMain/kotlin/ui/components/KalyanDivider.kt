@@ -9,9 +9,9 @@ import androidx.compose.ui.unit.dp
 import ui.KalyanTheme
 
 @Composable
-internal fun KalyanDivider() {
+internal fun KalyanDivider(modifier: Modifier = Modifier) {
     Divider(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = modifier.fillMaxWidth(),
         thickness = 0.5.dp,
         color = KalyanTheme.colors.controlColor.copy(alpha = 0.3f)
     )

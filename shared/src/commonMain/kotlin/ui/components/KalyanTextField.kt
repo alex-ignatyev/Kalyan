@@ -27,8 +27,9 @@ fun KalyanTextField(
     onValueChange: (String) -> Unit
 ) {
     OutlinedTextField(
-        modifier = modifier.padding(top = 20.dp, start = 16.dp, end = 16.dp)
-            .fillMaxWidth().wrapContentHeight(),
+        modifier = modifier.fillMaxWidth()
+            .wrapContentHeight()
+            .padding(top = 20.dp, start = 16.dp, end = 16.dp),
         value = value,
         onValueChange = onValueChange,
         shape = RoundedCornerShape(8.dp),

@@ -4,8 +4,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import data.features.settings.LocalSettingsEventBus
-import data.features.settings.SettingsEventBus
+import data.LocalSettingsEventBus
+import data.SettingsEventBus
 import di.LocalPlatform
 import di.Platform.Android
 import navigation.navigationGraph
