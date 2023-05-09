@@ -25,7 +25,7 @@ class AuthRepositoryImpl(
     override suspend fun login(request: AccountLoginRequest): Answer<TokenResponse> {
         val answer = remote.login(request)
         answer.onSuccess {
-            settings.saveInfo(it.token, it.isAdmin)
+            settings.saveInfo(it.token, it.userId, it.isAdmin)
         }
         return answer
     }

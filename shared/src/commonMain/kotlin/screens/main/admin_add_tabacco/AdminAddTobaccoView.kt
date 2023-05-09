@@ -3,8 +3,10 @@ package screens.main.admin_add_tabacco
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
@@ -72,7 +74,7 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
             }
 
             KalyanSelect(title = AppResStrings.text_admin_line, text = state.line) {
-                val lines = state.companies.findLast { it.company == state.company }?.lines ?: return@KalyanSelect
+                val lines = state.companies.findLast { it.companyName == state.company }?.lines ?: return@KalyanSelect
                 modalController.present(ModalSheetConfiguration()) { key ->
                     LineBottomSheet(key, lines, obtainEvent)
                 }
@@ -112,12 +114,13 @@ fun CompanyBottomSheet(screenKey: String, companies: List<CompanyResponse>, obta
     val rootController = LocalRootController.current
     val modalController = rootController.findModalController()
 
-    LazyColumn(modifier = Modifier.height(400.dp).padding(16.dp)) {
+    LazyColumn(modifier = Modifier.wrapContentHeight().padding(16.dp)) {
         items(companies) {
-            Text(it.company,
+            Text(
+                text = it.companyName,
                 style = KalyanTheme.typography.body,
-                modifier = Modifier.clickable {
-                    obtainEvent.invoke(ChangeCompany(it.company))
+                modifier = Modifier.fillMaxWidth().clickable {
+                    obtainEvent.invoke(ChangeCompany(it.companyName))
                     modalController.popBackStack(screenKey)
                 })
         }
@@ -130,11 +133,12 @@ fun LineBottomSheet(screenKey: String, lines: List<String>, obtainEvent: (AdminA
     val rootController = LocalRootController.current
     val modalController = rootController.findModalController()
 
-    LazyColumn(modifier = Modifier.height(400.dp).padding(16.dp)) {
+    LazyColumn(modifier = Modifier.wrapContentHeight().padding(16.dp)) {
         items(lines) {
-            Text(it,
+            Text(
+                text = it,
                 style = KalyanTheme.typography.body,
-                modifier = Modifier.clickable {
+                modifier = Modifier.fillMaxWidth().clickable {
                     obtainEvent.invoke(ChangeLine(it))
                     modalController.popBackStack(screenKey)
                 })

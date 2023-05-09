@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CompanyResponse(
     @SerialName("id") val id: String,
-    @SerialName("company") val company: String,
+    @SerialName("companyName") val companyName: String,
     @SerialName("lines") val lines: List<String>
 )

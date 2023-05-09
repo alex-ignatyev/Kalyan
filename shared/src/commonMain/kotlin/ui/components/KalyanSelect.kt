@@ -2,8 +2,8 @@ package ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,36 +20,31 @@ import ui.KalyanTheme
 
 @Composable
 fun KalyanSelect(title: String, text: String = "", modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Column(modifier = modifier.fillMaxWidth()
-        .height(64.dp)
-        .padding(horizontal = 16.dp)
-        .padding(top = 16.dp).clickable {
-            onClick.invoke()
-        }) {
-        Row(
-            modifier = Modifier.weight(1f),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = title,
-                    style = if (text.isBlank()) KalyanTheme.typography.body else KalyanTheme.typography.hint,
-                    color = KalyanTheme.colors.secondaryText
-                )
-
-                if (text.isNotBlank()) {
-                    Text(text = text)
-                }
-            }
-
-            Image(
-                painter = painterResource(AppResImages.ic_next),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(KalyanTheme.colors.secondaryText),
-                modifier = Modifier.size(16.dp)
+    Box(modifier = modifier.fillMaxWidth().height(64.dp).padding(horizontal = 16.dp).padding(top = 16.dp).clickable {
+        onClick.invoke()
+    }) {
+        Column(modifier = Modifier.align(Alignment.CenterStart)) {
+            Text(
+                text = title,
+                style = if (text.isBlank()) KalyanTheme.typography.body else KalyanTheme.typography.hint,
+                color = KalyanTheme.colors.secondaryText
             )
+
+            if (text.isNotBlank()) {
+                Text(
+                    text = text,
+                    style = KalyanTheme.typography.body
+                )
+            }
         }
 
-        KalyanDivider(modifier.padding(top = 8.dp))
+        Image(
+            painter = painterResource(AppResImages.ic_next),
+            contentDescription = null,
+            colorFilter = ColorFilter.tint(KalyanTheme.colors.secondaryText),
+            modifier = Modifier.size(16.dp).align(Alignment.CenterEnd)
+        )
+
+        KalyanDivider(modifier.padding(top = 8.dp).align(Alignment.BottomCenter))
     }
 }

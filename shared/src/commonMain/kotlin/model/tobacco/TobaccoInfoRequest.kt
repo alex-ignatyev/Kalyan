@@ -1,11 +1,10 @@
-package model.auth
+package model.tobacco
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TokenResponse(
-    @SerialName("token") val token: String,
+data class TobaccoInfoRequest(
     @SerialName("userId") val userId: String,
-    @SerialName("isAdmin") val isAdmin: Boolean
+    @SerialName("tobaccoId")  val tobaccoId: String
 )

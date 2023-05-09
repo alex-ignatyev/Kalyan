@@ -50,7 +50,7 @@ class AdminAddTobaccoViewModel : KoinComponent,
     }
 
     private fun changeCompany(company: String) {
-        viewState = viewState.copy(company = company, error = EMPTY)
+        viewState = viewState.copy(company = company, line = EMPTY, error = EMPTY)
     }
 
     private fun changeTaste(taste: String) {

@@ -20,9 +20,10 @@ import screens.auth.account_forgot.AccountForgotScreen
 import screens.auth.account_login.AccountLoginScreen
 import screens.main.admin_add_tabacco.AdminAddTobaccoScreen
 import screens.main.profile.ProfileScreen
-import screens.main.rating.MainScreen
+import screens.main.rating.RatingScreen
 import screens.main.search.SearchScreen
 import screens.main.settings.SettingsScreen
+import screens.main.tobacco_info.TobaccoInfoScreen
 import screens.splash.SplashScreen
 import ui.KalyanTheme
 
@@ -67,16 +68,16 @@ internal fun RootComposeBuilder.navigationGraph() {
 
         tab(TabDefaults.content(AppRes.string.title_rating, Icons.Filled.Star), colors) {
             screen("rating") {
-                MainScreen()
+                RatingScreen()
             }
 
             screen("admin_add_tobacco") {
                 AdminAddTobaccoScreen()
             }
 
-            /*screen("detail") {
-                DetailScreen(it as HabitCardItemModel)
-            }*/
+            screen("tobacco_info") {
+                TobaccoInfoScreen(it as String)
+            }
         }
 
         tab(TabDefaults.content(AppRes.string.title_search, Icons.Filled.Search), colors) {

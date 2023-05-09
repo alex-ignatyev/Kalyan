@@ -4,6 +4,8 @@ import model.tobacco.TobaccoResponse
 
 sealed class RatingEvent {
     class InitRatingScreen : RatingEvent()
+    data class OnTobaccoClick(val tobaccoId: String) : RatingEvent()
+    class ClearActions : RatingEvent()
 }
 
 data class RatingState(
@@ -11,4 +13,6 @@ data class RatingState(
     val isAdmin: Boolean = false
 )
 
-sealed class RatingAction
+sealed class RatingAction {
+    class OpenTobaccoInfoScreen(val tobaccoId: String) : RatingAction()
+}
