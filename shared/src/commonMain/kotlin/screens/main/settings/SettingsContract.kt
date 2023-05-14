@@ -1,6 +1,7 @@
 package screens.main.settings
 
 sealed class SettingsEvent {
+    class OnLogOutClick : SettingsEvent()
     class OnBackClick : SettingsEvent()
 }
 
@@ -9,5 +10,6 @@ data class SettingsState(
 )
 
 sealed class SettingsAction {
+    class OpenLoginScreen : SettingsAction()
     class ReturnBack : SettingsAction()
 }

@@ -16,6 +16,7 @@ import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
 import data.LocalSettingsEventBus
 import screens.main.settings.SettingsEvent.OnBackClick
+import screens.main.settings.SettingsEvent.OnLogOutClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanDivider
@@ -61,7 +62,7 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
             backgroundColor = KalyanTheme.colors.errorColor,
             text = AppResStrings.text_logout
         ) {
-
+            obtainEvent.invoke(OnLogOutClick())
         }
 
         //TODO Добавить смену пароля

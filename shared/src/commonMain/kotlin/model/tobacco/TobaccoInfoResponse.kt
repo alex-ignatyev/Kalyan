@@ -11,8 +11,6 @@ data class TobaccoInfoResponse(
 
     var image: String = "",
 
-    val isFavorite: Boolean,
-
     val strengthByCompany: Int,
 
     val strengthByUsers: Float = 0f,

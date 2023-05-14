@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import ru.alexgladkov.odyssey.compose.base.BottomBarNavigator
 import ru.alexgladkov.odyssey.compose.extensions.customNavigation
+import ru.alexgladkov.odyssey.compose.extensions.flow
 import ru.alexgladkov.odyssey.compose.extensions.screen
 import ru.alexgladkov.odyssey.compose.extensions.tab
 import ru.alexgladkov.odyssey.compose.helpers.FlowBuilder
@@ -32,18 +33,6 @@ internal fun RootComposeBuilder.navigationGraph() {
 
     screen(SCREEN_SPLASH) {
         SplashScreen()
-    }
-
-    screen(SCREEN_LOGIN) {
-        AccountLoginScreen()
-    }
-
-    screen(SCREEN_CREATE) {
-        AccountCreateScreen()
-    }
-
-    screen(SCREEN_FORGOT) {
-        AccountForgotScreen()
     }
 
     customNavigation(
@@ -88,6 +77,34 @@ internal fun RootComposeBuilder.navigationGraph() {
 
         tab(TabDefaults.content(AppRes.string.title_profile, Icons.Filled.Person), colors) {
             profileFlow()
+        }
+    }
+
+    screen(SCREEN_LOGIN) {
+        AccountLoginScreen()
+    }
+
+    screen(SCREEN_CREATE) {
+        AccountCreateScreen()
+    }
+
+    screen(SCREEN_FORGOT) {
+        AccountForgotScreen()
+    }
+}
+
+internal fun RootComposeBuilder.authFlow() {
+    flow("login") {
+        screen(SCREEN_LOGIN) {
+            AccountLoginScreen()
+        }
+
+        screen(SCREEN_CREATE) {
+            AccountCreateScreen()
+        }
+
+        screen(SCREEN_FORGOT) {
+            AccountForgotScreen()
         }
     }
 }

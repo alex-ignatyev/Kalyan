@@ -30,7 +30,7 @@ internal fun AccountLoginScreen() {
 
         when (action) {
             is OpenMainScreen -> {
-                rootController.present(FLOW_MAIN, launchFlag = LaunchFlag.SingleNewTask)
+                rootController.present(FLOW_MAIN, launchFlag = LaunchFlag.ClearPrevious)
                 viewModel.obtainEvent(ClearActions())
             }
 

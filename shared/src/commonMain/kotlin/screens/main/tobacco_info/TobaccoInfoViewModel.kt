@@ -31,9 +31,34 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
         this.tobaccoId = tobaccoId
         viewModelScope.launch {
             repo.getTobaccoInfo(tobaccoId).onSuccess {
-                viewState = viewState.copy(isLoading = false, data = it.toString())
+                viewState = viewState.copy(
+                    isLoading = false,
+
+                    id = it.id,
+                    taste = it.taste,
+                    company = it.company,
+                    line = it.line,
+
+                    image = it.image,
+
+                    strengthByCompany = it.strengthByCompany,
+
+                    strengthByUsers = it.strengthByUsers,
+                    smokinessByUsers = it.smokinessByUsers,
+                    aromaByUsers = it.aromaByUsers,
+                    ratingByUsers = it.ratingByUsers,
+                    tastePowerByUsers = it.tastePowerByUsers,
+
+                    strengthByUser = it.strengthByUser,
+                    smokinessByUser = it.smokinessByUser,
+                    aromaByUser = it.aromaByUser,
+                    tastePowerByUser = it.tastePowerByUser,
+                    ratingByUser = it.ratingByUser,
+
+                    votes = it.votes,
+                )
             }.onFailure {
-                viewState = viewState.copy(isLoading = false, data = "", "Ошибка")
+                viewState = viewState.copy(isLoading = false, error = "Ошибка")
             }
 
         }

@@ -41,7 +41,7 @@ internal fun SplashScreen() {
         viewModel.obtainEvent(InitSplashScreen())
 
         when (action) {
-            is OpenFlow -> rootController.present((action as OpenFlow).flow, launchFlag = LaunchFlag.SingleNewTask)
+            is OpenFlow -> rootController.present((action as OpenFlow).flow, launchFlag = LaunchFlag.ClearPrevious)
             else -> {}
         }
     }
