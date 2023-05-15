@@ -3,23 +3,28 @@ package screens.main.search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.adeo.kviewmodel.odyssey.StoredViewModel
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.adeo.kviewmodel.compose.ViewModel
 
-@Composable
-internal fun SearchScreen() {
-    val rootController = LocalRootController.current
+object SearchScreen : Screen {
 
-    StoredViewModel(factory = { SearchViewModel() }) { viewModel ->
-        val state by viewModel.viewStates().collectAsState()
-        val action by viewModel.viewActions().collectAsState(null)
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        SearchView(state) {
-            viewModel.obtainEvent(it)
-        }
+        ViewModel(factory = { SearchViewModel() }) { viewModel ->
+            val state by viewModel.viewStates().collectAsState()
+            val action by viewModel.viewActions().collectAsState(null)
 
-        when (action) {
-            else -> {}
+            SearchView(state) {
+                viewModel.obtainEvent(it)
+            }
+
+            when (action) {
+                else -> {}
+            }
         }
     }
 }

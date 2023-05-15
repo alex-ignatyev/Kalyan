@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         setContent {
-            MainView(this)
+            MainView()
         }
     }
 }

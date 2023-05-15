@@ -3,48 +3,50 @@ package screens.auth.account_login
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.adeo.kviewmodel.odyssey.StoredViewModel
-import navigation.FLOW_MAIN
-import navigation.SCREEN_CREATE
-import navigation.SCREEN_FORGOT
-import ru.alexgladkov.odyssey.compose.extensions.present
-import ru.alexgladkov.odyssey.compose.extensions.push
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
-import ru.alexgladkov.odyssey.core.LaunchFlag
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.adeo.kviewmodel.compose.ViewModel
+import navigation.MainFlow
+import screens.auth.account_create.AccountCreateScreen
+import screens.auth.account_forgot.AccountForgotScreen
 import screens.auth.account_login.AccountLoginAction.OpenCreateAccountScreen
 import screens.auth.account_login.AccountLoginAction.OpenForgotPasswordScreen
 import screens.auth.account_login.AccountLoginAction.OpenMainScreen
 import screens.auth.account_login.AccountLoginEvent.ClearActions
 
-@Composable
-internal fun AccountLoginScreen() {
-    val rootController = LocalRootController.current
+object AccountLoginScreen : Screen {
 
-    StoredViewModel(factory = { AccountLoginViewModel() }) { viewModel ->
-        val state by viewModel.viewStates().collectAsState()
-        val action by viewModel.viewActions().collectAsState(null)
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        AccountLoginView(state) { event ->
-            viewModel.obtainEvent(event)
-        }
+        ViewModel(factory = { AccountLoginViewModel() }) { viewModel ->
+            val state by viewModel.viewStates().collectAsState()
+            val action by viewModel.viewActions().collectAsState(null)
 
-        when (action) {
-            is OpenMainScreen -> {
-                rootController.present(FLOW_MAIN, launchFlag = LaunchFlag.ClearPrevious)
-                viewModel.obtainEvent(ClearActions())
+            AccountLoginView(state) { event ->
+                viewModel.obtainEvent(event)
             }
 
-            is OpenCreateAccountScreen -> {
-                rootController.push(SCREEN_CREATE)
-                viewModel.obtainEvent(ClearActions())
-            }
+            when (action) {
+                is OpenMainScreen -> {
+                    navigator.replaceAll(MainFlow)
+                    viewModel.obtainEvent(ClearActions())
+                }
 
-            is OpenForgotPasswordScreen -> {
-                rootController.push(SCREEN_FORGOT)
-                viewModel.obtainEvent(ClearActions())
-            }
+                is OpenCreateAccountScreen -> {
+                    navigator.push(AccountCreateScreen)
+                    viewModel.obtainEvent(ClearActions())
+                }
 
-            null -> {}
+                is OpenForgotPasswordScreen -> {
+                    navigator.push(AccountForgotScreen)
+                    viewModel.obtainEvent(ClearActions())
+                }
+
+                null -> {}
+            }
         }
     }
 }

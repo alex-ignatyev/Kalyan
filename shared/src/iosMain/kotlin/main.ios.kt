@@ -2,14 +2,17 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
+import cafe.adriel.voyager.navigator.Navigator
 import data.LocalSettingsEventBus
 import data.SettingsEventBus
 import di.LocalPlatform
+import di.Platform.Android
 import di.Platform.iOS
 import navigation.navigationGraph
 import platform.UIKit.UIViewController
 import ru.alexgladkov.odyssey.compose.setup.OdysseyConfiguration
 import ru.alexgladkov.odyssey.compose.setup.setNavigationContent
+import screens.splash.SplashScreen
 import ui.KalyanTheme
 import ui.MainTheme
 
@@ -20,7 +23,15 @@ fun MainViewController(): UIViewController = ComposeUIViewController {
     MainTheme(
         darkTheme = currentSettings.isDarkMode
     ) {
-        val odysseyConfiguration = OdysseyConfiguration(
+
+        CompositionLocalProvider(
+            LocalPlatform provides Android,
+            LocalSettingsEventBus provides settingsEventBus
+        ) {
+            Navigator(SplashScreen)
+        }
+
+     /*   val odysseyConfiguration = OdysseyConfiguration(
             backgroundColor = KalyanTheme.colors.primaryBackground
         )
 
@@ -31,6 +42,6 @@ fun MainViewController(): UIViewController = ComposeUIViewController {
             setNavigationContent(odysseyConfiguration) {
                 navigationGraph()
             }
-        }
+        }*/
     }
 }

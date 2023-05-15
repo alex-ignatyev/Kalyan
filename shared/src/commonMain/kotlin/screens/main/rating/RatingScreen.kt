@@ -3,34 +3,39 @@ package screens.main.rating
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.adeo.kviewmodel.odyssey.StoredViewModel
-import ru.alexgladkov.odyssey.compose.extensions.push
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.adeo.kviewmodel.compose.ViewModel
 import screens.main.rating.RatingAction.OpenTobaccoInfoScreen
 import screens.main.rating.RatingEvent.ClearActions
 import screens.main.rating.RatingEvent.InitRatingScreen
+import screens.main.tobacco_info.TobaccoInfoScreen
 
-@Composable
-internal fun RatingScreen() {
-    val rootController = LocalRootController.current
+object RatingScreen : Screen {
 
-    StoredViewModel(factory = { RatingViewModel() }) { viewModel ->
-        val state by viewModel.viewStates().collectAsState()
-        val action by viewModel.viewActions().collectAsState(null)
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        RatingView(state) { event ->
-            viewModel.obtainEvent(event)
-        }
+        ViewModel(factory = { RatingViewModel() }) { viewModel ->
+            val state by viewModel.viewStates().collectAsState()
+            val action by viewModel.viewActions().collectAsState(null)
 
-        viewModel.obtainEvent(InitRatingScreen())
-
-        when (action) {
-            is OpenTobaccoInfoScreen -> {
-                rootController.push("tobacco_info", (action as OpenTobaccoInfoScreen).tobaccoId)
-                viewModel.obtainEvent(ClearActions())
+            RatingView(state) { event ->
+                viewModel.obtainEvent(event)
             }
 
-            else -> Unit
+            viewModel.obtainEvent(InitRatingScreen())
+
+            when (action) {
+                is OpenTobaccoInfoScreen -> {
+                    navigator.push(TobaccoInfoScreen((action as OpenTobaccoInfoScreen).tobaccoId))
+                    viewModel.obtainEvent(ClearActions())
+                }
+
+                else -> Unit
+            }
         }
     }
 }

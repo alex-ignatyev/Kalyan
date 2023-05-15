@@ -3,32 +3,36 @@ package screens.main.profile
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.adeo.kviewmodel.odyssey.StoredViewModel
-import navigation.SCREEN_SETTINGS
-import ru.alexgladkov.odyssey.compose.extensions.push
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.adeo.kviewmodel.compose.ViewModel
 import screens.main.profile.ProfileAction.OpenSettingsScreen
 import screens.main.profile.ProfileEvent.ClearActions
+import screens.main.settings.SettingsScreen
 
-@Composable
-internal fun ProfileScreen() {
-    val rootController = LocalRootController.current
+object ProfileScreen : Screen {
 
-    StoredViewModel(factory = { ProfileViewModel() }) { viewModel ->
-        val state by viewModel.viewStates().collectAsState()
-        val action by viewModel.viewActions().collectAsState(null)
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        ProfileView(state) {
-            viewModel.obtainEvent(it)
-        }
+        ViewModel(factory = { ProfileViewModel() }) { viewModel ->
+            val state by viewModel.viewStates().collectAsState()
+            val action by viewModel.viewActions().collectAsState(null)
 
-        when (action) {
-            is OpenSettingsScreen -> {
-                rootController.push(SCREEN_SETTINGS)
-                viewModel.obtainEvent(ClearActions())
+            ProfileView(state) {
+                viewModel.obtainEvent(it)
             }
 
-            else -> {}
+            when (action) {
+                is OpenSettingsScreen -> {
+                    navigator.push(SettingsScreen)
+                    viewModel.obtainEvent(ClearActions())
+                }
+
+                else -> {}
+            }
         }
     }
 }

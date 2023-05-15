@@ -14,8 +14,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import di.LocalPlatform
-import ru.alexgladkov.odyssey.compose.extensions.push
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import screens.main.rating.RatingEvent.AddTobaccoClick
 import screens.main.rating.RatingEvent.OnTobaccoClick
 import screens.main.rating.view.TobaccoView
 import ui.KalyanTheme
@@ -23,10 +22,8 @@ import ui.KalyanTheme
 @Composable
 fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
     val platformProvider = LocalPlatform.current
-    val rootController = LocalRootController.current
 
     //modifier = Modifier.fillMaxSize().padding(top = if (platformProvider == iOS) 32.dp else 16.dp),
-
 
     Scaffold(
         backgroundColor = KalyanTheme.colors.primaryBackground,
@@ -39,7 +36,7 @@ fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
                         Icon(Icons.Default.Add, null, tint = KalyanTheme.colors.primaryBackground)
                     },
                     onClick = {
-                        rootController.push("admin_add_tobacco")
+                        obtainEvent.invoke(AddTobaccoClick())
                     })
             }
         }) {

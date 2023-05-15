@@ -3,28 +3,33 @@ package screens.main.admin_add_tabacco
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.adeo.kviewmodel.odyssey.StoredViewModel
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.adeo.kviewmodel.compose.ViewModel
 import screens.main.admin_add_tabacco.AdminAddTobaccoAction.ReturnToPreviousScreen
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.InitAdminAddTobaccoScreen
 
-@Composable
-internal fun AdminAddTobaccoScreen() {
-    val rootController = LocalRootController.current
+object AdminAddTobaccoScreen : Screen {
 
-    StoredViewModel(factory = { AdminAddTobaccoViewModel() }) { viewModel ->
-        val state by viewModel.viewStates().collectAsState()
-        val action by viewModel.viewActions().collectAsState(null)
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        AdminAddTobaccoView(state) { event ->
-            viewModel.obtainEvent(event)
-        }
+        ViewModel(factory = { AdminAddTobaccoViewModel() }) { viewModel ->
+            val state by viewModel.viewStates().collectAsState()
+            val action by viewModel.viewActions().collectAsState(null)
 
-        viewModel.obtainEvent(InitAdminAddTobaccoScreen())
+            AdminAddTobaccoView(state) { event ->
+                viewModel.obtainEvent(event)
+            }
 
-        when (action) {
-            is ReturnToPreviousScreen -> rootController.popBackStack()
-            null -> {}
+            viewModel.obtainEvent(InitAdminAddTobaccoScreen())
+
+            when (action) {
+                is ReturnToPreviousScreen -> navigator.pop()
+                null -> {}
+            }
         }
     }
 }

@@ -108,5 +108,3 @@ fun ViewsCard(views: String, modifier: Modifier = Modifier) {
         )
     }
 }
-
-

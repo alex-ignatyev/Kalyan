@@ -3,34 +3,38 @@ package screens.auth.account_create
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.adeo.kviewmodel.odyssey.StoredViewModel
-import navigation.SCREEN_LOGIN
-import ru.alexgladkov.odyssey.compose.extensions.push
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.adeo.kviewmodel.compose.ViewModel
 import screens.auth.account_create.AccountCreateAction.OpenLoginScreen
 import screens.auth.account_create.AccountCreateAction.ReturnToPreviousScreen
 import screens.auth.account_create.AccountCreateEvent.ClearActions
+import screens.auth.account_login.AccountLoginScreen
 
-@Composable
-internal fun AccountCreateScreen() {
-    val rootController = LocalRootController.current
+object AccountCreateScreen : Screen {
 
-    StoredViewModel(factory = { AccountCreateViewModel() }) { viewModel ->
-        val state by viewModel.viewStates().collectAsState()
-        val action by viewModel.viewActions().collectAsState(null)
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        AccountCreateView(state) { event ->
-            viewModel.obtainEvent(event)
-        }
+        ViewModel(factory = { AccountCreateViewModel() }) { viewModel ->
+            val state by viewModel.viewStates().collectAsState()
+            val action by viewModel.viewActions().collectAsState(null)
 
-        when (action) {
-            is OpenLoginScreen -> {
-                rootController.push(SCREEN_LOGIN)
-                viewModel.obtainEvent(ClearActions())
+            AccountCreateView(state) { event ->
+                viewModel.obtainEvent(event)
             }
 
-            is ReturnToPreviousScreen -> rootController.popBackStack()
-            null -> {}
+            when (action) {
+                is OpenLoginScreen -> {
+                    navigator.push(AccountLoginScreen)
+                    viewModel.obtainEvent(ClearActions())
+                }
+
+                is ReturnToPreviousScreen -> navigator.pop()
+                null -> {}
+            }
         }
     }
 }

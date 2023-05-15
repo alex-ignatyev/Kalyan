@@ -1,5 +1,6 @@
 package screens.auth.account_login
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -30,8 +31,8 @@ import screens.auth.account_login.AccountLoginEvent.ChangeLogin
 import screens.auth.account_login.AccountLoginEvent.ChangePassword
 import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
 import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
-import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
 import screens.auth.account_login.AccountLoginEvent.LoginClick
+import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
@@ -39,9 +40,9 @@ import ui.components.KalyanTextField
 import ui.components.TextFieldType.Password
 
 @Composable
-fun AccountLoginView(state: AccountLoginState, obtainEvent: (AccountLoginEvent) -> Unit) {
+fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent: (AccountLoginEvent) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 

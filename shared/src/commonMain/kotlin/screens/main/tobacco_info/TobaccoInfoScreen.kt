@@ -3,26 +3,31 @@ package screens.main.tobacco_info
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.adeo.kviewmodel.odyssey.StoredViewModel
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.adeo.kviewmodel.compose.ViewModel
 import screens.main.tobacco_info.TobaccoInfoEvent.InitTobaccoInfoScreen
 
-@Composable
-fun TobaccoInfoScreen(tobaccoId: String) {
-    val rootController = LocalRootController.current
+data class TobaccoInfoScreen(val tobaccoId: String) : Screen {
 
-    StoredViewModel(factory = { TobaccoInfoViewModel() }) { viewModel ->
-        val state by viewModel.viewStates().collectAsState()
-        val action by viewModel.viewActions().collectAsState(null)
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-        TobaccoInfoView(state) {
-            viewModel.obtainEvent(it)
-        }
+        ViewModel(factory = { TobaccoInfoViewModel() }) { viewModel ->
+            val state by viewModel.viewStates().collectAsState()
+            val action by viewModel.viewActions().collectAsState(null)
 
-        viewModel.obtainEvent(InitTobaccoInfoScreen(tobaccoId))
+            TobaccoInfoView(state) {
+                viewModel.obtainEvent(it)
+            }
 
-        when (action) {
-            else -> {}
+            viewModel.obtainEvent(InitTobaccoInfoScreen(tobaccoId))
+
+            when (action) {
+                else -> {}
+            }
         }
     }
 }

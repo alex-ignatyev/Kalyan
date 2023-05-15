@@ -6,7 +6,9 @@ import domain.repository.RatingRepository
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import screens.main.rating.RatingAction.OpenAdminAddTobaccoScreen
 import screens.main.rating.RatingAction.OpenTobaccoInfoScreen
+import screens.main.rating.RatingEvent.AddTobaccoClick
 import screens.main.rating.RatingEvent.ClearActions
 import screens.main.rating.RatingEvent.InitRatingScreen
 import screens.main.rating.RatingEvent.OnTobaccoClick
@@ -24,6 +26,7 @@ class RatingViewModel : KoinComponent, BaseSharedViewModel<RatingState, RatingAc
         when (viewEvent) {
             is InitRatingScreen -> fetchData()
             is OnTobaccoClick -> openTobaccoInfoScreen(viewEvent.tobaccoId)
+            is AddTobaccoClick -> openAdminAddTobaccoScreen()
             is ClearActions -> clearActions()
         }
     }
@@ -41,6 +44,10 @@ class RatingViewModel : KoinComponent, BaseSharedViewModel<RatingState, RatingAc
 
     private fun openTobaccoInfoScreen(tobaccoId: String) {
         viewAction = OpenTobaccoInfoScreen(tobaccoId)
+    }
+
+    private fun openAdminAddTobaccoScreen() {
+        viewAction = OpenAdminAddTobaccoScreen()
     }
 
     private fun clearActions() {

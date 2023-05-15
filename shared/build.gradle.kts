@@ -49,6 +49,11 @@ kotlin {
                 implementation(libs.odyssey.core)
                 implementation(libs.odyssey.compose)
 
+                implementation(libs.voyager.core)
+                implementation(libs.voyager.bottomSheet)
+                implementation(libs.voyager.tab)
+                implementation(libs.voyager.transitions)
+
                 implementation(libs.klock.common)
 
                 implementation(libs.kodein)

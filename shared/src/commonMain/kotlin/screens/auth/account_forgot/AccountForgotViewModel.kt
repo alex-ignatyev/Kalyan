@@ -12,10 +12,10 @@ import screens.auth.account_forgot.AccountForgotEvent.ChangeLogin
 import screens.auth.account_forgot.AccountForgotEvent.ChangePassword
 import screens.auth.account_forgot.AccountForgotEvent.ChangePasswordRepeat
 import screens.auth.account_forgot.AccountForgotEvent.ClearActions
-import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordClick
 import screens.auth.account_forgot.AccountForgotEvent.OnBackClick
-import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
 import screens.auth.account_forgot.AccountForgotEvent.ResetPasswordClick
+import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordClick
+import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
