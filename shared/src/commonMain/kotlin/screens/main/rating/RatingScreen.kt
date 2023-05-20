@@ -7,6 +7,8 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.adeo.kviewmodel.compose.ViewModel
+import screens.main.admin_add_tabacco.AdminAddTobaccoScreen
+import screens.main.rating.RatingAction.OpenAdminAddTobaccoScreen
 import screens.main.rating.RatingAction.OpenTobaccoInfoScreen
 import screens.main.rating.RatingEvent.ClearActions
 import screens.main.rating.RatingEvent.InitRatingScreen
@@ -31,6 +33,11 @@ object RatingScreen : Screen {
             when (action) {
                 is OpenTobaccoInfoScreen -> {
                     navigator.push(TobaccoInfoScreen((action as OpenTobaccoInfoScreen).tobaccoId))
+                    viewModel.obtainEvent(ClearActions())
+                }
+
+                is OpenAdminAddTobaccoScreen -> {
+                    navigator.push(AdminAddTobaccoScreen)
                     viewModel.obtainEvent(ClearActions())
                 }
 

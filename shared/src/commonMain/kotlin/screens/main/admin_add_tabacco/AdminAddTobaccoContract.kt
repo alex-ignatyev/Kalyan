@@ -8,6 +8,8 @@ sealed class AdminAddTobaccoEvent {
     data class ChangeTaste(val value: String) : AdminAddTobaccoEvent()
     data class ChangeLine(val value: String) : AdminAddTobaccoEvent()
     data class ChangeStrengthByCompany(val value: String) : AdminAddTobaccoEvent()
+    class OnCompanyClick : AdminAddTobaccoEvent()
+    class OnLineClick(val lines: List<String>) : AdminAddTobaccoEvent()
     class AddTobaccoClick : AdminAddTobaccoEvent()
     class OnBackClick : AdminAddTobaccoEvent()
     class ClearActions : AdminAddTobaccoEvent()
@@ -25,4 +27,6 @@ data class AdminAddTobaccoState(
 
 sealed class AdminAddTobaccoAction {
     class ReturnToPreviousScreen : AdminAddTobaccoAction()
+    class OpenCompanySheet : AdminAddTobaccoAction()
+    data class OpenLineSheet(val lines: List<String>) : AdminAddTobaccoAction()
 }

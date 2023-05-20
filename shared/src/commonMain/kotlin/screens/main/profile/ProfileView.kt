@@ -1,6 +1,7 @@
 package screens.main.profile
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +27,7 @@ import ui.components.KalyanToolbar
 
 @Composable
 fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
-    Column(Modifier.fillMaxSize()) {
+    Column(Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground)) {
 
         KalyanToolbar(title = AppResStrings.title_profile, onFirstIconClick = {
             obtainEvent.invoke(ClickOnSettings())

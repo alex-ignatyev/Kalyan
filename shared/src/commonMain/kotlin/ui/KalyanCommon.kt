@@ -18,7 +18,11 @@ data class KalyanColors(
     val secondaryText: Color,
 
     val controlColor: Color,
-    val errorColor: Color,
+    val errorColor: Color,/*
+
+    //BottomNav
+    val selectedContentColor: Color,
+    val unselectedContentColor: Color*/
 )
 
 data class KalyanTypography(

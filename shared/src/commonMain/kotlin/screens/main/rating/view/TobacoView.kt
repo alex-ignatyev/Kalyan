@@ -28,7 +28,7 @@ import ui.components.KalyanImage
 @Composable
 fun TobaccoView(tobaccoResponse: TobaccoResponse, position: Int, modifier: Modifier = Modifier) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+        modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(

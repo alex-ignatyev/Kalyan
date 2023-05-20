@@ -6,6 +6,8 @@ import kotlinx.coroutines.launch
 import model.admin.AdminAddTobaccoRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import screens.main.admin_add_tabacco.AdminAddTobaccoAction.OpenCompanySheet
+import screens.main.admin_add_tabacco.AdminAddTobaccoAction.OpenLineSheet
 import screens.main.admin_add_tabacco.AdminAddTobaccoAction.ReturnToPreviousScreen
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.AddTobaccoClick
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeCompany
@@ -15,6 +17,8 @@ import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeTaste
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ClearActions
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.InitAdminAddTobaccoScreen
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnBackClick
+import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnCompanyClick
+import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnLineClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -35,6 +39,8 @@ class AdminAddTobaccoViewModel : KoinComponent,
             is ChangeStrengthByCompany -> changeStrengthByCompany(viewEvent.value)
             is AddTobaccoClick -> addTobacco()
             is OnBackClick -> returnToPreviousScreen()
+            is OnCompanyClick -> openCompaniesSheet()
+            is OnLineClick -> openLinesSheet(viewEvent.lines)
             is ClearActions -> clearActions()
         }
     }
@@ -63,6 +69,14 @@ class AdminAddTobaccoViewModel : KoinComponent,
 
     private fun changeStrengthByCompany(strength: String) {
         viewState = viewState.copy(strengthByCompany = strength, error = EMPTY)
+    }
+
+    private fun openCompaniesSheet() {
+        viewAction = OpenCompanySheet()
+    }
+
+    private fun openLinesSheet(lines: List<String>) {
+        viewAction = OpenLineSheet(lines)
     }
 
     private fun addTobacco() {

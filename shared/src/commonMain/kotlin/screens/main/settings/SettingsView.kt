@@ -1,5 +1,6 @@
 package screens.main.settings
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +28,7 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
     val settingsEventBus = LocalSettingsEventBus.current
     val currentSettings = settingsEventBus.currentSettings.value
 
-    Column(Modifier.fillMaxSize()) {
+    Column(Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground)) {
         KalyanToolbar(title = AppResStrings.title_settings, onBackClick = {
             obtainEvent.invoke(OnBackClick())
         })

@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,20 +14,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
 import di.LocalPlatform
 import di.Platform.iOS
 import model.admin.CompanyResponse
-import ru.alexgladkov.odyssey.compose.extensions.present
-import ru.alexgladkov.odyssey.compose.local.LocalRootController
-import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalSheetConfiguration
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.AddTobaccoClick
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeCompany
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeLine
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeStrengthByCompany
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeTaste
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnBackClick
+import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnCompanyClick
+import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnLineClick
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
@@ -39,8 +39,8 @@ import ui.components.KalyanToolbar
 @Composable
 fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobaccoEvent) -> Unit) {
     val platformProvider = LocalPlatform.current
-    val rootController = LocalRootController.current
-    val modalController = rootController.findModalController()
+    // val rootController = LocalRootController.current
+    // val modalController = rootController.findModalController()
 
     Scaffold(
         modifier = Modifier.padding(top = if (platformProvider == iOS) 32.dp else 0.dp),
@@ -59,9 +59,7 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
         ) {
 
             KalyanSelect(title = AppResStrings.text_admin_company, text = state.company) {
-                modalController.present(ModalSheetConfiguration()) { key ->
-                    CompanyBottomSheet(key, state.companies, obtainEvent)
-                }
+                obtainEvent.invoke(OnCompanyClick())
             }
 
             KalyanTextField(
@@ -75,9 +73,7 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
 
             KalyanSelect(title = AppResStrings.text_admin_line, text = state.line) {
                 val lines = state.companies.findLast { it.companyName == state.company }?.lines ?: return@KalyanSelect
-                modalController.present(ModalSheetConfiguration()) { key ->
-                    LineBottomSheet(key, lines, obtainEvent)
-                }
+                obtainEvent.invoke(OnLineClick(lines))
             }
 
             KalyanTextField(
@@ -109,40 +105,42 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
     }
 }
 
-@Composable
-fun CompanyBottomSheet(screenKey: String, companies: List<CompanyResponse>, obtainEvent: (AdminAddTobaccoEvent) -> Unit) {
-    val rootController = LocalRootController.current
-    val modalController = rootController.findModalController()
+data class CompanyBottomSheet(val companies: List<CompanyResponse>, val obtainEvent: (AdminAddTobaccoEvent) -> Unit) : Screen {
 
-    LazyColumn(modifier = Modifier.wrapContentHeight().padding(16.dp)) {
-        items(companies) {
-            Text(
-                text = it.companyName,
-                style = KalyanTheme.typography.body,
-                modifier = Modifier.fillMaxWidth().clickable {
-                    obtainEvent.invoke(ChangeCompany(it.companyName))
-                    modalController.popBackStack(screenKey)
-                })
+    @Composable
+    override fun Content() {
+        val bottomSheetNavigator = LocalBottomSheetNavigator.current
+
+        LazyColumn(modifier = Modifier.wrapContentHeight().padding(16.dp)) {
+            items(companies) {
+                Text(
+                    text = it.companyName,
+                    style = KalyanTheme.typography.body,
+                    modifier = Modifier.fillMaxWidth().clickable {
+                        obtainEvent.invoke(ChangeCompany(it.companyName))
+                        bottomSheetNavigator.hide()
+                    })
+            }
         }
-
     }
 }
 
-@Composable
-fun LineBottomSheet(screenKey: String, lines: List<String>, obtainEvent: (AdminAddTobaccoEvent) -> Unit) {
-    val rootController = LocalRootController.current
-    val modalController = rootController.findModalController()
+data class LineBottomSheet(val lines: List<String>, val obtainEvent: (AdminAddTobaccoEvent) -> Unit) : Screen {
 
-    LazyColumn(modifier = Modifier.wrapContentHeight().padding(16.dp)) {
-        items(lines) {
-            Text(
-                text = it,
-                style = KalyanTheme.typography.body,
-                modifier = Modifier.fillMaxWidth().clickable {
-                    obtainEvent.invoke(ChangeLine(it))
-                    modalController.popBackStack(screenKey)
-                })
+    @Composable
+    override fun Content() {
+        val bottomSheetNavigator = LocalBottomSheetNavigator.current
+
+        LazyColumn(modifier = Modifier.wrapContentHeight().padding(16.dp)) {
+            items(lines) {
+                Text(
+                    text = it,
+                    style = KalyanTheme.typography.body,
+                    modifier = Modifier.fillMaxWidth().clickable {
+                        obtainEvent.invoke(ChangeLine(it))
+                        bottomSheetNavigator.hide()
+                    })
+            }
         }
-
     }
 }

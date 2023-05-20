@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.adeo.kviewmodel.compose.ViewModel
 import screens.splash.SplashAction.OpenFlow
@@ -43,7 +44,7 @@ object SplashScreen : Screen {
             viewModel.obtainEvent(InitSplashScreen())
 
             when (action) {
-                is OpenFlow -> navigator.replaceAll((action as OpenFlow).screen)
+                is OpenFlow -> Navigator((action as OpenFlow).screen)
                 else -> {}
             }
         }
