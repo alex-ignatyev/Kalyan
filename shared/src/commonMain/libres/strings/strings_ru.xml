@@ -38,6 +38,13 @@
     <string name="text_admin_line">Линейка</string>
     <string name="text_admin_straight">Крепость</string>
 
+    //Tobacco info
+    <string name="title_tobacco_info">Информация о табаке</string>
+    <string name="text_info_taste">Вкус</string>
+    <string name="text_info_company">Компания</string>
+    <string name="text_info_line">Линейка</string>
+    <string name="text_info_strength_by_company">Крепость</string>
+
     //Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
     <string name="text_logout">Выйти</string>

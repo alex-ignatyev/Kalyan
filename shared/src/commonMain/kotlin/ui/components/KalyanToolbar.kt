@@ -28,7 +28,7 @@ fun KalyanToolbar(
 ) {
     TopAppBar(
         backgroundColor = if (isTransparent) Color.Transparent else KalyanTheme.colors.primaryBackground,
-        elevation = 8.dp
+        elevation = if (isTransparent) 0.dp else 8.dp
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()

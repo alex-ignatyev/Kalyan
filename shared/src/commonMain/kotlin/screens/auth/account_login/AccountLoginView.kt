@@ -26,7 +26,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
+import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
+import com.moriatsushi.insetsx.safeDrawingPadding
 import screens.auth.account_login.AccountLoginEvent.ChangeLogin
 import screens.auth.account_login.AccountLoginEvent.ChangePassword
 import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
@@ -39,10 +42,11 @@ import ui.components.KalyanCircularProgress
 import ui.components.KalyanTextField
 import ui.components.TextFieldType.Password
 
+@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent: (AccountLoginEvent) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground),
+        modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground).safeDrawingPadding(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -97,18 +101,11 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent
         }
 
         KalyanButton(
-            modifier = Modifier.padding(vertical = 32.dp).padding(top = 24.dp),
+            modifier = Modifier.padding(top = 24.dp).padding(vertical = 32.dp),
+            text = if (state.isLoading) null else AppRes.string.title_login,
             enabled = !state.isLoading,
             content = {
-                if (state.isLoading) {
-                    KalyanCircularProgress()
-                } else {
-                    Text(
-                        text = AppResStrings.title_login,
-                        style = KalyanTheme.typography.body,
-                        color = KalyanTheme.colors.primaryText
-                    )
-                }
+                KalyanCircularProgress()
             },
             onClick = { obtainEvent(LoginClick()) }
         )
@@ -122,8 +119,8 @@ fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
-                .padding(horizontal = 16.dp, vertical = 32.dp),
+                .fillMaxHeight(0.9f)
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Center
         ) {

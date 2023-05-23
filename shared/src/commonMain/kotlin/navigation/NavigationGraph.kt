@@ -1,6 +1,5 @@
 package navigation
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
@@ -17,6 +16,7 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.moriatsushi.insetsx.safeAreaPadding
 import ui.KalyanTheme
 
 internal object MainFlow : Screen {
@@ -26,6 +26,7 @@ internal object MainFlow : Screen {
     override fun Content() {
         TabNavigator(RatingTab) {
             Scaffold(
+                modifier = Modifier.safeAreaPadding(),
                 content = { paddings ->
                     BottomSheetNavigator(modifier = Modifier.padding(paddings)) {
                         CurrentTab()

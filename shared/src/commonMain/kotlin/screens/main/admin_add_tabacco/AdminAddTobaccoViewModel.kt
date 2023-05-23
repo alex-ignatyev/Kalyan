@@ -12,6 +12,7 @@ import screens.main.admin_add_tabacco.AdminAddTobaccoAction.ReturnToPreviousScre
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.AddTobaccoClick
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeCompany
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeLine
+import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeManual
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeStrengthByCompany
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeTaste
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ClearActions
@@ -33,6 +34,7 @@ class AdminAddTobaccoViewModel : KoinComponent,
     override fun obtainEvent(viewEvent: AdminAddTobaccoEvent) {
         when (viewEvent) {
             is InitAdminAddTobaccoScreen -> fetchData()
+            is ChangeManual -> changeInputType(viewEvent.isChecked)
             is ChangeCompany -> changeCompany(viewEvent.value)
             is ChangeTaste -> changeTaste(viewEvent.value)
             is ChangeLine -> changeLine(viewEvent.value)
@@ -53,6 +55,10 @@ class AdminAddTobaccoViewModel : KoinComponent,
                 viewState = viewState.copy(isLoading = false, error = it.message)
             }
         }
+    }
+
+    private fun changeInputType(isChecked: Boolean) {
+        viewState = viewState.copy(isManual = isChecked)
     }
 
     private fun changeCompany(company: String) {
@@ -83,6 +89,7 @@ class AdminAddTobaccoViewModel : KoinComponent,
         viewModelScope.launch {
             viewState = viewState.copy(isLoading = true)
             val request = AdminAddTobaccoRequest(
+                isManual = viewState.isManual,
                 company = viewState.company,
                 taste = viewState.taste,
                 line = viewState.line,

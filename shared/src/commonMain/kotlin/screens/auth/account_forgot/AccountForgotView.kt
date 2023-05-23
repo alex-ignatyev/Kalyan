@@ -22,8 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
-import di.LocalPlatform
-import di.Platform.iOS
+import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
+import com.moriatsushi.insetsx.safeDrawingPadding
 import screens.auth.account_forgot.AccountForgotEvent.ChangeLogin
 import screens.auth.account_forgot.AccountForgotEvent.ChangePassword
 import screens.auth.account_forgot.AccountForgotEvent.ChangePasswordRepeat
@@ -38,12 +38,12 @@ import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 import ui.components.TextFieldType.Password
 
+@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEvent) -> Unit) {
-    val platformProvider = LocalPlatform.current
 
     Scaffold(
-        modifier = Modifier.padding(top = if (platformProvider == iOS) 32.dp else 0.dp),
+        modifier = Modifier.safeDrawingPadding(),
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())

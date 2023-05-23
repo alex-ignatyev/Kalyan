@@ -14,7 +14,9 @@
 
     // Login
     <string name="title_login">Login Now</string>
-    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
+    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest
+        features
+    </string>
     <string name="text_password_forgot">Forgot Password ?</string>
     <string name="text_account_dont_have">Don't have account ?</string>
     <string name="text_account_create_one">Create one</string>
@@ -37,6 +39,13 @@
     <string name="text_admin_taste">Taste</string>
     <string name="text_admin_line">Line</string>
     <string name="text_admin_straight">Straight</string>
+
+    //Tobacco info
+    <string name="title_tobacco_info">Tobacco info</string>
+    <string name="text_info_taste">Taste</string>
+    <string name="text_info_company">Company</string>
+    <string name="text_info_line">Line</string>
+    <string name="text_info_strength_by_company">Strength</string>
 
     //Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>

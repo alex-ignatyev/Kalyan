@@ -25,5 +25,5 @@ data class TobaccoInfoResponse(
     val tastePowerByUser: Int = 0,
     val ratingByUser: Int = 0,
 
-    val votes: Int
+    val votes: Long
 )

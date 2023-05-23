@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -22,8 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
-import di.LocalPlatform
-import di.Platform.iOS
+import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
+import com.moriatsushi.insetsx.safeDrawingPadding
 import screens.auth.account_create.AccountCreateEvent.ChangeLogin
 import screens.auth.account_create.AccountCreateEvent.ChangeName
 import screens.auth.account_create.AccountCreateEvent.ChangePassword
@@ -39,12 +41,12 @@ import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 import ui.components.TextFieldType.Password
 
+@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun AccountCreateView(state: AccountCreateState, obtainEvent: (AccountCreateEvent) -> Unit) {
-    val platformProvider = LocalPlatform.current
 
     Scaffold(
-        modifier = Modifier.padding(top = if (platformProvider == iOS) 32.dp else 0.dp),
+        modifier = Modifier.safeDrawingPadding(),
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
@@ -53,7 +55,7 @@ fun AccountCreateView(state: AccountCreateState, obtainEvent: (AccountCreateEven
         backgroundColor = KalyanTheme.colors.primaryBackground
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(

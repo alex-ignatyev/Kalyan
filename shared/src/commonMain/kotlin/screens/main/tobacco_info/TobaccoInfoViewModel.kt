@@ -6,8 +6,15 @@ import kotlin.random.Random
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import screens.main.tobacco_info.TobaccoInfoAction.OpenVoteBottomSheet
+import screens.main.tobacco_info.TobaccoInfoAction.ReturnBack
+import screens.main.tobacco_info.TobaccoInfoEvent.ChangeAromaSlider
+import screens.main.tobacco_info.TobaccoInfoEvent.ChangeSmokinessSlider
+import screens.main.tobacco_info.TobaccoInfoEvent.ChangeStrengthSlider
+import screens.main.tobacco_info.TobaccoInfoEvent.ChangeTasteSlider
 import screens.main.tobacco_info.TobaccoInfoEvent.ClearActions
 import screens.main.tobacco_info.TobaccoInfoEvent.InitTobaccoInfoScreen
+import screens.main.tobacco_info.TobaccoInfoEvent.OnBackClick
 import screens.main.tobacco_info.TobaccoInfoEvent.VoteForTobacco
 import utils.answer.onFailure
 import utils.answer.onSuccess
@@ -22,7 +29,12 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
     override fun obtainEvent(viewEvent: TobaccoInfoEvent) {
         when (viewEvent) {
             is InitTobaccoInfoScreen -> fetchData(viewEvent.tobaccoId)
-            is VoteForTobacco -> voteForTobacco()
+            is ChangeStrengthSlider -> changeStrengthSlider(viewEvent.value)
+            is ChangeSmokinessSlider -> changeSmokinessSlider(viewEvent.value)
+            is ChangeAromaSlider -> changeAromaSlider(viewEvent.value)
+            is ChangeTasteSlider -> changeTasteSlider(viewEvent.value)
+            is VoteForTobacco -> openVoteBottomSheet()
+            is OnBackClick -> returnBack()
             is ClearActions -> clearActions()
         }
     }
@@ -34,13 +46,11 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
                 viewState = viewState.copy(
                     isLoading = false,
 
-                    id = it.id,
+                    image = it.image,
+
                     taste = it.taste,
                     company = it.company,
                     line = it.line,
-
-                    image = it.image,
-
                     strengthByCompany = it.strengthByCompany,
 
                     strengthByUsers = it.strengthByUsers,
@@ -64,6 +74,26 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
         }
     }
 
+    private fun openVoteBottomSheet() {
+        viewAction = OpenVoteBottomSheet()
+    }
+
+    private fun changeStrengthSlider(value: Float) {
+        viewState = viewState.copy(strengthSlider = value)
+    }
+
+    private fun changeSmokinessSlider(value: Float) {
+        viewState = viewState.copy(smokinessSlider = value)
+    }
+
+    private fun changeAromaSlider(value: Float) {
+        viewState = viewState.copy(aromaSlider = value)
+    }
+
+    private fun changeTasteSlider(value: Float) {
+        viewState = viewState.copy(tasteSlider = value)
+    }
+
     private fun voteForTobacco() {
         viewModelScope.launch {
             repo.postTobaccoVote(
@@ -75,6 +105,10 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
                 rating = Random.nextInt(1, 10)
             )
         }
+    }
+
+    private fun returnBack() {
+        viewAction = ReturnBack()
     }
 
     private fun clearActions() {

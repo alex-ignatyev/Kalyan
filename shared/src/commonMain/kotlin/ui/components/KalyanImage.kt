@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.kalyan.shared.images.AppResImages
 import com.seiko.imageloader.ImageRequestState
 import com.seiko.imageloader.intercept.Interceptor
 import com.seiko.imageloader.model.ImageRequest
@@ -19,6 +20,7 @@ import com.seiko.imageloader.model.ImageRequestEvent
 import com.seiko.imageloader.model.ImageResult
 import com.seiko.imageloader.model.NullRequestData
 import com.seiko.imageloader.rememberAsyncImagePainter
+import io.github.skeptick.libres.compose.painterResource
 
 @Composable
 fun KalyanImage(
@@ -55,7 +57,14 @@ fun KalyanImage(
                 }
             }
 
-            is ImageRequestState.Failure -> Unit //Text(requestState.error.message ?: "Error")
+            is ImageRequestState.Failure -> {
+                Image(
+                    painter = painterResource(AppResImages.ic_no_image),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = modifier.size(size.dp),
+                )
+            }
             is ImageRequestState.Success -> Unit
         }
     }

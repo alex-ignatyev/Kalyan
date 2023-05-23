@@ -39,7 +39,7 @@ internal fun KalyanButton(
             Text(
                 text = it,
                 style = KalyanTheme.typography.body,
-                color = Color.White
+                color = KalyanTheme.colors.primaryText
             )
         } ?: content.invoke(this)
     }

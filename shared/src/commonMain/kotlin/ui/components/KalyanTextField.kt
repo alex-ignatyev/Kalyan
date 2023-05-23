@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,13 +27,12 @@ fun KalyanTextField(
     endIcon: @Composable () -> Unit = {},
     onValueChange: (String) -> Unit
 ) {
-    OutlinedTextField(
+    TextField(
         modifier = modifier.fillMaxWidth()
             .wrapContentHeight()
-            .padding(top = 20.dp, start = 16.dp, end = 16.dp),
+            .padding(top = 16.dp, start = 32.dp, end = 32.dp),
         value = value,
         onValueChange = onValueChange,
-        shape = RoundedCornerShape(8.dp),
         singleLine = true,
         isError = isError,
         enabled = enabled,
@@ -44,11 +44,10 @@ fun KalyanTextField(
         },
         trailingIcon = endIcon,
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = KalyanTheme.colors.secondaryBackground,
+            focusedBorderColor = KalyanTheme.colors.generalColor,
             unfocusedBorderColor = KalyanTheme.colors.secondaryBackground,
             disabledBorderColor = KalyanTheme.colors.secondaryBackground,
             errorBorderColor = KalyanTheme.colors.errorColor,
-            backgroundColor = KalyanTheme.colors.secondaryBackground,
             textColor = KalyanTheme.colors.primaryText,
             cursorColor = KalyanTheme.colors.controlColor
         )

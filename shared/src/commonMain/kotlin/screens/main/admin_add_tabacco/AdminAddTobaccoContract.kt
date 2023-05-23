@@ -4,6 +4,7 @@ import model.admin.CompanyResponse
 
 sealed class AdminAddTobaccoEvent {
     class InitAdminAddTobaccoScreen : AdminAddTobaccoEvent()
+    data class ChangeManual(val isChecked: Boolean) : AdminAddTobaccoEvent()
     data class ChangeCompany(val value: String) : AdminAddTobaccoEvent()
     data class ChangeTaste(val value: String) : AdminAddTobaccoEvent()
     data class ChangeLine(val value: String) : AdminAddTobaccoEvent()
@@ -17,6 +18,7 @@ sealed class AdminAddTobaccoEvent {
 
 data class AdminAddTobaccoState(
     val isLoading: Boolean = true,
+    val isManual: Boolean = false,
     val company: String = "",
     val taste: String = "",
     val line: String = "",
