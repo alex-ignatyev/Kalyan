@@ -1,6 +1,7 @@
 package ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -8,6 +9,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
@@ -20,6 +23,7 @@ import com.seiko.imageloader.model.ImageRequestEvent
 import com.seiko.imageloader.model.ImageResult
 import com.seiko.imageloader.model.NullRequestData
 import com.seiko.imageloader.rememberAsyncImagePainter
+import data.LocalSettingsEventBus
 import io.github.skeptick.libres.compose.painterResource
 
 @Composable
@@ -29,6 +33,8 @@ fun KalyanImage(
     size: Int = 48,
     blurRadius: Int = 0,
 ) {
+    val settings = LocalSettingsEventBus.current
+
     Box(contentAlignment = Alignment.Center) {
         val request = remember(url, blurRadius) {
             ImageRequest {
@@ -63,8 +69,10 @@ fun KalyanImage(
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
                     modifier = modifier.size(size.dp),
+                    colorFilter = ColorFilter.tint(if (settings.isDarkMode()) Color.White else Color.Black)
                 )
             }
+
             is ImageRequestState.Success -> Unit
         }
     }

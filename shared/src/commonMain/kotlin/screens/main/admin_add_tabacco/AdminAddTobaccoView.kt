@@ -87,21 +87,21 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
             if (state.isManual) {
                 KalyanTextField(
                     value = state.company,
-                    placeholder = AppResStrings.text_admin_company,
+                    placeholder = AppResStrings.text_company,
                     enabled = !state.isLoading,
                     isError = state.error.isNotBlank()
                 ) {
                     obtainEvent(ChangeCompany(it))
                 }
             } else {
-                KalyanSelect(title = AppResStrings.text_admin_company, text = state.company) {
+                KalyanSelect(title = AppResStrings.text_company, text = state.company) {
                     obtainEvent(OnCompanyClick())
                 }
             }
 
             KalyanTextField(
                 value = state.taste,
-                placeholder = AppResStrings.text_admin_taste,
+                placeholder = AppResStrings.text_taste,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank(),
             ) {
@@ -111,14 +111,14 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
             if (state.isManual) {
                 KalyanTextField(
                     value = state.line,
-                    placeholder = AppResStrings.text_admin_line,
+                    placeholder = AppResStrings.text_line,
                     enabled = !state.isLoading,
                     isError = state.error.isNotBlank()
                 ) {
                     obtainEvent(ChangeLine(it))
                 }
             } else {
-                KalyanSelect(title = AppResStrings.text_admin_line, text = state.line) {
+                KalyanSelect(title = AppResStrings.text_line, text = state.line) {
                     val lines = state.companies.findLast { it.companyName == state.company }?.lines ?: return@KalyanSelect
                     obtainEvent(OnLineClick(lines))
                 }
@@ -126,7 +126,7 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
 
             KalyanTextField(
                 value = state.strengthByCompany,
-                placeholder = AppResStrings.text_admin_straight,
+                placeholder = AppResStrings.text_strength,
                 enabled = !state.isLoading,
                 isError = state.error.isNotBlank()
             ) {

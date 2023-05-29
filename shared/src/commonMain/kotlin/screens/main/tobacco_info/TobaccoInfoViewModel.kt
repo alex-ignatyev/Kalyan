@@ -2,16 +2,11 @@ package screens.main.tobacco_info
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.RatingRepository
-import kotlin.random.Random
 import kotlinx.coroutines.launch
+import model.tobacco.TobaccoVoteRequest.VoteType
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import screens.main.tobacco_info.TobaccoInfoAction.OpenVoteBottomSheet
 import screens.main.tobacco_info.TobaccoInfoAction.ReturnBack
-import screens.main.tobacco_info.TobaccoInfoEvent.ChangeAromaSlider
-import screens.main.tobacco_info.TobaccoInfoEvent.ChangeSmokinessSlider
-import screens.main.tobacco_info.TobaccoInfoEvent.ChangeStrengthSlider
-import screens.main.tobacco_info.TobaccoInfoEvent.ChangeTasteSlider
 import screens.main.tobacco_info.TobaccoInfoEvent.ClearActions
 import screens.main.tobacco_info.TobaccoInfoEvent.InitTobaccoInfoScreen
 import screens.main.tobacco_info.TobaccoInfoEvent.OnBackClick
@@ -29,11 +24,7 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
     override fun obtainEvent(viewEvent: TobaccoInfoEvent) {
         when (viewEvent) {
             is InitTobaccoInfoScreen -> fetchData(viewEvent.tobaccoId)
-            is ChangeStrengthSlider -> changeStrengthSlider(viewEvent.value)
-            is ChangeSmokinessSlider -> changeSmokinessSlider(viewEvent.value)
-            is ChangeAromaSlider -> changeAromaSlider(viewEvent.value)
-            is ChangeTasteSlider -> changeTasteSlider(viewEvent.value)
-            is VoteForTobacco -> openVoteBottomSheet()
+            is VoteForTobacco -> voteForTobacco(viewEvent.type, viewEvent.value)
             is OnBackClick -> returnBack()
             is ClearActions -> clearActions()
         }
@@ -53,57 +44,35 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
                     line = it.line,
                     strengthByCompany = it.strengthByCompany,
 
+                    ratingByUsers = it.ratingByUsers,
                     strengthByUsers = it.strengthByUsers,
                     smokinessByUsers = it.smokinessByUsers,
                     aromaByUsers = it.aromaByUsers,
-                    ratingByUsers = it.ratingByUsers,
-                    tastePowerByUsers = it.tastePowerByUsers,
+                    tasteByUsers = it.tastePowerByUsers,
 
+                    ratingByUser = it.ratingByUser,
                     strengthByUser = it.strengthByUser,
                     smokinessByUser = it.smokinessByUser,
                     aromaByUser = it.aromaByUser,
-                    tastePowerByUser = it.tastePowerByUser,
-                    ratingByUser = it.ratingByUser,
+                    tasteByUser = it.tasteByUser,
 
                     votes = it.votes,
                 )
             }.onFailure {
                 viewState = viewState.copy(isLoading = false, error = "Ошибка")
             }
-
         }
     }
 
-    private fun openVoteBottomSheet() {
-        viewAction = OpenVoteBottomSheet()
-    }
-
-    private fun changeStrengthSlider(value: Float) {
-        viewState = viewState.copy(strengthSlider = value)
-    }
-
-    private fun changeSmokinessSlider(value: Float) {
-        viewState = viewState.copy(smokinessSlider = value)
-    }
-
-    private fun changeAromaSlider(value: Float) {
-        viewState = viewState.copy(aromaSlider = value)
-    }
-
-    private fun changeTasteSlider(value: Float) {
-        viewState = viewState.copy(tasteSlider = value)
-    }
-
-    private fun voteForTobacco() {
+    private fun voteForTobacco(type: VoteType, value: Long) {
         viewModelScope.launch {
             repo.postTobaccoVote(
                 tobaccoId = tobaccoId,
-                strength = Random.nextInt(1, 10),
-                smokiness = Random.nextInt(1, 10),
-                aroma = Random.nextInt(1, 10),
-                tastePower = Random.nextInt(1, 10),
-                rating = Random.nextInt(1, 10)
-            )
+                type = type,
+                value = value
+            ).onSuccess {
+                fetchData(tobaccoId)
+            }
         }
     }
 

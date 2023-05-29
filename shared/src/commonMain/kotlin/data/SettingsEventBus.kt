@@ -16,6 +16,10 @@ class SettingsEventBus {
     fun updateDarkMode(isDarkMode: Boolean) {
         _currentSettings.value = _currentSettings.value.copy(isDarkMode = isDarkMode)
     }
+
+    fun isDarkMode(): Boolean {
+        return _currentSettings.value.isDarkMode
+    }
 }
 
 data class SettingsBundle(

@@ -14,7 +14,7 @@
 
     // Login
     <string name="title_login">Авторизоваться</string>
-    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
+    <string name="subtitle_login">С возвращением! Используйте ваш логин и пароль для авторизации</string>
     <string name="text_password_forgot">Забыли Пароль ?</string>
     <string name="text_account_dont_have">Нет аккаунта ?</string>
     <string name="text_account_create_one">Создать</string>
@@ -30,22 +30,23 @@
     <string name="title_profile">Профиль</string>
     <string name="title_settings">Настройки</string>
 
-    //Admin
+    // Admin
     <string name="title_admin_add_tobacco">Добавить табак</string>
     <string name="text_admin_empty_choose">Не выбрано</string>
-    <string name="text_admin_company">Компания</string>
-    <string name="text_admin_taste">Вкус</string>
-    <string name="text_admin_line">Линейка</string>
-    <string name="text_admin_straight">Крепость</string>
 
-    //Tobacco info
+    // Tobacco info
     <string name="title_tobacco_info">Информация о табаке</string>
-    <string name="text_info_taste">Вкус</string>
-    <string name="text_info_company">Компания</string>
-    <string name="text_info_line">Линейка</string>
-    <string name="text_info_strength_by_company">Крепость</string>
 
-    //Settings
+    // All
+    <string name="text_taste">Вкус</string>
+    <string name="text_company">Компания</string>
+    <string name="text_line">Линейка</string>
+    <string name="text_strength">Крепкость</string>
+    <string name="text_rating">Рейтинг</string>
+    <string name="text_smokiness">Дымность</string>
+    <string name="text_aroma">Аромат</string>
+
+    // Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
     <string name="text_logout">Выйти</string>
 

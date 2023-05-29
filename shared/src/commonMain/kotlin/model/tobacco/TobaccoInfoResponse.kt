@@ -19,11 +19,11 @@ data class TobaccoInfoResponse(
     val ratingByUsers: Float = 0f,
     val tastePowerByUsers: Float = 0f,
 
-    val strengthByUser: Int = 0,
-    val smokinessByUser: Int = 0,
-    val aromaByUser: Int = 0,
-    val tastePowerByUser: Int = 0,
-    val ratingByUser: Int = 0,
+    val ratingByUser: Long,
+    val strengthByUser: Long,
+    val smokinessByUser: Long,
+    val aromaByUser: Long,
+    val tasteByUser: Long,
 
     val votes: Long
 )

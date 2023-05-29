@@ -25,10 +25,6 @@ import ui.KalyanTheme
 
 @Composable
 fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
-    val platformProvider = LocalPlatform.current
-
-    //modifier = Modifier.fillMaxSize().padding(top = if (platformProvider == iOS) 32.dp else 16.dp),
-
     Scaffold(
         backgroundColor = KalyanTheme.colors.primaryBackground,
         floatingActionButtonPosition = FabPosition.End,
@@ -59,3 +55,4 @@ fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
         }
     }
 }
+Л

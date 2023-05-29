@@ -14,9 +14,7 @@
 
     // Login
     <string name="title_login">Login Now</string>
-    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest
-        features
-    </string>
+    <string name="subtitle_login">Welcome back! Enter your login and password to enjoy the latest features</string>
     <string name="text_password_forgot">Forgot Password ?</string>
     <string name="text_account_dont_have">Don't have account ?</string>
     <string name="text_account_create_one">Create one</string>
@@ -32,20 +30,21 @@
     <string name="title_profile">Profile</string>
     <string name="title_settings">Settings</string>
 
-    //Admin
+    // Admin
     <string name="title_admin_add_tobacco">Add tobacco</string>
     <string name="text_admin_empty_choose">Has not chose</string>
-    <string name="text_admin_company">Company</string>
-    <string name="text_admin_taste">Taste</string>
-    <string name="text_admin_line">Line</string>
-    <string name="text_admin_straight">Straight</string>
 
-    //Tobacco info
+    // Tobacco info
     <string name="title_tobacco_info">Tobacco info</string>
-    <string name="text_info_taste">Taste</string>
-    <string name="text_info_company">Company</string>
-    <string name="text_info_line">Line</string>
-    <string name="text_info_strength_by_company">Strength</string>
+
+    // All
+    <string name="text_taste">Taste</string>
+    <string name="text_company">Company</string>
+    <string name="text_line">Line</string>
+    <string name="text_strength">Strength</string>
+    <string name="text_rating">Rating</string>
+    <string name="text_smokiness">Smokiness</string>
+    <string name="text_aroma">Aroma</string>
 
     //Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>

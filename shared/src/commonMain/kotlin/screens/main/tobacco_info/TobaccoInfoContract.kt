@@ -1,12 +1,10 @@
 package screens.main.tobacco_info
 
+import model.tobacco.TobaccoVoteRequest.VoteType
+
 sealed class TobaccoInfoEvent {
     data class InitTobaccoInfoScreen(val tobaccoId: String) : TobaccoInfoEvent()
-    data class ChangeStrengthSlider(val value: Float) : TobaccoInfoEvent()
-    data class ChangeSmokinessSlider(val value: Float) : TobaccoInfoEvent()
-    data class ChangeAromaSlider(val value: Float) : TobaccoInfoEvent()
-    data class ChangeTasteSlider(val value: Float) : TobaccoInfoEvent()
-    class VoteForTobacco : TobaccoInfoEvent()
+    data class VoteForTobacco(val type: VoteType, val value: Long) : TobaccoInfoEvent()
     class OnBackClick : TobaccoInfoEvent()
     class ClearActions : TobaccoInfoEvent()
 }
@@ -21,29 +19,29 @@ data class TobaccoInfoState(
     val line: String = "",
     val strengthByCompany: Int = 0,
 
+    val ratingByUsers: Float = 0f,
     val strengthByUsers: Float = 0f,
     val smokinessByUsers: Float = 0f,
     val aromaByUsers: Float = 0f,
-    val ratingByUsers: Float = 0f,
-    val tastePowerByUsers: Float = 0f,
+    val tasteByUsers: Float = 0f,
 
-    val strengthByUser: Int = 0,
-    val smokinessByUser: Int = 0,
-    val aromaByUser: Int = 0,
-    val tastePowerByUser: Int = 0,
-    val ratingByUser: Int = 0,
+    val ratingByUser: Long = 0,
+    val strengthByUser: Long = 0,
+    val smokinessByUser: Long = 0,
+    val aromaByUser: Long = 0,
+    val tasteByUser: Long = 0,
 
     val votes: Long = 0,
 
-    val strengthSlider: Float = 0f,
-    val smokinessSlider: Float = 0f,
-    val aromaSlider: Float = 0f,
-    val tasteSlider: Float = 0f,
+    val ratingRate: Int = 0,
+    val strengthRate: Int = 0,
+    val smokinessRate: Int = 0,
+    val aromaRate: Int = 0,
+    val tasteRate: Int = 0,
 
     val error: String = ""
 )
 
 sealed class TobaccoInfoAction {
-    class OpenVoteBottomSheet : TobaccoInfoAction()
     class ReturnBack : TobaccoInfoAction()
 }
