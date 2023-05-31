@@ -4,7 +4,7 @@ import data.RemoteMainDataSource
 import data.SettingsDataSource
 import model.tobacco.TobaccoInfoRequest
 import model.tobacco.TobaccoInfoResponse
-import model.tobacco.TobaccoResponse
+import model.tobacco.TobaccoFeedResponse
 import model.tobacco.TobaccoVoteRequest
 import model.tobacco.TobaccoVoteRequest.VoteType
 import utils.answer.Answer
@@ -14,7 +14,7 @@ class RatingRepositoryImpl(
     private val settings: SettingsDataSource
 ) : RatingRepository {
 
-    override suspend fun getTobaccoFeed(): Answer<List<TobaccoResponse>> {
+    override suspend fun getTobaccoFeed(): Answer<List<TobaccoFeedResponse>> {
         return remote.getTobaccoFeed(settings.getToken())
     }
 
@@ -44,7 +44,7 @@ class RatingRepositoryImpl(
 }
 
 interface RatingRepository {
-    suspend fun getTobaccoFeed(): Answer<List<TobaccoResponse>>
+    suspend fun getTobaccoFeed(): Answer<List<TobaccoFeedResponse>>
     suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfoResponse>
     suspend fun postTobaccoVote(
         tobaccoId: String,

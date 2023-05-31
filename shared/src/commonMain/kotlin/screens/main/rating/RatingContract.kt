@@ -1,6 +1,6 @@
 package screens.main.rating
 
-import model.tobacco.TobaccoResponse
+import model.tobacco.TobaccoFeedResponse
 
 sealed class RatingEvent {
     class InitRatingScreen : RatingEvent()
@@ -10,7 +10,7 @@ sealed class RatingEvent {
 }
 
 data class RatingState(
-    val data: List<TobaccoResponse> = emptyList(),
+    val data: List<TobaccoFeedResponse> = emptyList(),
     val isAdmin: Boolean = false
 )
 

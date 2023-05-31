@@ -21,12 +21,12 @@ import androidx.compose.ui.unit.sp
 import com.kalyan.shared.images.AppResImages
 import io.github.skeptick.libres.compose.painterResource
 import ktor.getBaseUrl
-import model.tobacco.TobaccoResponse
+import model.tobacco.TobaccoFeedResponse
 import ui.KalyanTheme
 import ui.components.KalyanImage
 
 @Composable
-fun TobaccoView(tobaccoResponse: TobaccoResponse, position: Int, modifier: Modifier = Modifier) {
+fun TobaccoView(tobaccoFeedResponse: TobaccoFeedResponse, position: Int, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -40,25 +40,25 @@ fun TobaccoView(tobaccoResponse: TobaccoResponse, position: Int, modifier: Modif
         Card(modifier = Modifier.fillMaxWidth().padding(start = 16.dp), elevation = 8.dp) {
             Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
 
-                KalyanImage(getBaseUrl() + tobaccoResponse.image, modifier = Modifier.padding(8.dp)) //TODO Перенести в маппинг
+                KalyanImage(getBaseUrl() + tobaccoFeedResponse.image, modifier = Modifier.padding(8.dp)) //TODO Перенести в маппинг
 
                 Column(modifier = Modifier.wrapContentWidth()) {
                     Text(
-                        text = tobaccoResponse.taste,
+                        text = tobaccoFeedResponse.taste,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = KalyanTheme.colors.primaryText
                     )
-                    Text(text = tobaccoResponse.company, fontSize = 12.sp, color = KalyanTheme.colors.primaryText)
+                    Text(text = tobaccoFeedResponse.company, fontSize = 12.sp, color = KalyanTheme.colors.primaryText)
                 }
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    RatingCard(tobaccoResponse.rating.toString(), Modifier.padding(end = 8.dp))
+                    RatingCard(tobaccoFeedResponse.rating.toString(), Modifier.padding(end = 8.dp))
 
-                    ViewsCard(tobaccoResponse.votes.toString(), Modifier.padding(end = 8.dp))
+                    ViewsCard(tobaccoFeedResponse.votes.toString(), Modifier.padding(end = 8.dp))
                 }
             }
         }

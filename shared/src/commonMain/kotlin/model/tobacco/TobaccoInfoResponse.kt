@@ -1,29 +1,29 @@
 package model.tobacco
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class TobaccoInfoResponse(
-    val id: String,
-    val taste: String,
-    val company: String,
-    val line: String = "",
+    @SerialName("id") val id: String?,
+    @SerialName("taste") val taste: String?,
+    @SerialName("company") val company: String?,
+    @SerialName("line") val line: String?,
+    @SerialName("strength") val strength: Int?,
 
-    var image: String = "",
+    @SerialName("image") var image: String?,
 
-    val strengthByCompany: Int,
+    @SerialName("strengthByUsers") val strengthByUsers: Float? = 0f,
+    @SerialName("smokinessByUsers") val smokinessByUsers: Float? = 0f,
+    @SerialName("aromaByUsers") val aromaByUsers: Float? = 0f,
+    @SerialName("ratingByUsers") val ratingByUsers: Float? = 0f,
+    @SerialName("tastePowerByUsers") val tastePowerByUsers: Float? = 0f,
 
-    val strengthByUsers: Float = 0f,
-    val smokinessByUsers: Float = 0f,
-    val aromaByUsers: Float = 0f,
-    val ratingByUsers: Float = 0f,
-    val tastePowerByUsers: Float = 0f,
+    @SerialName("ratingByUser") val ratingByUser: Long?,
+    @SerialName("strengthByUser") val strengthByUser: Long?,
+    @SerialName("smokinessByUser") val smokinessByUser: Long?,
+    @SerialName("aromaByUser") val aromaByUser: Long?,
+    @SerialName("tasteByUser") val tasteByUser: Long?,
 
-    val ratingByUser: Long,
-    val strengthByUser: Long,
-    val smokinessByUser: Long,
-    val aromaByUser: Long,
-    val tasteByUser: Long,
-
-    val votes: Long
+    @SerialName("votes") val votes: Long?
 )

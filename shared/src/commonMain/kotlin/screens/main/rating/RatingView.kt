@@ -17,7 +17,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import di.LocalPlatform
 import screens.main.rating.RatingEvent.AddTobaccoClick
 import screens.main.rating.RatingEvent.OnTobaccoClick
 import screens.main.rating.view.TobaccoView
@@ -55,4 +54,3 @@ fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
         }
     }
 }
-Л

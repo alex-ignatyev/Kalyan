@@ -5,9 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AdminAddTobaccoRequest(
-    @SerialName("manual") val isManual: Boolean,
+    @SerialName("isManual") val isManual: Boolean,
     @SerialName("taste") val taste: String,
     @SerialName("company") val company: String,
     @SerialName("line") val line: String,
-    @SerialName("strengthByCompany") val strengthByCompany: Int
+    @SerialName("strength") val strength: Long
 )
