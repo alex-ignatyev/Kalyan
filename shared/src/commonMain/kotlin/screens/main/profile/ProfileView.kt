@@ -6,10 +6,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -21,14 +23,18 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kalyan.shared.strings.AppResStrings
+import com.moriatsushi.insetsx.safeArea
 import screens.main.profile.ProfileEvent.ClickOnSettings
 import ui.KalyanTheme
 import ui.components.KalyanToolbar
 
 @Composable
 fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
-    Column(Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground)) {
-
+    Column(
+        Modifier.fillMaxSize()
+            .background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.safeArea)
+    ) {
         KalyanToolbar(title = AppResStrings.title_profile, onFirstIconClick = {
             obtainEvent.invoke(ClickOnSettings())
         })

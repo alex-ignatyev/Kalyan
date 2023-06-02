@@ -33,6 +33,7 @@
     // Admin
     <string name="title_admin_add_tobacco">Add tobacco</string>
     <string name="text_admin_empty_choose">Has not chose</string>
+    <string name="text_admin_manually">Manually</string>
 
     // Tobacco info
     <string name="title_tobacco_info">Tobacco info</string>

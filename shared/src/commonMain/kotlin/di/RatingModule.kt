@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 val ratingModule = module {
     single { RemoteMainDataSource(get()) }
-    single<RatingRepository> { RatingRepositoryImpl(get(), get()) }
+    single<RatingRepository> { RatingRepositoryImpl(get()) }
 }

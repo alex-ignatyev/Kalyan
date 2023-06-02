@@ -4,8 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.Text
@@ -15,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
+import com.moriatsushi.insetsx.navigationBars
+import com.moriatsushi.insetsx.safeArea
 import data.LocalSettingsEventBus
 import screens.main.settings.SettingsEvent.OnBackClick
 import screens.main.settings.SettingsEvent.OnLogOutClick
@@ -28,7 +33,11 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
     val settingsEventBus = LocalSettingsEventBus.current
     val currentSettings = settingsEventBus.currentSettings.value
 
-    Column(Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground)) {
+    Column(
+        Modifier.fillMaxSize()
+            .background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.safeArea.add(WindowInsets.navigationBars))
+    ) {
         KalyanToolbar(title = AppResStrings.title_settings, onBackClick = {
             obtainEvent.invoke(OnBackClick())
         })

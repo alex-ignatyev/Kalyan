@@ -32,14 +32,14 @@ internal fun KalyanButton(
         shape = shape,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
-            disabledBackgroundColor = backgroundColor
+            disabledBackgroundColor = KalyanTheme.colors.secondaryBackground
         )
     ) {
         text?.let {
             Text(
                 text = it,
                 style = KalyanTheme.typography.body,
-                color = KalyanTheme.colors.primaryText
+                color = KalyanTheme.colors.primaryBackground
             )
         } ?: content.invoke(this)
     }

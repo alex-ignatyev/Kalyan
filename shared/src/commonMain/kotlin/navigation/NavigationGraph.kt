@@ -1,7 +1,12 @@
 package navigation
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.WindowInsetsSides.Companion
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.ExperimentalMaterialApi
@@ -16,25 +21,30 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import com.moriatsushi.insetsx.safeAreaPadding
+import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
+import com.moriatsushi.insetsx.navigationBarsPadding
+import com.moriatsushi.insetsx.safeDrawing
 import ui.KalyanTheme
 
 internal object MainFlow : Screen {
 
-    @OptIn(ExperimentalMaterialApi::class)
+    @OptIn(ExperimentalMaterialApi::class, ExperimentalSoftwareKeyboardApi::class)
     @Composable
     override fun Content() {
         TabNavigator(RatingTab) {
             Scaffold(
-                modifier = Modifier.safeAreaPadding(),
+                modifier = Modifier,
                 content = { paddings ->
-                    BottomSheetNavigator(modifier = Modifier.padding(paddings)) {
+                    BottomSheetNavigator(
+                        Modifier.padding()
+                    ) {
                         CurrentTab()
                     }
                 },
                 bottomBar = {
                     BottomNavigation(
                         backgroundColor = KalyanTheme.colors.primaryBackground,
+                        modifier = Modifier.navigationBarsPadding(),
                         elevation = 24.dp
                     ) {
                         TabNavigationItem(RatingTab)

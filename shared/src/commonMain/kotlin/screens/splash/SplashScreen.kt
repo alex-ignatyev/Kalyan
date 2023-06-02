@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -16,6 +17,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.adeo.kviewmodel.compose.ViewModel
+import com.kalyan.shared.strings.AppResStrings
 import screens.splash.SplashAction.OpenFlow
 import screens.splash.SplashEvent.InitSplashScreen
 import ui.KalyanTheme
@@ -34,17 +36,19 @@ object SplashScreen : Screen {
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "Kalyan",
+                    text = AppResStrings.app_name,
                     style = KalyanTheme.typography.header,
                     color = KalyanTheme.colors.primaryText,
                     textAlign = TextAlign.Center
                 )
             }
 
-            viewModel.obtainEvent(InitSplashScreen())
+            LaunchedEffect(Unit) {
+                viewModel.obtainEvent(InitSplashScreen())
+            }
 
             when (action) {
-                is OpenFlow -> Navigator((action as OpenFlow).screen)
+                is OpenFlow -> navigator.replace((action as OpenFlow).screen)
                 else -> {}
             }
         }

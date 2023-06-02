@@ -13,6 +13,10 @@ class SettingsDataSource(
         settings.putBoolean(ADMIN_KEY, isAdmin)
     }
 
+    var isDarkMode: Boolean
+        get() = settings[DARKMODE_KEY, false]
+        set(value) = settings.putBoolean(DARKMODE_KEY, value)
+
     fun getToken(): String {
         return settings[TOKEN_KEY, ""]
     }
@@ -33,5 +37,6 @@ class SettingsDataSource(
         private const val TOKEN_KEY = "tokenKey"
         private const val USERID_KEY = "userIdKey"
         private const val ADMIN_KEY = "adminKey"
+        private const val DARKMODE_KEY = "darkmodeKey"
     }
 }

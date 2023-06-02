@@ -25,7 +25,7 @@ data class TobaccoInfoScreen(val tobaccoId: String) : Screen {
                 viewModel.obtainEvent(it)
             }
 
-            LaunchedEffect("TobaccoInfoScreen") {
+            LaunchedEffect(Unit) {
                 viewModel.obtainEvent(InitTobaccoInfoScreen(tobaccoId))
             }
 

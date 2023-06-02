@@ -2,6 +2,7 @@ package screens.main.tobacco_info
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.RatingRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import model.tobacco.TobaccoVoteRequest.VoteType
 import org.koin.core.component.KoinComponent
@@ -33,30 +34,31 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
     private fun fetchData(tobaccoId: String) {
         this.tobaccoId = tobaccoId
         viewModelScope.launch {
+            delay(5000L)
             repo.getTobaccoInfo(tobaccoId).onSuccess {
                 viewState = viewState.copy(
                     isLoading = false,
 
-                    image = it.image,
+                    image = it.image ?: "",
 
-                    taste = it.taste,
-                    company = it.company,
-                    line = it.line,
-                    strengthByCompany = it.strengthByCompany,
+                    taste = it.taste ?: "",
+                    company = it.company ?: "",
+                    line = it.line ?: "",
+                    strengthByCompany = it.strength ?: 0,
 
-                    ratingByUsers = it.ratingByUsers,
-                    strengthByUsers = it.strengthByUsers,
-                    smokinessByUsers = it.smokinessByUsers,
-                    aromaByUsers = it.aromaByUsers,
-                    tasteByUsers = it.tastePowerByUsers,
+                    ratingByUsers = it.ratingByUsers ?: 0f,
+                    strengthByUsers = it.strengthByUsers ?: 0f,
+                    smokinessByUsers = it.smokinessByUsers ?: 0f,
+                    aromaByUsers = it.aromaByUsers ?: 0f,
+                    tasteByUsers = it.tastePowerByUsers ?: 0f,
 
-                    ratingByUser = it.ratingByUser,
-                    strengthByUser = it.strengthByUser,
-                    smokinessByUser = it.smokinessByUser,
-                    aromaByUser = it.aromaByUser,
-                    tasteByUser = it.tasteByUser,
+                    ratingByUser = it.ratingByUser ?: 0,
+                    strengthByUser = it.strengthByUser ?: 0,
+                    smokinessByUser = it.smokinessByUser ?: 0,
+                    aromaByUser = it.aromaByUser ?: 0,
+                    tasteByUser = it.tasteByUser ?: 0,
 
-                    votes = it.votes,
+                    votes = it.votes ?: 0L,
                 )
             }.onFailure {
                 viewState = viewState.copy(isLoading = false, error = "Ошибка")

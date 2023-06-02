@@ -20,10 +20,10 @@ import ui.KalyanTheme
 
 @Composable
 fun KalyanSelect(title: String, text: String = "", modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Box(modifier = modifier.fillMaxWidth().height(64.dp).padding(horizontal = 32.dp).padding(top = 16.dp).clickable {
+    Box(modifier = modifier.fillMaxWidth().height(74.dp).padding(horizontal = 32.dp).padding(top = 16.dp).clickable {
         onClick.invoke()
     }) {
-        Column(modifier = Modifier.align(Alignment.CenterStart).padding(bottom = 8.dp)) {
+        Column(modifier = Modifier.align(Alignment.CenterStart)) {
             Text(
                 text = title,
                 style = if (text.isBlank()) KalyanTheme.typography.body else KalyanTheme.typography.hint,

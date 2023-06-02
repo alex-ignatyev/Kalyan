@@ -1,6 +1,7 @@
 package screens.main.rating
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
@@ -28,7 +29,9 @@ object RatingScreen : Screen {
                 viewModel.obtainEvent(event)
             }
 
-            viewModel.obtainEvent(InitRatingScreen())
+            LaunchedEffect(Unit) {
+                viewModel.obtainEvent(InitRatingScreen())
+            }
 
             when (action) {
                 is OpenTobaccoInfoScreen -> {

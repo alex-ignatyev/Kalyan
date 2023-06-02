@@ -1,6 +1,7 @@
 package screens.main.admin_add_tabacco
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
@@ -29,7 +30,9 @@ object AdminAddTobaccoScreen : Screen {
                 viewModel.obtainEvent(event)
             }
 
-            viewModel.obtainEvent(InitAdminAddTobaccoScreen())
+            LaunchedEffect(Unit) {
+                viewModel.obtainEvent(InitAdminAddTobaccoScreen())
+            }
 
             when (action) {
                 is ReturnToPreviousScreen -> navigator.pop()

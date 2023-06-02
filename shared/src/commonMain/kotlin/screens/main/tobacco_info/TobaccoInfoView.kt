@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.kalyan.shared.strings.AppResStrings
+import com.moriatsushi.insetsx.safeAreaPadding
 import ktor.getBaseUrl
 import model.tobacco.TobaccoVoteRequest.VoteType
 import screens.main.tobacco_info.TobaccoInfoEvent.OnBackClick
@@ -38,6 +39,7 @@ import ui.components.KalyanToolbar
 internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoEvent) -> Unit) {
 
     Scaffold(
+        modifier = Modifier.safeAreaPadding(),
         backgroundColor = KalyanTheme.colors.primaryBackground,
         topBar = {
             KalyanToolbar(title = AppResStrings.title_tobacco_info, onBackClick = {

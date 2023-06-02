@@ -23,6 +23,8 @@ import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnLineClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
+import utils.areNotEmpty
+import utils.toLongOrDef
 
 class AdminAddTobaccoViewModel : KoinComponent,
     BaseSharedViewModel<AdminAddTobaccoState, AdminAddTobaccoAction, AdminAddTobaccoEvent>(
@@ -62,19 +64,19 @@ class AdminAddTobaccoViewModel : KoinComponent,
     }
 
     private fun changeCompany(company: String) {
-        viewState = viewState.copy(company = company, line = EMPTY, error = EMPTY)
+        viewState = viewState.copy(company = company, line = EMPTY, error = EMPTY, isButtonEnabled = isButtonEnabled())
     }
 
     private fun changeTaste(taste: String) {
-        viewState = viewState.copy(taste = taste, error = EMPTY)
+        viewState = viewState.copy(taste = taste, error = EMPTY, isButtonEnabled = isButtonEnabled())
     }
 
     private fun changeLine(line: String) {
-        viewState = viewState.copy(line = line, error = EMPTY)
+        viewState = viewState.copy(line = line, error = EMPTY, isButtonEnabled = isButtonEnabled())
     }
 
     private fun changeStrengthByCompany(strength: String) {
-        viewState = viewState.copy(strengthByCompany = strength, error = EMPTY)
+        viewState = viewState.copy(strength = strength, error = EMPTY, isButtonEnabled = isButtonEnabled())
     }
 
     private fun openCompaniesSheet() {
@@ -89,11 +91,10 @@ class AdminAddTobaccoViewModel : KoinComponent,
         viewModelScope.launch {
             viewState = viewState.copy(isLoading = true)
             val request = AdminAddTobaccoRequest(
-                isManual = viewState.isManual,
                 company = viewState.company,
                 taste = viewState.taste,
                 line = viewState.line,
-                strengthByCompany = if (viewState.strengthByCompany.isBlank()) 0 else viewState.strengthByCompany.toInt()
+                strength = viewState.strength.toLongOrDef()
             )
             repo.addTobacco(request).onSuccess {
                 viewAction = ReturnToPreviousScreen()
@@ -101,6 +102,10 @@ class AdminAddTobaccoViewModel : KoinComponent,
                 viewState = viewState.copy(isLoading = false, error = it.message)
             }
         }
+    }
+
+    private fun isButtonEnabled(): Boolean {
+        return areNotEmpty(viewState.company, viewState.line) && viewState.strength.toLongOrDef() in 0L..10L
     }
 
     private fun returnToPreviousScreen() {

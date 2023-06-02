@@ -12,7 +12,6 @@ import ui.KalyanTheme
 internal fun KalyanDivider(modifier: Modifier = Modifier) {
     Divider(
         modifier = modifier.fillMaxWidth(),
-        thickness = 0.5.dp,
-        color = KalyanTheme.colors.controlColor.copy(alpha = 0.3f)
+        color = KalyanTheme.colors.secondaryBackground
     )
 }

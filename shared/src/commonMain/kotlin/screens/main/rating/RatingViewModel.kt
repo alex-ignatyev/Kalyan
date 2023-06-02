@@ -35,7 +35,7 @@ class RatingViewModel : KoinComponent, BaseSharedViewModel<RatingState, RatingAc
         viewModelScope.launch {
             viewState = viewState.copy(isAdmin = settings.getAdmin())
             repository.getTobaccoFeed().onSuccess {
-                viewState = viewState.copy(data = it)
+                viewState = viewState.copy(data = it, isLoading = false)
             }.onFailure {
                 //TODO Show error
             }

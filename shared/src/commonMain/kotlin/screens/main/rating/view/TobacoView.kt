@@ -44,12 +44,12 @@ fun TobaccoView(tobaccoFeedResponse: TobaccoFeedResponse, position: Int, modifie
 
                 Column(modifier = Modifier.wrapContentWidth()) {
                     Text(
-                        text = tobaccoFeedResponse.taste,
+                        text = tobaccoFeedResponse.taste ?: "",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = KalyanTheme.colors.primaryText
                     )
-                    Text(text = tobaccoFeedResponse.company, fontSize = 12.sp, color = KalyanTheme.colors.primaryText)
+                    Text(text = tobaccoFeedResponse.company ?: "", fontSize = 12.sp, color = KalyanTheme.colors.primaryText)
                 }
 
                 Row(

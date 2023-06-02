@@ -1,30 +1,23 @@
 package domain.repository
 
 import data.RemoteMainDataSource
-import data.SettingsDataSource
+import model.tobacco.TobaccoFeedResponse
 import model.tobacco.TobaccoInfoRequest
 import model.tobacco.TobaccoInfoResponse
-import model.tobacco.TobaccoFeedResponse
 import model.tobacco.TobaccoVoteRequest
 import model.tobacco.TobaccoVoteRequest.VoteType
 import utils.answer.Answer
 
 class RatingRepositoryImpl(
-    private val remote: RemoteMainDataSource,
-    private val settings: SettingsDataSource
+    private val remote: RemoteMainDataSource
 ) : RatingRepository {
 
     override suspend fun getTobaccoFeed(): Answer<List<TobaccoFeedResponse>> {
-        return remote.getTobaccoFeed(settings.getToken())
+        return remote.getTobaccoFeed()
     }
 
     override suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfoResponse> {
-        return remote.postTobaccoInfo(
-            settings.getToken(), TobaccoInfoRequest(
-                userId = settings.getUserId(),
-                tobaccoId = tobaccoId
-            )
-        )
+        return remote.postTobaccoInfo(TobaccoInfoRequest(tobaccoId))
     }
 
     override suspend fun postTobaccoVote(
@@ -33,8 +26,7 @@ class RatingRepositoryImpl(
         value: Long
     ): Answer<Unit> {
         return remote.postTobaccoVote(
-            settings.getToken(), TobaccoVoteRequest(
-                userId = settings.getUserId(),
+            TobaccoVoteRequest(
                 tobaccoId = tobaccoId,
                 type = type,
                 value = value

@@ -10,6 +10,7 @@ sealed class RatingEvent {
 }
 
 data class RatingState(
+    val isLoading: Boolean = true,
     val data: List<TobaccoFeedResponse> = emptyList(),
     val isAdmin: Boolean = false
 )

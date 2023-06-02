@@ -22,8 +22,9 @@ data class AdminAddTobaccoState(
     val company: String = "",
     val taste: String = "",
     val line: String = "",
-    val strengthByCompany: String = "",
+    val strength: String = "",
     val companies: List<CompanyResponse> = emptyList(),
+    val isButtonEnabled: Boolean = false,
     val error: String = ""
 )
 

@@ -42,7 +42,7 @@ kotlin {
                 //implementation(libs.compose.imageLoaderBlur)
                 implementation(libs.compose.icons)
 
-                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha06") //TODO
+                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha07") //TODO
 
                 implementation(libs.kviewmodel.core)
                 implementation(libs.kviewmodel.compose)
