@@ -7,10 +7,10 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.HttpHeaders
-import model.auth.TokenResponse
-import model.auth.request.AccountCreateRequest
-import model.auth.request.AccountForgotRequest
-import model.auth.request.AccountLoginRequest
+import model.data.auth.TokenResponse
+import model.data.auth.request.AccountCreateRequest
+import model.data.auth.request.AccountForgotRequest
+import model.data.auth.request.AccountLoginRequest
 import utils.answer.Answer
 import utils.answer.BaseRemoteDataSource
 

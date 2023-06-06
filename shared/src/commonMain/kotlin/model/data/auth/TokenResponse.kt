@@ -1,4 +1,4 @@
-package model.auth
+package model.data.auth
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

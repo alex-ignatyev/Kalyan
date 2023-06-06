@@ -1,4 +1,4 @@
-package model.tobacco
+package model.data.tobacco
 
 import kotlinx.serialization.Serializable
 

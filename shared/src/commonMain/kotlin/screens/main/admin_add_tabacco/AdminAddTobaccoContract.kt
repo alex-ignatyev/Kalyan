@@ -1,6 +1,6 @@
 package screens.main.admin_add_tabacco
 
-import model.admin.CompanyResponse
+import model.domain.Company
 
 sealed class AdminAddTobaccoEvent {
     class InitAdminAddTobaccoScreen : AdminAddTobaccoEvent()
@@ -16,6 +16,7 @@ sealed class AdminAddTobaccoEvent {
     class ClearActions : AdminAddTobaccoEvent()
 }
 
+//TODO Создать модель для всех полей
 data class AdminAddTobaccoState(
     val isLoading: Boolean = true,
     val isManual: Boolean = false,
@@ -23,7 +24,7 @@ data class AdminAddTobaccoState(
     val taste: String = "",
     val line: String = "",
     val strength: String = "",
-    val companies: List<CompanyResponse> = emptyList(),
+    val companies: List<Company> = emptyList(),
     val isButtonEnabled: Boolean = false,
     val error: String = ""
 )

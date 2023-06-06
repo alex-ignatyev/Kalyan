@@ -7,12 +7,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -29,7 +31,8 @@ import androidx.compose.ui.unit.sp
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
 import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
-import com.moriatsushi.insetsx.safeDrawingPadding
+import com.moriatsushi.insetsx.ime
+import com.moriatsushi.insetsx.navigationBars
 import screens.auth.account_login.AccountLoginEvent.ChangeLogin
 import screens.auth.account_login.AccountLoginEvent.ChangePassword
 import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
@@ -46,7 +49,9 @@ import ui.components.TextFieldType.Password
 @Composable
 fun AccountLoginView(state: AccountLoginState = AccountLoginState(), obtainEvent: (AccountLoginEvent) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground).safeDrawingPadding(),
+        modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.ime)
+            .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 

@@ -2,9 +2,11 @@ package domain.repository
 
 import data.RemoteAdminDataSource
 import data.SettingsDataSource
-import model.admin.AdminAddTobaccoRequest
-import model.admin.CompanyResponse
+import model.data.admin.AdminAddTobaccoRequest
+import model.domain.Company
+import model.domain.toDomain
 import utils.answer.Answer
+import utils.answer.map
 
 class AdminRepositoryImpl(
     private val remote: RemoteAdminDataSource,
@@ -15,13 +17,13 @@ class AdminRepositoryImpl(
         return remote.addTobacco(settings.getToken(), request)
     }
 
-    override suspend fun getCompanies(): Answer<List<CompanyResponse>> {
-       return remote.getCompanies(settings.getToken())
+    override suspend fun getCompanies(): Answer<List<Company>> {
+        return remote.getCompanies(settings.getToken()).map { it.toDomain() }
     }
 
 }
 
 interface AdminRepository {
     suspend fun addTobacco(request: AdminAddTobaccoRequest): Answer<Unit>
-    suspend fun getCompanies(): Answer<List<CompanyResponse>>
+    suspend fun getCompanies(): Answer<List<Company>>
 }

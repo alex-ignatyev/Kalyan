@@ -7,8 +7,8 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.HttpHeaders
-import model.admin.AdminAddTobaccoRequest
-import model.admin.CompanyResponse
+import model.data.admin.AdminAddTobaccoRequest
+import model.data.admin.CompanyResponse
 import utils.answer.Answer
 import utils.answer.BaseRemoteDataSource
 

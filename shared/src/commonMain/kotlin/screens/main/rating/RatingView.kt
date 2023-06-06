@@ -1,5 +1,6 @@
 package screens.main.rating
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,7 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.moriatsushi.insetsx.navigationBars
-import com.moriatsushi.insetsx.safeArea
+import com.moriatsushi.insetsx.statusBars
 import screens.main.rating.RatingEvent.AddTobaccoClick
 import screens.main.rating.RatingEvent.OnTobaccoClick
 import screens.main.rating.view.TobaccoView
@@ -30,9 +31,9 @@ import ui.KalyanTheme
 @Composable
 fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
     Scaffold(
-        modifier = Modifier.windowInsetsPadding(
-            WindowInsets.safeArea.add(WindowInsets.navigationBars)
-        ),
+        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.statusBars)
+            .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars)),
         backgroundColor = KalyanTheme.colors.primaryBackground,
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
@@ -56,7 +57,7 @@ fun RatingView(state: RatingState, obtainEvent: (RatingEvent) -> Unit) {
         ) {
             itemsIndexed(state.data) { index, item ->
                 TobaccoView(item, index + 1, Modifier.clickable {
-                    obtainEvent.invoke(OnTobaccoClick(item.id ?: ""))
+                    obtainEvent.invoke(OnTobaccoClick(item.id))
                 })
             }
         }

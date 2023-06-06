@@ -1,12 +1,14 @@
 package domain.repository
 
+import com.kalyan.shared.AppRes
 import data.RemoteAuthDataSource
 import data.SettingsDataSource
-import model.auth.TokenResponse
-import model.auth.request.AccountCreateRequest
-import model.auth.request.AccountForgotRequest
-import model.auth.request.AccountLoginRequest
+import model.data.auth.request.AccountCreateRequest
+import model.data.auth.request.AccountForgotRequest
+import model.data.auth.request.AccountLoginRequest
 import utils.answer.Answer
+import utils.answer.ErrorCode.InternalError
+import utils.answer.onFailure
 import utils.answer.onSuccess
 
 class AuthRepositoryImpl(
@@ -22,12 +24,16 @@ class AuthRepositoryImpl(
         return remote.createAccount(request)
     }
 
-    override suspend fun login(request: AccountLoginRequest): Answer<TokenResponse> {
-        val answer = remote.login(request)
-        answer.onSuccess {
-            settings.saveInfo(it.token ?: "", it.userId ?: "", it.isAdmin ?: true)
+    override suspend fun login(request: AccountLoginRequest): Answer<Unit> {
+        remote.login(request).onSuccess {
+            if (it.userId == null || it.token == null || it.isAdmin == null) {
+                return Answer.failure(code = InternalError, message = AppRes.string.error_something_went_wrong)
+            }
+            settings.saveInfo(it.token, it.userId, it.isAdmin)
+        }.onFailure {
+            return Answer.failure(it.code, it.message)
         }
-        return answer
+        return Answer.success(Unit)
     }
 
     override suspend fun forgot(request: AccountForgotRequest): Answer<Unit> {
@@ -38,6 +44,6 @@ class AuthRepositoryImpl(
 interface AuthRepository {
     suspend fun authorize(): Answer<Unit>
     suspend fun create(request: AccountCreateRequest): Answer<Unit>
-    suspend fun login(request: AccountLoginRequest): Answer<TokenResponse>
+    suspend fun login(request: AccountLoginRequest): Answer<Unit>
     suspend fun forgot(request: AccountForgotRequest): Answer<Unit>
 }

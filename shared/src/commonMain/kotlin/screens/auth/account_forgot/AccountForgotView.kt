@@ -1,12 +1,15 @@
 package screens.auth.account_forgot
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -22,8 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
-import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
-import com.moriatsushi.insetsx.safeDrawingPadding
+import com.moriatsushi.insetsx.statusBars
 import screens.auth.account_forgot.AccountForgotEvent.ChangeLogin
 import screens.auth.account_forgot.AccountForgotEvent.ChangePassword
 import screens.auth.account_forgot.AccountForgotEvent.ChangePasswordRepeat
@@ -38,18 +40,18 @@ import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 import ui.components.TextFieldType.Password
 
-@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEvent) -> Unit) {
 
     Scaffold(
-        modifier = Modifier.safeDrawingPadding(),
+        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.statusBars),
+        backgroundColor = KalyanTheme.colors.primaryBackground,
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
             })
-        },
-        backgroundColor = KalyanTheme.colors.primaryBackground
+        }
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),

@@ -1,12 +1,15 @@
 package screens.auth.account_create
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
@@ -26,6 +29,7 @@ import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
 import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
 import com.moriatsushi.insetsx.safeDrawingPadding
+import com.moriatsushi.insetsx.statusBars
 import screens.auth.account_create.AccountCreateEvent.ChangeLogin
 import screens.auth.account_create.AccountCreateEvent.ChangeName
 import screens.auth.account_create.AccountCreateEvent.ChangePassword
@@ -41,18 +45,18 @@ import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 import ui.components.TextFieldType.Password
 
-@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun AccountCreateView(state: AccountCreateState, obtainEvent: (AccountCreateEvent) -> Unit) {
 
     Scaffold(
-        modifier = Modifier.safeDrawingPadding(),
+        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.statusBars),
+        backgroundColor = KalyanTheme.colors.primaryBackground,
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
             })
-        },
-        backgroundColor = KalyanTheme.colors.primaryBackground
+        }
     ) {
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),

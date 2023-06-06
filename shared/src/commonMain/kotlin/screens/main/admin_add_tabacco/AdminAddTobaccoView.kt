@@ -1,5 +1,6 @@
 package screens.main.admin_add_tabacco
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,9 +30,8 @@ import com.kalyan.shared.strings.AppResStrings
 import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
 import com.moriatsushi.insetsx.ime
 import com.moriatsushi.insetsx.navigationBars
-import com.moriatsushi.insetsx.safeArea
-import com.moriatsushi.insetsx.safeDrawing
-import model.admin.CompanyResponse
+import com.moriatsushi.insetsx.statusBars
+import model.domain.Company
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.AddTobaccoClick
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeCompany
 import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.ChangeLine
@@ -53,17 +53,17 @@ import ui.components.KalyanToolbar
 fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobaccoEvent) -> Unit) {
 
     Scaffold(
-        modifier = Modifier
-            .windowInsetsPadding(WindowInsets.safeArea.add(WindowInsets.navigationBars))
+        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.statusBars)
             .windowInsetsPadding(WindowInsets.ime),
+        backgroundColor = KalyanTheme.colors.primaryBackground,
         topBar = {
             KalyanToolbar(
                 title = AppResStrings.title_admin_add_tobacco,
                 onBackClick = {
                     obtainEvent(OnBackClick())
                 })
-        },
-        backgroundColor = KalyanTheme.colors.primaryBackground
+        }
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(
@@ -150,7 +150,8 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
             }
 
             KalyanButton(
-                modifier = Modifier.padding(vertical = 32.dp).align(Alignment.BottomCenter),
+                modifier = Modifier.padding(vertical = 32.dp).align(Alignment.BottomCenter)
+                    .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars)),
                 text = if (state.isLoading) null else AppRes.string.title_admin_add_tobacco,
                 enabled = !state.isLoading && state.isButtonEnabled,
                 content = {
@@ -164,7 +165,7 @@ fun AdminAddTobaccoView(state: AdminAddTobaccoState, obtainEvent: (AdminAddTobac
     }
 }
 
-data class CompanyBottomSheet(val companies: List<CompanyResponse>, val obtainEvent: (AdminAddTobaccoEvent) -> Unit) : Screen {
+data class CompanyBottomSheet(val companies: List<Company>, val obtainEvent: (AdminAddTobaccoEvent) -> Unit) : Screen {
 
     @OptIn(ExperimentalSoftwareKeyboardApi::class)
     @Composable
@@ -173,15 +174,15 @@ data class CompanyBottomSheet(val companies: List<CompanyResponse>, val obtainEv
 
         LazyColumn(
             modifier = Modifier.wrapContentHeight()
-                .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars))
+                .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 8.dp)))
                 .windowInsetsPadding(WindowInsets.ime)
         ) {
             items(companies) {
                 Text(
-                    text = it.company ?: "",
+                    text = it.company,
                     style = KalyanTheme.typography.body,
                     modifier = Modifier.fillMaxWidth().clickable {
-                        obtainEvent(ChangeCompany(it.company ?: ""))
+                        obtainEvent(ChangeCompany(it.company))
                         bottomSheetNavigator.hide()
                     })
             }
@@ -198,7 +199,7 @@ data class LineBottomSheet(val lines: List<String>, val obtainEvent: (AdminAddTo
 
         LazyColumn(
             modifier = Modifier.wrapContentHeight()
-                .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars))
+                .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 8.dp)))
                 .windowInsetsPadding(WindowInsets.ime)
         ) {
             items(lines) {

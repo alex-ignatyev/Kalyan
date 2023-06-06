@@ -3,7 +3,7 @@ package screens.main.admin_add_tabacco
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.AdminRepository
 import kotlinx.coroutines.launch
-import model.admin.AdminAddTobaccoRequest
+import model.data.admin.AdminAddTobaccoRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.main.admin_add_tabacco.AdminAddTobaccoAction.OpenCompanySheet

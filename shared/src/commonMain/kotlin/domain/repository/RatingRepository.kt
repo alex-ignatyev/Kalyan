@@ -1,23 +1,25 @@
 package domain.repository
 
 import data.RemoteMainDataSource
-import model.tobacco.TobaccoFeedResponse
-import model.tobacco.TobaccoInfoRequest
-import model.tobacco.TobaccoInfoResponse
-import model.tobacco.TobaccoVoteRequest
-import model.tobacco.TobaccoVoteRequest.VoteType
+import model.data.tobacco.TobaccoInfoRequest
+import model.data.tobacco.TobaccoVoteRequest
+import model.data.tobacco.TobaccoVoteRequest.VoteType
+import model.domain.TobaccoFeed
+import model.domain.TobaccoInfo
+import model.domain.toDomain
 import utils.answer.Answer
+import utils.answer.map
 
 class RatingRepositoryImpl(
     private val remote: RemoteMainDataSource
 ) : RatingRepository {
 
-    override suspend fun getTobaccoFeed(): Answer<List<TobaccoFeedResponse>> {
-        return remote.getTobaccoFeed()
+    override suspend fun getTobaccoFeed(): Answer<List<TobaccoFeed>> {
+        return remote.getTobaccoFeed().map { it.toDomain() }
     }
 
-    override suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfoResponse> {
-        return remote.postTobaccoInfo(TobaccoInfoRequest(tobaccoId))
+    override suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfo> {
+        return remote.postTobaccoInfo(TobaccoInfoRequest(tobaccoId)).map { it.toDomain() }
     }
 
     override suspend fun postTobaccoVote(
@@ -36,8 +38,8 @@ class RatingRepositoryImpl(
 }
 
 interface RatingRepository {
-    suspend fun getTobaccoFeed(): Answer<List<TobaccoFeedResponse>>
-    suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfoResponse>
+    suspend fun getTobaccoFeed(): Answer<List<TobaccoFeed>>
+    suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfo>
     suspend fun postTobaccoVote(
         tobaccoId: String,
         type: VoteType,

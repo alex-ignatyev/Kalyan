@@ -2,9 +2,8 @@ package screens.main.tobacco_info
 
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.RatingRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import model.tobacco.TobaccoVoteRequest.VoteType
+import model.data.tobacco.TobaccoVoteRequest.VoteType
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.main.tobacco_info.TobaccoInfoAction.ReturnBack
@@ -34,32 +33,8 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
     private fun fetchData(tobaccoId: String) {
         this.tobaccoId = tobaccoId
         viewModelScope.launch {
-            delay(5000L)
             repo.getTobaccoInfo(tobaccoId).onSuccess {
-                viewState = viewState.copy(
-                    isLoading = false,
-
-                    image = it.image ?: "",
-
-                    taste = it.taste ?: "",
-                    company = it.company ?: "",
-                    line = it.line ?: "",
-                    strengthByCompany = it.strength ?: 0,
-
-                    ratingByUsers = it.ratingByUsers ?: 0f,
-                    strengthByUsers = it.strengthByUsers ?: 0f,
-                    smokinessByUsers = it.smokinessByUsers ?: 0f,
-                    aromaByUsers = it.aromaByUsers ?: 0f,
-                    tasteByUsers = it.tastePowerByUsers ?: 0f,
-
-                    ratingByUser = it.ratingByUser ?: 0,
-                    strengthByUser = it.strengthByUser ?: 0,
-                    smokinessByUser = it.smokinessByUser ?: 0,
-                    aromaByUser = it.aromaByUser ?: 0,
-                    tasteByUser = it.tasteByUser ?: 0,
-
-                    votes = it.votes ?: 0L,
-                )
+                viewState = viewState.copy(isLoading = false, data = it)
             }.onFailure {
                 viewState = viewState.copy(isLoading = false, error = "Ошибка")
             }

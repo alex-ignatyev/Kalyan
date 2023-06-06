@@ -1,13 +1,18 @@
 package screens.main.tobacco_info
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -23,9 +28,10 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.kalyan.shared.strings.AppResStrings
-import com.moriatsushi.insetsx.safeAreaPadding
+import com.moriatsushi.insetsx.navigationBars
+import com.moriatsushi.insetsx.statusBars
 import ktor.getBaseUrl
-import model.tobacco.TobaccoVoteRequest.VoteType
+import model.data.tobacco.TobaccoVoteRequest.VoteType
 import screens.main.tobacco_info.TobaccoInfoEvent.OnBackClick
 import screens.main.tobacco_info.TobaccoInfoEvent.VoteForTobacco
 import screens.main.tobacco_info.view.Rating
@@ -38,8 +44,11 @@ import ui.components.KalyanToolbar
 @Composable
 internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoEvent) -> Unit) {
 
+    val data = state.data
+
     Scaffold(
-        modifier = Modifier.safeAreaPadding(),
+        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.statusBars),
         backgroundColor = KalyanTheme.colors.primaryBackground,
         topBar = {
             KalyanToolbar(title = AppResStrings.title_tobacco_info, onBackClick = {
@@ -48,27 +57,27 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
         }
     ) {
         Column(Modifier.fillMaxSize()) {
-            TobaccoInfo(state.image, state.taste, state.company, state.line, state.strengthByCompany)
+            TobaccoInfo(data.image, data.taste, data.company, data.line, data.strength)
 
             KalyanDivider(modifier = Modifier.padding(horizontal = 32.dp).padding(top = 16.dp))
 
             RatingInfoUsers(
-                ratingByUsers = state.ratingByUsers,
-                strengthByUsers = state.strengthByUsers,
-                smokinessByUsers = state.smokinessByUsers,
-                aromaByUsers = state.aromaByUsers,
-                tasteByUsers = state.tasteByUsers,
-                votes = state.votes
+                ratingByUsers = data.ratingByUsers,
+                strengthByUsers = data.strengthByUsers,
+                smokinessByUsers = data.smokinessByUsers,
+                aromaByUsers = data.aromaByUsers,
+                tasteByUsers = data.tasteByUsers,
+                votes = data.votes
             )
 
             KalyanDivider(modifier = Modifier.padding(horizontal = 32.dp).padding(top = 16.dp))
 
             RatingInfoUser(
-                ratingByUser = state.ratingByUser,
-                strengthByUser = state.strengthByUser,
-                smokinessByUser = state.smokinessByUser,
-                aromaByUser = state.aromaByUser,
-                tasteByUser = state.tasteByUser,
+                ratingByUser = data.ratingByUser,
+                strengthByUser = data.strengthByUser,
+                smokinessByUser = data.smokinessByUser,
+                aromaByUser = data.aromaByUser,
+                tasteByUser = data.tasteByUser,
                 obtainEvent = obtainEvent
             )
 
@@ -83,7 +92,6 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
 
 @Composable
 fun TobaccoInfo(image: String, taste: String, company: String, line: String, strengthByCompany: Int) {
-
     Row(verticalAlignment = Alignment.CenterVertically) {
         KalyanImage(getBaseUrl() + image, modifier = Modifier.padding(8.dp).size(128.dp)) //TODO Перенести в маппинг
 
@@ -245,13 +253,17 @@ data class VoteBottomSheet(val type: VoteType, val value: Long, val obtainEvent:
     override fun Content() {
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
         var rate by remember { mutableStateOf(1) }
-        Rating(value.toInt()) {
-            rate = it
+
+        Column(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 16.dp)))) {
+            Rating(value.toInt(), modifier = Modifier.height(120.dp)) {
+                rate = it
+            }
+
+            KalyanButton(text = "Vote") {
+                obtainEvent(VoteForTobacco(type, rate.toLong()))
+                bottomSheetNavigator.hide()
+            }
         }
 
-        KalyanButton(text = "Vote") {
-            obtainEvent(VoteForTobacco(type, rate.toLong()))
-            bottomSheetNavigator.hide()
-        }
     }
 }

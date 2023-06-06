@@ -1,4 +1,4 @@
-package model.tobacco
+package model.data.tobacco
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -17,7 +17,7 @@ data class TobaccoInfoResponse(
     @SerialName("smokinessByUsers") val smokinessByUsers: Float? = 0f,
     @SerialName("aromaByUsers") val aromaByUsers: Float? = 0f,
     @SerialName("ratingByUsers") val ratingByUsers: Float? = 0f,
-    @SerialName("tastePowerByUsers") val tastePowerByUsers: Float? = 0f,
+    @SerialName("tasteByUsers") val tasteByUsers: Float? = 0f,
 
     @SerialName("ratingByUser") val ratingByUser: Long?,
     @SerialName("strengthByUser") val strengthByUser: Long?,

@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -23,21 +25,26 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kalyan.shared.strings.AppResStrings
+import com.moriatsushi.insetsx.ime
 import com.moriatsushi.insetsx.safeArea
+import com.moriatsushi.insetsx.statusBars
+import screens.main.admin_add_tabacco.AdminAddTobaccoEvent.OnBackClick
 import screens.main.profile.ProfileEvent.ClickOnSettings
 import ui.KalyanTheme
 import ui.components.KalyanToolbar
 
 @Composable
 fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
-    Column(
-        Modifier.fillMaxSize()
-            .background(KalyanTheme.colors.primaryBackground)
-            .windowInsetsPadding(WindowInsets.safeArea)
+    Scaffold (
+        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+            .windowInsetsPadding(WindowInsets.statusBars),
+        backgroundColor = KalyanTheme.colors.primaryBackground,
+        topBar = {
+            KalyanToolbar(title = AppResStrings.title_profile, onFirstIconClick = {
+                obtainEvent.invoke(ClickOnSettings())
+            })
+        }
     ) {
-        KalyanToolbar(title = AppResStrings.title_profile, onFirstIconClick = {
-            obtainEvent.invoke(ClickOnSettings())
-        })
 
         Row(
             modifier = Modifier.padding(top = 32.dp),
@@ -59,10 +66,10 @@ fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
             Column {
                 Text(text = state.name, color = KalyanTheme.colors.secondaryText, fontSize = 20.sp)
             }
-        }
 
-        //TODO Добавить избранные табаки списком вправо с переходом на грид
-        //TODO Добавить табаки которые хочет покурить списком вправо с переходом на грид
-        //TODO Добавить достижения
+            //TODO Добавить избранные табаки списком вправо с переходом на грид
+            //TODO Добавить табаки которые хочет покурить списком вправо с переходом на грид
+            //TODO Добавить достижения
+        }
     }
 }

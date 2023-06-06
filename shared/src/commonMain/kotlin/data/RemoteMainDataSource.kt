@@ -8,10 +8,10 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.HttpHeaders
-import model.tobacco.TobaccoFeedResponse
-import model.tobacco.TobaccoInfoRequest
-import model.tobacco.TobaccoInfoResponse
-import model.tobacco.TobaccoVoteRequest
+import model.data.tobacco.TobaccoFeedResponse
+import model.data.tobacco.TobaccoInfoRequest
+import model.data.tobacco.TobaccoInfoResponse
+import model.data.tobacco.TobaccoVoteRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import utils.answer.Answer

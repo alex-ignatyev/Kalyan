@@ -1,4 +1,4 @@
-package model.admin
+package model.data.admin
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
