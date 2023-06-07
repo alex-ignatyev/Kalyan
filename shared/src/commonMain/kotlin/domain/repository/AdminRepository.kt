@@ -13,8 +13,20 @@ class AdminRepositoryImpl(
     private val settings: SettingsDataSource
 ) : AdminRepository {
 
-    override suspend fun addTobacco(request: AdminAddTobaccoRequest): Answer<Unit> {
-        return remote.addTobacco(settings.getToken(), request)
+    override suspend fun addTobacco(
+        taste: String,
+        company: String,
+        line: String,
+        strength: Long
+    ): Answer<Unit> {
+        return remote.addTobacco(
+            settings.getToken(), AdminAddTobaccoRequest(
+                taste = taste,
+                company = company,
+                line = line,
+                strength = strength
+            )
+        )
     }
 
     override suspend fun getCompanies(): Answer<List<Company>> {
@@ -24,6 +36,12 @@ class AdminRepositoryImpl(
 }
 
 interface AdminRepository {
-    suspend fun addTobacco(request: AdminAddTobaccoRequest): Answer<Unit>
+    suspend fun addTobacco(
+        taste: String,
+        company: String,
+        line: String,
+        strength: Long
+    ): Answer<Unit>
+
     suspend fun getCompanies(): Answer<List<Company>>
 }

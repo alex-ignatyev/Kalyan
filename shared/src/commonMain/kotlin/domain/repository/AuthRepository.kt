@@ -20,12 +20,31 @@ class AuthRepositoryImpl(
         return remote.authorize(settings.getToken())
     }
 
-    override suspend fun create(request: AccountCreateRequest): Answer<Unit> {
-        return remote.createAccount(request)
+    override suspend fun create(
+        login: String,
+        name: String,
+        password: String,
+        repeatPassword: String
+    ): Answer<Unit> {
+        return remote.createAccount(
+            AccountCreateRequest(
+                login = login,
+                name = name,
+                password = password,
+                repeatPassword = repeatPassword
+            )
+        )
     }
 
-    override suspend fun login(request: AccountLoginRequest): Answer<Unit> {
-        remote.login(request).onSuccess {
+    override suspend fun login(
+        login: String,
+        password: String
+    ): Answer<Unit> {
+        remote.login(
+            AccountLoginRequest(
+                login = login, password = password
+            )
+        ).onSuccess {
             if (it.userId == null || it.token == null || it.isAdmin == null) {
                 return Answer.failure(code = InternalError, message = AppRes.string.error_something_went_wrong)
             }
@@ -36,14 +55,38 @@ class AuthRepositoryImpl(
         return Answer.success(Unit)
     }
 
-    override suspend fun forgot(request: AccountForgotRequest): Answer<Unit> {
-        return remote.forgotPassword(request)
+    override suspend fun forgot(
+        login: String,
+        newPassword: String,
+        repeatNewPassword: String
+    ): Answer<Unit> {
+        return remote.forgotPassword(
+            AccountForgotRequest(
+                login = login,
+                newPassword = newPassword,
+                repeatNewPassword = repeatNewPassword
+            )
+        )
     }
 }
 
 interface AuthRepository {
     suspend fun authorize(): Answer<Unit>
-    suspend fun create(request: AccountCreateRequest): Answer<Unit>
-    suspend fun login(request: AccountLoginRequest): Answer<Unit>
-    suspend fun forgot(request: AccountForgotRequest): Answer<Unit>
+    suspend fun create(
+        login: String,
+        name: String,
+        password: String,
+        repeatPassword: String
+    ): Answer<Unit>
+
+    suspend fun login(
+        login: String,
+        password: String
+    ): Answer<Unit>
+
+    suspend fun forgot(
+        login: String,
+        newPassword: String,
+        repeatNewPassword: String
+    ): Answer<Unit>
 }

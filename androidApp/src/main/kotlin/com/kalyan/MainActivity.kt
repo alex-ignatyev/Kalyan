@@ -16,8 +16,7 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         PlatformSDK.init(
             PlatformConfiguration(
-                activityContext = applicationContext,
-                appName = AppRes.string.app_name
+                activityContext = applicationContext
             )
         )
 

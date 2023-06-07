@@ -21,8 +21,8 @@ class RemoteAuthDataSource(
     suspend fun authorize(token: String): Answer<Unit> {
         return apiCall {
             httpClient.get {
-                header(HttpHeaders.Authorization, token)
                 url("authorize")
+                header(HttpHeaders.Authorization, token)
             }
         }
     }
@@ -30,8 +30,8 @@ class RemoteAuthDataSource(
     suspend fun createAccount(request: AccountCreateRequest): Answer<Unit> {
         return apiCall {
             httpClient.post {
-                setBody(request)
                 url("account_create")
+                setBody(request)
             }
         }
     }
@@ -39,8 +39,8 @@ class RemoteAuthDataSource(
     suspend fun login(request: AccountLoginRequest): Answer<TokenResponse> {
         return apiCall {
             httpClient.post {
-                setBody(request)
                 url("account_login")
+                setBody(request)
             }
         }
     }
@@ -48,8 +48,8 @@ class RemoteAuthDataSource(
     suspend fun forgotPassword(request: AccountForgotRequest): Answer<Unit> {
         return apiCall {
             httpClient.post {
-                setBody(request)
                 url("account_forgot")
+                setBody(request)
             }
         }
     }

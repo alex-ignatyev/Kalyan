@@ -31,6 +31,7 @@ import di.Platform.Android
 import ui.KalyanTheme
 import ui.components.KalyanDivider
 
+//TODO Переехать на Look and Feel
 internal object MainFlow : Screen {
 
     @OptIn(ExperimentalMaterialApi::class)
@@ -66,19 +67,6 @@ internal object MainFlow : Screen {
             )
         }
     }
-}
-
-@Composable
-private fun RowScope.TabNavigationItem(tab: Tab) {
-    val tabNavigator = LocalTabNavigator.current
-
-    BottomNavigationItem(
-        selected = tabNavigator.current == tab,
-        onClick = { tabNavigator.current = tab },
-        icon = { tab.options.icon?.let { Icon(painter = it, contentDescription = tab.options.title) } },
-        selectedContentColor = KalyanTheme.colors.generalColor,
-        unselectedContentColor = KalyanTheme.colors.secondaryText
-    )
 }
 
 @Composable
@@ -128,4 +116,17 @@ fun IosBottomNavigation(
             )
         }
     }
+}
+
+@Composable
+private fun RowScope.TabNavigationItem(tab: Tab) {
+    val tabNavigator = LocalTabNavigator.current
+
+    BottomNavigationItem(
+        selected = tabNavigator.current == tab,
+        onClick = { tabNavigator.current = tab },
+        icon = { tab.options.icon?.let { Icon(painter = it, contentDescription = tab.options.title) } },
+        selectedContentColor = KalyanTheme.colors.generalColor,
+        unselectedContentColor = KalyanTheme.colors.secondaryText
+    )
 }

@@ -26,8 +26,8 @@ class RemoteMainDataSource(
     suspend fun getTobaccoFeed(): Answer<List<TobaccoFeedResponse>> {
         return apiCall {
             httpClient.get {
-                header(HttpHeaders.Authorization, settings.getToken())
                 url("tobaccos")
+                header(HttpHeaders.Authorization, settings.getToken())
             }
         }
     }
@@ -35,9 +35,9 @@ class RemoteMainDataSource(
     suspend fun postTobaccoInfo(request: TobaccoInfoRequest): Answer<TobaccoInfoResponse> {
         return apiCall {
             httpClient.post {
+                url("tobacco_info")
                 header(HttpHeaders.Authorization, settings.getToken())
                 parameter("userId", settings.getUserId())
-                url("tobacco_info")
                 setBody(request)
             }
         }
@@ -46,9 +46,9 @@ class RemoteMainDataSource(
     suspend fun postTobaccoVote(request: TobaccoVoteRequest): Answer<Unit> {
         return apiCall {
             httpClient.post {
+                url("vote_tobacco")
                 header(HttpHeaders.Authorization, settings.getToken())
                 parameter("userId", settings.getUserId())
-                url("vote_tobacco")
                 setBody(request)
             }
         }
