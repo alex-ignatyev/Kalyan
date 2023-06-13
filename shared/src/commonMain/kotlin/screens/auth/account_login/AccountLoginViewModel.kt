@@ -1,9 +1,10 @@
 package screens.auth.account_login
 
 import com.adeo.kviewmodel.BaseSharedViewModel
+import data.SettingsDataSource
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
-import model.data.auth.request.AccountLoginRequest
+import navigation.MainFlow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.auth.account_login.AccountLoginAction.OpenCreateAccountScreen
@@ -26,6 +27,7 @@ class AccountLoginViewModel : KoinComponent,
     ) {
 
     private val repository: AuthRepository by inject()
+    private val settings: SettingsDataSource by inject()
 
     override fun obtainEvent(viewEvent: AccountLoginEvent) {
         when (viewEvent) {
@@ -55,12 +57,11 @@ class AccountLoginViewModel : KoinComponent,
     private fun login() {
         viewModelScope.launch {
             viewState = viewState.copy(isLoading = true, error = EMPTY)
-            val request = AccountLoginRequest(
+            repository.login(
                 login = viewState.login,
                 password = viewState.password
-            )
-            repository.login(request).onSuccess {
-                viewAction = OpenMainScreen()
+            ).onSuccess {
+                viewAction = OpenMainScreen(MainFlow(settings.getAdmin()))
             }.onFailure {
                 viewState = viewState.copy(isLoading = false, error = it.message)
             }

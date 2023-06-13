@@ -3,7 +3,6 @@ package screens.auth.account_create
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
-import model.data.auth.request.AccountCreateRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.auth.account_create.AccountCreateAction.OpenLoginScreen
@@ -71,13 +70,12 @@ class AccountCreateViewModel : KoinComponent,
     private fun createAccount() {
         viewModelScope.launch {
             viewState = viewState.copy(isLoading = true)
-            val request = AccountCreateRequest(
+            repository.create(
                 login = viewState.login,
                 name = viewState.name,
                 password = viewState.password,
                 repeatPassword = viewState.passwordRepeat
-            )
-            repository.create(request).onSuccess {
+            ).onSuccess {
                 viewAction = OpenLoginScreen()
             }.onFailure {
                 viewState = viewState.copy(isLoading = false, error = it.message)

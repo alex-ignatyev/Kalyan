@@ -31,15 +31,15 @@ import di.Platform.Android
 import ui.KalyanTheme
 import ui.components.KalyanDivider
 
-//TODO Переехать на Look and Feel
-internal object MainFlow : Screen {
+//TODO Переехать на Look and Feel и отрефачить
+internal data class MainFlow(val isAdmin: Boolean) : Screen {
 
     @OptIn(ExperimentalMaterialApi::class)
     @Composable
     override fun Content() {
         val platform = LocalPlatform.current
 
-        TabNavigator(RatingTab) {
+        TabNavigator(TobaccoFeedTab) {
             Scaffold(
                 modifier = Modifier,
                 content = { paddings ->
@@ -52,15 +52,11 @@ internal object MainFlow : Screen {
                         AndroidBottomNavigation(
                             modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
                         ) {
-                            TabNavigationItem(RatingTab)
-                            TabNavigationItem(SearchTab)
-                            TabNavigationItem(ProfileTab)
+                            Navigation(isAdmin)
                         }
                     } else {
                         IosBottomNavigation() {
-                            TabNavigationItem(RatingTab)
-                            TabNavigationItem(SearchTab)
-                            TabNavigationItem(ProfileTab)
+                            Navigation(isAdmin)
                         }
                     }
                 }
@@ -129,4 +125,12 @@ private fun RowScope.TabNavigationItem(tab: Tab) {
         selectedContentColor = KalyanTheme.colors.generalColor,
         unselectedContentColor = KalyanTheme.colors.secondaryText
     )
+}
+
+@Composable
+private fun RowScope.Navigation(isAdmin: Boolean) {
+    TabNavigationItem(TobaccoFeedTab)
+    TabNavigationItem(MixTab)
+    if (isAdmin) TabNavigationItem(AdminTab)
+    TabNavigationItem(ProfileTab)
 }

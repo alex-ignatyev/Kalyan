@@ -3,7 +3,6 @@ package screens.auth.account_forgot
 import com.adeo.kviewmodel.BaseSharedViewModel
 import domain.repository.AuthRepository
 import kotlinx.coroutines.launch
-import model.data.auth.request.AccountForgotRequest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import screens.auth.account_forgot.AccountForgotAction.OpenLoginScreen
@@ -65,12 +64,11 @@ class AccountForgotViewModel : KoinComponent,
     private fun resetPassword() {
         viewModelScope.launch {
             viewState = viewState.copy(isLoading = true)
-            val request = AccountForgotRequest(
+            repository.forgot(
                 login = viewState.login,
                 newPassword = viewState.password,
                 repeatNewPassword = viewState.passwordRepeat
-            )
-            repository.forgot(request).onSuccess {
+            ).onSuccess {
                 viewAction = OpenLoginScreen()
             }.onFailure {
                 viewState = viewState.copy(isLoading = false, error = it.message)

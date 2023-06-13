@@ -1,5 +1,7 @@
 package screens.auth.account_login
 
+import cafe.adriel.voyager.core.screen.Screen
+
 sealed class AccountLoginEvent {
     data class ChangeLogin(val value: String) : AccountLoginEvent()
     data class ChangePassword(val value: String) : AccountLoginEvent()
@@ -21,5 +23,5 @@ data class AccountLoginState(
 sealed class AccountLoginAction {
     class OpenCreateAccountScreen : AccountLoginAction()
     class OpenForgotPasswordScreen : AccountLoginAction()
-    class OpenMainScreen : AccountLoginAction()
+    class OpenMainScreen(val screen: Screen) : AccountLoginAction()
 }

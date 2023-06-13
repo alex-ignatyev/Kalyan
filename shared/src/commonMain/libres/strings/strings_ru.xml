@@ -25,8 +25,9 @@
     <string name="text_forgot_reset">Сбросить Пароль</string>
 
     // Main
-    <string name="title_rating">Рейтинг</string>
-    <string name="title_search">Поиск</string>
+    <string name="title_tobacco_feed">Список тобаков</string>
+    <string name="title_mix">Микс</string>
+    <string name="title_admin">Админ</string>
     <string name="title_profile">Профиль</string>
     <string name="title_settings">Настройки</string>
 

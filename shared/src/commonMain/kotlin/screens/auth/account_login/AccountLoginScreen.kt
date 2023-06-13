@@ -7,7 +7,6 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.adeo.kviewmodel.compose.ViewModel
-import navigation.MainFlow
 import screens.auth.account_create.AccountCreateScreen
 import screens.auth.account_forgot.AccountForgotScreen
 import screens.auth.account_login.AccountLoginAction.OpenCreateAccountScreen
@@ -31,7 +30,7 @@ object AccountLoginScreen : Screen {
 
             when (action) {
                 is OpenMainScreen -> {
-                    navigator.replaceAll(MainFlow)
+                    navigator.replaceAll((action as OpenMainScreen).screen)
                     viewModel.obtainEvent(ClearActions())
                 }
 

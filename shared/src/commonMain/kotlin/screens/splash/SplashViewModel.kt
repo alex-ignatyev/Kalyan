@@ -35,7 +35,7 @@ class SplashViewModel : KoinComponent, BaseSharedViewModel<SplashState, SplashAc
                 viewAction = OpenFlow(AccountLoginScreen)
             } else {
                 authRepository.authorize().onSuccess {
-                    viewAction = OpenFlow(MainFlow)
+                    viewAction = OpenFlow(MainFlow(settings.getAdmin()))
                 }.onFailure {
                     settings.clear()
                     viewAction = OpenFlow(AccountLoginScreen)
