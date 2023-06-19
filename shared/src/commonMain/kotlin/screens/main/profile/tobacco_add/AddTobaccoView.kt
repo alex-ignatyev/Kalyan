@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults.colors
@@ -24,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.kalyan.shared.AppRes
 import com.kalyan.shared.strings.AppResStrings
@@ -55,10 +57,10 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
     val tobacco = state.tobacco
 
     Scaffold(
-        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+        modifier = Modifier.background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
             .windowInsetsPadding(WindowInsets.ime),
-        backgroundColor = KalyanTheme.colors.primaryBackground,
+        backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(
                 title = AppResStrings.title_admin_add_tobacco,
@@ -81,14 +83,14 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
                     Text(
                         text = AppResStrings.text_admin_manually,
                         style = KalyanTheme.typography.header,
-                        color = KalyanTheme.colors.primaryText,
+                        color = KalyanTheme.colors.backgroundOn,
                         modifier = Modifier.weight(1f)
                     )
 
                     Switch(state.isManual, colors = colors(
-                        checkedThumbColor = KalyanTheme.colors.generalColor,
-                        checkedTrackColor = KalyanTheme.colors.primaryText,
-                        uncheckedTrackColor = KalyanTheme.colors.primaryText
+                        checkedThumbColor = KalyanTheme.colors.primary,
+                        checkedTrackColor = KalyanTheme.colors.backgroundOn,
+                        uncheckedTrackColor = KalyanTheme.colors.backgroundOn
                     ), onCheckedChange = {
                         obtainEvent(ChangeManual(it))
                     })
@@ -146,7 +148,7 @@ fun AddTobaccoView(state: AddTobaccoState, obtainEvent: (AddTobaccoEvent) -> Uni
 
                 Text(
                     text = state.error,
-                    color = KalyanTheme.colors.errorColor,
+                    color = KalyanTheme.colors.error,
                     modifier = Modifier.padding(top = 16.dp)
                 )
             }
@@ -172,23 +174,23 @@ data class CompanyBottomSheet(val companies: List<Company>, val obtainEvent: (Ad
     @OptIn(ExperimentalSoftwareKeyboardApi::class)
     @Composable
     override fun Content() {
-        val bottomSheetNavigator = LocalBottomSheetNavigator.current
+         val bottomSheetNavigator = LocalBottomSheetNavigator.current
 
-        LazyColumn(
-            modifier = Modifier.wrapContentHeight()
-                .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 8.dp)))
-                .windowInsetsPadding(WindowInsets.ime)
-        ) {
-            items(companies) {
-                Text(
-                    text = it.company,
-                    style = KalyanTheme.typography.body,
-                    modifier = Modifier.fillMaxWidth().clickable {
-                        obtainEvent(ChangeCompany(it.company))
-                        bottomSheetNavigator.hide()
-                    })
+            LazyColumn(
+                modifier = Modifier.wrapContentHeight()
+                    .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 8.dp)))
+                    .windowInsetsPadding(WindowInsets.ime)
+            ) {
+                items(companies) {
+                    Text(
+                        text = it.company,
+                        style = KalyanTheme.typography.body,
+                        modifier = Modifier.fillMaxWidth().clickable {
+                            obtainEvent(ChangeCompany(it.company))
+                            bottomSheetNavigator.hide()
+                        })
+                }
             }
-        }
     }
 }
 

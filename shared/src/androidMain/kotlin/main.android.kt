@@ -22,9 +22,7 @@ fun MainView() {
         darkTheme = currentSettings.isDarkMode
     ) {
 
-        systemUiController.setSystemBarsColor(
-            color = KalyanTheme.colors.primaryBackground
-        )
+        systemUiController.setSystemBarsColor(color = KalyanTheme.colors.background)
 
         CompositionLocalProvider(
             LocalPlatform provides Android,

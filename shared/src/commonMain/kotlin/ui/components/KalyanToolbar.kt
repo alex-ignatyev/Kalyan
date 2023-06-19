@@ -27,7 +27,7 @@ fun KalyanToolbar(
     onFirstIconClick: (() -> Unit)? = null
 ) {
     TopAppBar(
-        backgroundColor = if (isTransparent) Color.Transparent else KalyanTheme.colors.primaryBackground,
+        backgroundColor = if (isTransparent) Color.Transparent else KalyanTheme.colors.background,
         elevation = if (isTransparent) 0.dp else 8.dp
     ) {
         Row(
@@ -36,7 +36,7 @@ fun KalyanToolbar(
             onBackClick?.let {
                 Image(
                     imageVector = Icons.Default.ArrowBack,
-                    colorFilter = ColorFilter.tint(KalyanTheme.colors.primaryText),
+                    colorFilter = ColorFilter.tint(KalyanTheme.colors.backgroundOn),
                     contentDescription = null,
                     modifier = Modifier.padding(start = 16.dp).align(Alignment.CenterVertically).clickable {
                         onBackClick.invoke()
@@ -47,7 +47,7 @@ fun KalyanToolbar(
             Text(
                 text = title,
                 style = KalyanTheme.typography.header,
-                color = KalyanTheme.colors.primaryText,
+                color = KalyanTheme.colors.backgroundOn,
                 modifier = Modifier.weight(1f).padding(start = 16.dp),
                 textAlign = TextAlign.Start
             )
@@ -55,7 +55,7 @@ fun KalyanToolbar(
             onFirstIconClick?.let {
                 Image(
                     imageVector = Icons.Default.Settings,
-                    colorFilter = ColorFilter.tint(KalyanTheme.colors.primaryText),
+                    colorFilter = ColorFilter.tint(KalyanTheme.colors.backgroundOn),
                     contentDescription = null,
                     modifier = Modifier.align(Alignment.CenterVertically).padding(end = 16.dp).clickable {
                         onFirstIconClick.invoke()

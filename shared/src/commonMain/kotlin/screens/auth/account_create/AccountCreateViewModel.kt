@@ -19,15 +19,14 @@ import screens.auth.account_create.AccountCreateEvent.ShowPasswordRepeatClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
+import utils.mvi.Action
+import utils.mvi.Event
 
-class AccountCreateViewModel : KoinComponent,
-    BaseSharedViewModel<AccountCreateState, AccountCreateAction, AccountCreateEvent>(
-        initialState = AccountCreateState()
-    ) {
+class AccountCreateViewModel : KoinComponent, BaseSharedViewModel<AccountCreateState, Action, Event>(initialState = AccountCreateState()) {
 
     private val repository: AuthRepository by inject()
 
-    override fun obtainEvent(viewEvent: AccountCreateEvent) {
+    override fun obtainEvent(viewEvent: Event) {
         when (viewEvent) {
             is ChangeLogin -> changeLogin(viewEvent.value)
             is ChangeName -> changeName(viewEvent.value)

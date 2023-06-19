@@ -18,15 +18,14 @@ import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
+import utils.mvi.Action
+import utils.mvi.Event
 
-class AccountForgotViewModel : KoinComponent,
-    BaseSharedViewModel<AccountForgotState, AccountForgotAction, AccountForgotEvent>(
-        initialState = AccountForgotState()
-    ) {
+class AccountForgotViewModel : KoinComponent, BaseSharedViewModel<AccountForgotState, Action, Event>(initialState = AccountForgotState()) {
 
     private val repository: AuthRepository by inject()
 
-    override fun obtainEvent(viewEvent: AccountForgotEvent) {
+    override fun obtainEvent(viewEvent: Event) {
         when (viewEvent) {
             is ChangeLogin -> changeLogin(viewEvent.value)
             is ChangePassword -> changeNewPassword(viewEvent.value)

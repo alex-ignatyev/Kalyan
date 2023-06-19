@@ -20,16 +20,15 @@ import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
+import utils.mvi.Action
+import utils.mvi.Event
 
-class AccountLoginViewModel : KoinComponent,
-    BaseSharedViewModel<AccountLoginState, AccountLoginAction, AccountLoginEvent>(
-        initialState = AccountLoginState()
-    ) {
+class AccountLoginViewModel : KoinComponent, BaseSharedViewModel<AccountLoginState, Action, Event>(initialState = AccountLoginState()) {
 
     private val repository: AuthRepository by inject()
     private val settings: SettingsDataSource by inject()
 
-    override fun obtainEvent(viewEvent: AccountLoginEvent) {
+    override fun obtainEvent(viewEvent: Event) {
         when (viewEvent) {
             is ChangeLogin -> changeLogin(viewEvent.value)
             is ChangePassword -> changePassword(viewEvent.value)

@@ -53,10 +53,10 @@ import ui.components.KalyanToolbar
 fun MixCreateView(state: MixCreateState, obtainEvent: (MixCreateEvent) -> Unit) {
 
     Scaffold(
-        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+        modifier = Modifier.background(KalyanTheme.colors.primary)
             .windowInsetsPadding(WindowInsets.statusBars)
             .windowInsetsPadding(WindowInsets.ime),
-        backgroundColor = KalyanTheme.colors.primaryBackground,
+        backgroundColor = KalyanTheme.colors.primary,
         topBar = {
             KalyanToolbar(
                 title = AppResStrings.title_admin_add_tobacco,
@@ -79,14 +79,14 @@ fun MixCreateView(state: MixCreateState, obtainEvent: (MixCreateEvent) -> Unit) 
                     Text(
                         text = AppResStrings.text_admin_manually,
                         style = KalyanTheme.typography.header,
-                        color = KalyanTheme.colors.primaryText,
+                        color = KalyanTheme.colors.primaryOn,
                         modifier = Modifier.weight(1f)
                     )
 
                     Switch(state.isManual, colors = colors(
-                        checkedThumbColor = KalyanTheme.colors.generalColor,
-                        checkedTrackColor = KalyanTheme.colors.primaryText,
-                        uncheckedTrackColor = KalyanTheme.colors.primaryText
+                        checkedThumbColor = KalyanTheme.colors.primary,
+                        checkedTrackColor = KalyanTheme.colors.primaryOn,
+                        uncheckedTrackColor = KalyanTheme.colors.primaryOn
                     ), onCheckedChange = {
                         obtainEvent(ChangeManual(it))
                     })
@@ -144,7 +144,7 @@ fun MixCreateView(state: MixCreateState, obtainEvent: (MixCreateEvent) -> Unit) 
 
                 Text(
                     text = state.error,
-                    color = KalyanTheme.colors.errorColor,
+                    color = KalyanTheme.colors.error,
                     modifier = Modifier.padding(top = 16.dp)
                 )
             }

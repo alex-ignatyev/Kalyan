@@ -9,8 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.Card
 import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,7 +38,11 @@ fun TobaccoView(tobaccoFeed: TobaccoFeed, position: Int, modifier: Modifier = Mo
             textAlign = TextAlign.Center
         )
 
-        Card(modifier = Modifier.fillMaxWidth().padding(start = 16.dp), elevation = 8.dp) {
+        Card(
+            modifier = Modifier.fillMaxWidth().padding(start = 16.dp),
+            colors = CardDefaults.cardColors(containerColor = KalyanTheme.colors.background),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        ) {
             Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
 
                 KalyanImage(getBaseUrl() + tobaccoFeed.image, modifier = Modifier.padding(8.dp)) //TODO Перенести в маппинг
@@ -47,9 +52,9 @@ fun TobaccoView(tobaccoFeed: TobaccoFeed, position: Int, modifier: Modifier = Mo
                         text = tobaccoFeed.taste,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = KalyanTheme.colors.primaryText
+                        color = KalyanTheme.colors.backgroundOn
                     )
-                    Text(text = tobaccoFeed.company, fontSize = 12.sp, color = KalyanTheme.colors.primaryText)
+                    Text(text = tobaccoFeed.company, fontSize = 12.sp, color = KalyanTheme.colors.backgroundOn)
                 }
 
                 Row(
@@ -74,8 +79,8 @@ fun RatingCard(rating: String, modifier: Modifier = Modifier) {
     ) {
         Text(
             text = rating,
-            style = KalyanTheme.typography.caption,
-            color = KalyanTheme.colors.primaryText,
+            style = KalyanTheme.typography.hint,
+            color = KalyanTheme.colors.backgroundOn,
             textAlign = TextAlign.Center
         )
 
@@ -96,8 +101,8 @@ fun ViewsCard(views: String, modifier: Modifier = Modifier) {
     ) {
         Text(
             text = views,
-            style = KalyanTheme.typography.caption,
-            color = KalyanTheme.colors.primaryText,
+            style = KalyanTheme.typography.hint,
+            color = KalyanTheme.colors.backgroundOn,
             textAlign = TextAlign.Center
         )
 

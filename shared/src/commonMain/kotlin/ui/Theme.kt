@@ -27,12 +27,11 @@ internal fun MainTheme(
         ),
         body = TextStyle(
             color = colors.primaryText,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Normal
+            fontSize = 16.sp
         ),
         caption = TextStyle(
             color = colors.primaryText,
-            fontSize = 12.sp
+            fontSize = 14.sp
         ),
         hint = TextStyle(
             color = colors.secondaryText,

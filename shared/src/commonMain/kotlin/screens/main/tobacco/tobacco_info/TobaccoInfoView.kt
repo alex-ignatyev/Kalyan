@@ -52,17 +52,26 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
     val data = state.data
 
     Scaffold(
-        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+        modifier = Modifier
+            .background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars),
-        backgroundColor = KalyanTheme.colors.primaryBackground,
+        backgroundColor = KalyanTheme.colors.background,
         topBar = {
-            KalyanToolbar(title = AppResStrings.title_tobacco_info, onBackClick = {
-                obtainEvent(OnBackClick())
-            })
+            KalyanToolbar(
+                title = AppResStrings.title_tobacco_info,
+                onBackClick = {
+                    obtainEvent(OnBackClick())
+                })
         }
     ) {
         Column(Modifier.fillMaxSize()) {
-            TobaccoInfo(data.image, data.taste, data.company, data.line, data.strength)
+            TobaccoInfo(
+                image = data.image,
+                taste = data.taste,
+                company = data.company,
+                line = data.line,
+                strengthByCompany = data.strength
+            )
 
             KalyanDivider(modifier = Modifier.padding(horizontal = 32.dp).padding(top = 16.dp))
 
@@ -88,7 +97,7 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
 
             Text(
                 text = "error: ${state.error}",
-                color = KalyanTheme.colors.secondaryText,
+                color = KalyanTheme.colors.error,
                 modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
             )
         }
@@ -259,7 +268,11 @@ data class VoteBottomSheet(val type: VoteType, val value: Long, val obtainEvent:
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
         var rate by remember { mutableStateOf(1) }
 
-        Column(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 16.dp)))) {
+        Column(
+            modifier = Modifier.windowInsetsPadding(
+                WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 48.dp))
+            )
+        ) {
             Rating(value.toInt(), modifier = Modifier.height(120.dp)) {
                 rate = it
             }
@@ -269,6 +282,5 @@ data class VoteBottomSheet(val type: VoteType, val value: Long, val obtainEvent:
                 bottomSheetNavigator.hide()
             }
         }
-
     }
 }

@@ -27,7 +27,7 @@ fun KalyanSelect(title: String, text: String = "", modifier: Modifier = Modifier
             Text(
                 text = title,
                 style = if (text.isBlank()) KalyanTheme.typography.body else KalyanTheme.typography.hint,
-                color = KalyanTheme.colors.secondaryText,
+                color = KalyanTheme.colors.outline,
                 modifier = Modifier.padding(start = 16.dp)
             )
 
@@ -43,7 +43,7 @@ fun KalyanSelect(title: String, text: String = "", modifier: Modifier = Modifier
         Image(
             painter = painterResource(AppResImages.ic_next),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(KalyanTheme.colors.secondaryText),
+            colorFilter = ColorFilter.tint(KalyanTheme.colors.outline),
             modifier = Modifier.size(16.dp).align(Alignment.CenterEnd)
         )
 

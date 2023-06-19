@@ -1,6 +1,9 @@
 package screens.auth.account_create
 
-sealed class AccountCreateEvent {
+import utils.mvi.Action
+import utils.mvi.Event
+
+sealed class AccountCreateEvent : Event {
     data class ChangeLogin(val value: String) : AccountCreateEvent()
     data class ChangeName(val value: String) : AccountCreateEvent()
     data class ChangePassword(val value: String) : AccountCreateEvent()
@@ -23,7 +26,7 @@ data class AccountCreateState(
     val error: String = ""
 )
 
-sealed class AccountCreateAction {
+sealed class AccountCreateAction : Action {
     class OpenLoginScreen : AccountCreateAction()
     class ReturnToPreviousScreen : AccountCreateAction()
 }

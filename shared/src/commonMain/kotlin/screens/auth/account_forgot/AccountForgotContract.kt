@@ -1,6 +1,9 @@
 package screens.auth.account_forgot
 
-sealed class AccountForgotEvent {
+import utils.mvi.Action
+import utils.mvi.Event
+
+sealed class AccountForgotEvent : Event {
     data class ChangeLogin(val value: String) : AccountForgotEvent()
     data class ChangePassword(val value: String) : AccountForgotEvent()
     class ShowPasswordClick : AccountForgotEvent()
@@ -21,7 +24,7 @@ data class AccountForgotState(
     val error: String = ""
 )
 
-sealed class AccountForgotAction {
+sealed class AccountForgotAction : Action {
     class OpenLoginScreen : AccountForgotAction()
     class ReturnToPreviousScreen : AccountForgotAction()
 }

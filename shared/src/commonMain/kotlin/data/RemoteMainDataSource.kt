@@ -23,10 +23,11 @@ class RemoteMainDataSource(
 
     val settings: SettingsDataSource by inject()
 
-    suspend fun getTobaccoFeed(): Answer<List<TobaccoFeedResponse>> {
+    suspend fun getTobaccoFeed(search: String): Answer<List<TobaccoFeedResponse>> {
         return apiCall {
             httpClient.get {
                 url("tobaccos")
+                parameter("searchQuery", search)
                 header(HttpHeaders.Authorization, settings.getToken())
             }
         }

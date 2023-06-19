@@ -1,8 +1,6 @@
 package screens.auth.account_forgot
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -10,15 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.Icons.Sharp
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.sharp.KeyboardArrowUp
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -33,20 +25,22 @@ import screens.auth.account_forgot.AccountForgotEvent.OnBackClick
 import screens.auth.account_forgot.AccountForgotEvent.ResetPasswordClick
 import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordClick
 import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
+import screens.auth.view.PasswordShowIcon
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress
 import ui.components.KalyanTextField
 import ui.components.KalyanToolbar
 import ui.components.TextFieldType.Password
+import utils.mvi.Event
 
 @Composable
-fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEvent) -> Unit) {
+fun AccountForgotView(state: AccountForgotState, obtainEvent: (Event) -> Unit) {
 
     Scaffold(
-        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+        modifier = Modifier.background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars),
-        backgroundColor = KalyanTheme.colors.primaryBackground,
+        backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(isTransparent = true, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
@@ -59,8 +53,7 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEven
         ) {
             Text(
                 text = AppResStrings.title_forgot,
-                style = KalyanTheme.typography.header,
-                color = KalyanTheme.colors.primaryText
+                style = KalyanTheme.typography.header
             )
 
             Text(
@@ -89,21 +82,9 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEven
                 isError = state.error.isNotBlank(),
                 fieldType = Password(state.isPasswordHidden),
                 endIcon = {
-                    Icon(
-                        modifier = Modifier.clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            obtainEvent.invoke(ShowPasswordClick())
-                        },
-                        imageVector = if (state.isPasswordHidden) {
-                            Sharp.KeyboardArrowUp
-                        } else {
-                            Icons.Default.KeyboardArrowDown
-                        },
-                        contentDescription = null,
-                        tint = KalyanTheme.colors.secondaryText
-                    )
+                    PasswordShowIcon(state.isPasswordHidden) {
+                        obtainEvent(ShowPasswordClick())
+                    }
                 }
             ) {
                 obtainEvent(ChangePassword(it))
@@ -116,21 +97,9 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEven
                 isError = state.error.isNotBlank(),
                 fieldType = Password(state.isPasswordRepeatHidden),
                 endIcon = {
-                    Icon(
-                        modifier = Modifier.clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            obtainEvent.invoke(ShowPasswordRepeatClick())
-                        },
-                        imageVector = if (state.isPasswordRepeatHidden) {
-                            Sharp.KeyboardArrowUp
-                        } else {
-                            Icons.Default.KeyboardArrowDown
-                        },
-                        contentDescription = null,
-                        tint = KalyanTheme.colors.secondaryText
-                    )
+                    PasswordShowIcon(state.isPasswordRepeatHidden) {
+                        obtainEvent(ShowPasswordRepeatClick())
+                    }
                 }
             ) {
                 obtainEvent(ChangePasswordRepeat(it))
@@ -149,7 +118,7 @@ fun AccountForgotView(state: AccountForgotState, obtainEvent: (AccountForgotEven
 
             Text(
                 text = state.error,
-                color = KalyanTheme.colors.errorColor,
+                color = KalyanTheme.colors.error,
                 modifier = Modifier.padding(top = 16.dp)
             )
         }

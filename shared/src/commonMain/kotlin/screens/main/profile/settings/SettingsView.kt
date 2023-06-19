@@ -35,9 +35,9 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
     val currentSettings = settingsEventBus.currentSettings.value
 
     Scaffold(
-        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+        modifier = Modifier.background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars),
-        backgroundColor = KalyanTheme.colors.primaryBackground,
+        backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(title = AppResStrings.title_settings, onBackClick = {
                 obtainEvent.invoke(OnBackClick())
@@ -53,7 +53,7 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
                     Text(
                         modifier = Modifier.weight(1f),
                         text = AppRes.string.action_dark_theme_enable,
-                        color = KalyanTheme.colors.primaryText,
+                        color = KalyanTheme.colors.backgroundOn,
                         style = KalyanTheme.typography.body
                     )
                     Checkbox(
@@ -61,8 +61,8 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
                             settingsEventBus.updateDarkMode(!currentSettings.isDarkMode)
                         },
                         colors = CheckboxDefaults.colors(
-                            checkedColor = KalyanTheme.colors.tintColor,
-                            uncheckedColor = KalyanTheme.colors.secondaryText
+                            checkedColor = KalyanTheme.colors.backgroundOn,
+                            uncheckedColor = KalyanTheme.colors.backgroundOn
                         )
                     )
                 }
@@ -73,7 +73,7 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
             KalyanButton(
                 modifier = Modifier.padding(bottom = 16.dp).align(Alignment.BottomCenter)
                     .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets.navigationBars)),
-                backgroundColor = KalyanTheme.colors.errorColor,
+                backgroundColor = KalyanTheme.colors.error,
                 text = AppResStrings.text_logout
             ) {
                 obtainEvent.invoke(OnLogOutClick())
@@ -82,4 +82,3 @@ fun SettingsView(state: SettingsState, obtainEvent: (SettingsEvent) -> Unit) {
         //TODO Добавить смену пароля
     }
 }
-

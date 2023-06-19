@@ -6,23 +6,39 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 
 data class KalyanColors(
-    val primaryBackground: Color,
-    val secondaryBackground: Color,
+    val primary: Color,
+    val primaryOn: Color,
+    val primaryContainer: Color,
+    val primaryContainerOn: Color,
 
-    val generalColor: Color,
-    val tintColor: Color,
+    val secondary: Color,
+    val secondaryOn: Color,
+    val secondaryContainer: Color,
+    val secondaryContainerOn: Color,
 
-    val buttonDisable: Color,
+    val tertiary: Color,
+    val tertiaryOn: Color,
+    val tertiaryContainer: Color,
+    val tertiaryContainerOn: Color,
+
+    val error: Color,
+    val errorOn: Color,
+    val errorContainer: Color,
+    val errorContainerOn: Color,
+
+    val background: Color,
+    val backgroundOn: Color,
+
+    val surface: Color,
+    val surfaceOn: Color,
+
+    val surfaceVariant: Color,
+    val surfaceVariantOn: Color,
+
+    val outline: Color,
 
     val primaryText: Color,
-    val secondaryText: Color,
-
-    val controlColor: Color,
-    val errorColor: Color,/*
-
-    //BottomNav
-    val selectedContentColor: Color,
-    val unselectedContentColor: Color*/
+    val secondaryText: Color
 )
 
 data class KalyanTypography(

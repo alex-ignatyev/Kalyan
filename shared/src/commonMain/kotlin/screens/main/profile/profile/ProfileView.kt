@@ -31,9 +31,9 @@ import ui.components.KalyanToolbar
 @Composable
 fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
     Scaffold (
-        modifier = Modifier.background(KalyanTheme.colors.primaryBackground)
+        modifier = Modifier.background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.statusBars),
-        backgroundColor = KalyanTheme.colors.primaryBackground,
+        backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(title = AppResStrings.title_profile, onFirstIconClick = {
                 obtainEvent.invoke(ClickOnSettings())
@@ -47,7 +47,7 @@ fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
         ) {
             Image(
                 imageVector = Icons.Default.Person,
-                colorFilter = ColorFilter.tint(Color.White),
+                colorFilter = ColorFilter.tint(KalyanTheme.colors.backgroundOn),
                 contentDescription = null,
                 modifier = Modifier
                     .size(84.dp)
@@ -59,7 +59,7 @@ fun ProfileView(state: ProfileState, obtainEvent: (ProfileEvent) -> Unit) {
             Spacer(modifier = Modifier.width(24.dp))
 
             Column {
-                Text(text = state.name, color = KalyanTheme.colors.secondaryText, fontSize = 20.sp)
+                Text(text = state.name, color = KalyanTheme.colors.backgroundOn, fontSize = 20.sp)
             }
 
             //TODO Добавить избранные табаки списком вправо с переходом на грид

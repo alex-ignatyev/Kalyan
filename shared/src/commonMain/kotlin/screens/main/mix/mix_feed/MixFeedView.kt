@@ -16,13 +16,12 @@ import ui.KalyanTheme
 internal fun MixFeedView(viewState: MixFeedState, obtainEvent: (MixFeedEvent) -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
-            .background(KalyanTheme.colors.primaryBackground)
+            .background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.safeArea)
     ) {
         Text(
             text = AppResStrings.title_mix,
-            style = KalyanTheme.typography.header,
-            color = KalyanTheme.colors.primaryText
+            style = KalyanTheme.typography.header
         )
     }
 }

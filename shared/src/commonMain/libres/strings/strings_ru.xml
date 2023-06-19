@@ -47,6 +47,9 @@
     <string name="text_rating">Рейтинг</string>
     <string name="text_smokiness">Дымность</string>
     <string name="text_aroma">Аромат</string>
+    <string name="text_search">Поиск</string>
+    <string name="text_empty_list">Список пуст</string>
+    <string name="text_cant_find">Не нашли ваш любимый табак ? Вы можете создать запрос и мы обязательно его добавим</string>
 
     // Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
@@ -54,4 +57,6 @@
 
     // Error
     <string name="error_something_went_wrong">Что-то пошло не так, попробуйте позже</string>
+    <string name="error_something_went_wrong_screen_title">Ой...Что-то пошло не так</string>
+    <string name="error_something_went_wrong_screen_hint">Попробуйте еще раз или повторите позже</string>
 </resources>

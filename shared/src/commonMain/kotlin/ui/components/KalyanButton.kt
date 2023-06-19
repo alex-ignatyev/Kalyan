@@ -18,7 +18,7 @@ import ui.KalyanTheme
 @Composable
 internal fun KalyanButton(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = KalyanTheme.colors.generalColor,
+    backgroundColor: Color = KalyanTheme.colors.primary,
     shape: Shape = RoundedCornerShape(8.dp),
     text: String? = null,
     enabled: Boolean = true,
@@ -32,14 +32,14 @@ internal fun KalyanButton(
         shape = shape,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = backgroundColor,
-            disabledBackgroundColor = KalyanTheme.colors.secondaryBackground
+            disabledBackgroundColor = KalyanTheme.colors.surfaceVariant
         )
     ) {
         text?.let {
             Text(
                 text = it,
                 style = KalyanTheme.typography.body,
-                color = KalyanTheme.colors.primaryBackground
+                color = KalyanTheme.colors.primaryOn
             )
         } ?: content.invoke(this)
     }

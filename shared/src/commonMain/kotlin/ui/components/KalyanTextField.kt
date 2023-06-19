@@ -44,12 +44,12 @@ fun KalyanTextField(
         keyboardOptions = KeyboardOptions(keyboardType = inputType),
         trailingIcon = endIcon,
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = KalyanTheme.colors.generalColor,
-            unfocusedBorderColor = KalyanTheme.colors.secondaryBackground,
-            disabledBorderColor = KalyanTheme.colors.secondaryBackground,
-            errorBorderColor = KalyanTheme.colors.errorColor,
-            textColor = KalyanTheme.colors.primaryText,
-            cursorColor = KalyanTheme.colors.controlColor
+            focusedBorderColor = KalyanTheme.colors.primary,
+            unfocusedBorderColor = KalyanTheme.colors.surfaceVariant,
+            disabledBorderColor = KalyanTheme.colors.surfaceVariant,
+            errorBorderColor = KalyanTheme.colors.error,
+            textColor = KalyanTheme.colors.backgroundOn,
+            cursorColor = KalyanTheme.colors.primary
         )
     )
 }

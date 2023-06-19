@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.adeo.kviewmodel.compose.ViewModel
 import com.kalyan.shared.strings.AppResStrings
@@ -31,14 +30,14 @@ object SplashScreen : Screen {
         ViewModel({ SplashViewModel() }) { viewModel ->
             val action by viewModel.viewActions().collectAsState(null)
             Column(
-                modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.primaryBackground),
+                modifier = Modifier.fillMaxSize().background(KalyanTheme.colors.background),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = AppResStrings.app_name,
                     style = KalyanTheme.typography.header,
-                    color = KalyanTheme.colors.primaryText,
+                    color = KalyanTheme.colors.backgroundOn,
                     textAlign = TextAlign.Center
                 )
             }

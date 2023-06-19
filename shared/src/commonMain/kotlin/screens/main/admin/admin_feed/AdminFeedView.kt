@@ -16,13 +16,13 @@ import ui.KalyanTheme
 internal fun AdminFeedView(viewState: AdminFeedState, obtainEvent: (AdminFeedEvent) -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
-            .background(KalyanTheme.colors.primaryBackground)
+            .background(KalyanTheme.colors.background)
             .windowInsetsPadding(WindowInsets.safeArea)
     ) {
         Text(
             text = AppResStrings.title_admin,
             style = KalyanTheme.typography.header,
-            color = KalyanTheme.colors.primaryText
+            color = KalyanTheme.colors.backgroundOn
         )
     }
 }

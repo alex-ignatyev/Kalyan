@@ -14,8 +14,8 @@ class RatingRepositoryImpl(
     private val remote: RemoteMainDataSource
 ) : RatingRepository {
 
-    override suspend fun getTobaccoFeed(): Answer<List<TobaccoFeed>> {
-        return remote.getTobaccoFeed().map { it.toDomain() }
+    override suspend fun getTobaccoFeed(search: String): Answer<List<TobaccoFeed>> {
+        return remote.getTobaccoFeed(search).map { it.toDomain() }
     }
 
     override suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfo> {
@@ -38,7 +38,7 @@ class RatingRepositoryImpl(
 }
 
 interface RatingRepository {
-    suspend fun getTobaccoFeed(): Answer<List<TobaccoFeed>>
+    suspend fun getTobaccoFeed(search: String): Answer<List<TobaccoFeed>>
     suspend fun getTobaccoInfo(tobaccoId: String): Answer<TobaccoInfo>
     suspend fun postTobaccoVote(
         tobaccoId: String,
