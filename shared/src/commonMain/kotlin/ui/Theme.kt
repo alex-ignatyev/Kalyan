@@ -14,6 +14,7 @@ internal fun MainTheme(
 ) {
     val colors = if (darkTheme) paletteDark else paletteLight
 
+    //TODO Добавить text align а в других местах убрать
     val typography = KalyanTypography(
         header = TextStyle(
             color = colors.primaryText,

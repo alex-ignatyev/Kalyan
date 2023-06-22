@@ -11,7 +11,10 @@ import com.adeo.kviewmodel.compose.ViewModel
 import screens.main.tobacco.tobacco_feed.TobaccoFeedAction.OpenTobaccoInfoScreen
 import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.ClearActions
 import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.InitTobaccoFeedScreen
-import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.RefreshTobaccoFeedScreen
+import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnErrorRefresh
+import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Error
+import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Loading
+import screens.main.tobacco.tobacco_feed.view.TobaccoFeedLoadingView
 import screens.main.tobacco.tobacco_info.TobaccoInfoScreen
 import ui.components.ErrorScreen
 
@@ -21,28 +24,24 @@ object TobaccoFeedScreen : Screen {
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
 
-        ViewModel(factory = { TobaccoFeedViewModel() }) { viewModel ->
-            val state by viewModel.viewStates().collectAsState()
-            val action by viewModel.viewActions().collectAsState(null)
+        ViewModel(factory = { TobaccoFeedViewModel() }) { vm ->
+            val state by vm.viewStates().collectAsState()
+            val action by vm.viewActions().collectAsState(null)
 
-            if (state.isError) {
-                ErrorScreen {
-                    viewModel.obtainEvent(RefreshTobaccoFeedScreen())
-                }
-            } else {
-                TobaccoFeedView(state) { event ->
-                    viewModel.obtainEvent(event)
-                }
+            when (state) {
+                is Loading -> TobaccoFeedLoadingView()
+                is Error -> ErrorScreen { vm.obtainEvent(OnErrorRefresh()) }
+                else -> TobaccoFeedView(state) { vm.obtainEvent(it) }
             }
 
             LaunchedEffect(Unit) {
-                viewModel.obtainEvent(InitTobaccoFeedScreen())
+                vm.obtainEvent(InitTobaccoFeedScreen())
             }
 
             when (action) {
                 is OpenTobaccoInfoScreen -> {
                     navigator.push(TobaccoInfoScreen((action as OpenTobaccoInfoScreen).tobaccoId))
-                    viewModel.obtainEvent(ClearActions())
+                    vm.obtainEvent(ClearActions())
                 }
 
                 else -> Unit

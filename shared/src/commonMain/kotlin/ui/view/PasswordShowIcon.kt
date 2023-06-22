@@ -1,4 +1,4 @@
-package screens.auth.view
+package ui.view
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource

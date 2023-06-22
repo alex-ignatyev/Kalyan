@@ -1,5 +1,6 @@
 package model.domain
 
+import ktor.getBaseUrl
 import model.data.tobacco.TobaccoFeedResponse
 import utils.orZero
 
@@ -19,7 +20,7 @@ fun TobaccoFeedResponse.toDomain(): TobaccoFeed {
         taste = taste.orEmpty(),
         company = company.orEmpty(),
         line = line.orEmpty(),
-        image = image.orEmpty(),
+        image = getBaseUrl() + image.orEmpty(),
         rating = rating.orZero(),
         votes = votes.orZero()
     )

@@ -25,7 +25,7 @@ import screens.auth.account_forgot.AccountForgotEvent.OnBackClick
 import screens.auth.account_forgot.AccountForgotEvent.ResetPasswordClick
 import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordClick
 import screens.auth.account_forgot.AccountForgotEvent.ShowPasswordRepeatClick
-import screens.auth.view.PasswordShowIcon
+import ui.view.PasswordShowIcon
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress

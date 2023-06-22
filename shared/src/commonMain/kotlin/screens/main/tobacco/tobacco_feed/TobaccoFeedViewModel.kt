@@ -9,50 +9,65 @@ import org.koin.core.component.inject
 import screens.main.tobacco.tobacco_feed.TobaccoFeedAction.OpenTobaccoInfoScreen
 import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.ClearActions
 import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.InitTobaccoFeedScreen
+import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnAddTobaccoRequest
+import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnDataRefresh
+import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnErrorRefresh
 import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnTobaccoClick
 import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnTobaccoSearch
-import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.RefreshTobaccoFeedScreen
+import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Data
+import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Empty
+import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Error
+import screens.main.tobacco.tobacco_feed.TobaccoFeedState.Loading
 import utils.EMPTY
 import utils.answer.onFailure
 import utils.answer.onSuccess
 import utils.mvi.Action
 import utils.mvi.Event
 
-class TobaccoFeedViewModel : KoinComponent, BaseSharedViewModel<TobaccoFeedState, Action, Event>(
-    initialState = TobaccoFeedState()
-) {
+class TobaccoFeedViewModel : KoinComponent, BaseSharedViewModel<TobaccoFeedState, Action, Event>(initialState = Loading()) {
 
     private val repository: RatingRepository by inject()
+    private var search: String = EMPTY
 
     override fun obtainEvent(viewEvent: Event) {
         when (viewEvent) {
             is InitTobaccoFeedScreen -> fetchData()
-            is OnTobaccoSearch -> onTobaccoSearch(viewEvent.search)
-            is RefreshTobaccoFeedScreen -> refreshData()
+            is OnTobaccoSearch -> onSearch(viewEvent.search)
+            is OnDataRefresh -> onRefresh()
+            is OnErrorRefresh -> onErrorRefresh()
             is OnTobaccoClick -> openTobaccoInfoScreen(viewEvent.tobaccoId)
+            is OnAddTobaccoRequest -> {} //TODO
             is ClearActions -> clearActions()
         }
     }
 
     private fun fetchData() {
         viewModelScope.launch {
-            viewState = viewState.copy(isLoading = true, isError = false, isRefresh = false)
-            delay(2000L)
-            repository.getTobaccoFeed(viewState.search).onSuccess {
-                viewState = viewState.copy(data = it, isLoading = false)
+            delay(1000L)
+            repository.getTobaccoFeed(search).onSuccess { response ->
+                viewState = when {
+                    response.isEmpty() -> Empty(isLoading = false)
+                    else -> Data(isLoading = false, data = response)
+                }
             }.onFailure {
-                viewState = viewState.copy(isError = true)
+                viewState = Error()
             }
         }
     }
 
-    private fun onTobaccoSearch(search: String) {
-        viewState = viewState.copy(search = search)
+    private fun onSearch(search: String = EMPTY) {
+        this.search = search
+        viewState = Data(isLoading = true)
         fetchData()
     }
 
-    private fun refreshData() {
-        viewState = viewState.copy(isRefresh = true)
+    private fun onRefresh() {
+        viewState = Data(isLoading = true)
+        fetchData()
+    }
+
+    private fun onErrorRefresh() {
+        viewState = Loading()
         fetchData()
     }
 

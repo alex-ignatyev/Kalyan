@@ -36,6 +36,9 @@
     <string name="text_admin_empty_choose">Не выбрано</string>
     <string name="text_admin_manually">Ручной ввод</string>
 
+    // Tobacco feed
+    <string name="title_create_request">Создать запрос</string>
+
     // Tobacco info
     <string name="title_tobacco_info">Информация о табаке</string>
 
@@ -49,7 +52,8 @@
     <string name="text_aroma">Аромат</string>
     <string name="text_search">Поиск</string>
     <string name="text_empty_list">Список пуст</string>
-    <string name="text_cant_find">Не нашли ваш любимый табак ? Вы можете создать запрос и мы обязательно его добавим</string>
+    <string name="text_cant_find">Не нашли ваш любимый табак ? Всегда можно создать запрос и мы обязательно его добавим</string>
+    <string name="text_repeat">Повторить</string>
 
     // Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>

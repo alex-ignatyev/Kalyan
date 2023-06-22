@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kalyan.shared.images.AppResImages
 import io.github.skeptick.libres.compose.painterResource
-import ktor.getBaseUrl
+import io.github.skeptick.libres.images.Image
 import model.domain.TobaccoFeed
 import ui.KalyanTheme
 import ui.components.KalyanImage
@@ -45,7 +45,7 @@ fun TobaccoView(tobaccoFeed: TobaccoFeed, position: Int, modifier: Modifier = Mo
         ) {
             Row(modifier = Modifier.fillMaxWidth().fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
 
-                KalyanImage(getBaseUrl() + tobaccoFeed.image, modifier = Modifier.padding(8.dp)) //TODO Перенести в маппинг
+                KalyanImage(tobaccoFeed.image, modifier = Modifier.padding(8.dp))
 
                 Column(modifier = Modifier.wrapContentWidth()) {
                     Text(
@@ -61,9 +61,19 @@ fun TobaccoView(tobaccoFeed: TobaccoFeed, position: Int, modifier: Modifier = Mo
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    RatingCard(tobaccoFeed.rating.toString(), Modifier.padding(end = 8.dp))
+                    Values(
+                        value = tobaccoFeed.rating.toString(),
+                        image = AppResImages.ic_star,
+                        contentDescription = "Rating",
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
 
-                    ViewsCard(tobaccoFeed.votes.toString(), Modifier.padding(end = 8.dp))
+                    Values(
+                        value = tobaccoFeed.votes.toString(),
+                        image = AppResImages.ic_views,
+                        contentDescription = "Views",
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
                 }
             }
         }
@@ -71,44 +81,22 @@ fun TobaccoView(tobaccoFeed: TobaccoFeed, position: Int, modifier: Modifier = Mo
 }
 
 @Composable
-fun RatingCard(rating: String, modifier: Modifier = Modifier) {
+fun Values(value: String, image: Image, contentDescription: String, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = rating,
+            text = value,
             style = KalyanTheme.typography.hint,
             color = KalyanTheme.colors.backgroundOn,
             textAlign = TextAlign.Center
         )
 
         Image(
-            painter = painterResource(AppResImages.ic_star),
-            null,
-            modifier = Modifier.size(16.dp)
-        )
-    }
-}
-
-@Composable
-fun ViewsCard(views: String, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = views,
-            style = KalyanTheme.typography.hint,
-            color = KalyanTheme.colors.backgroundOn,
-            textAlign = TextAlign.Center
-        )
-
-        Image(
-            painter = painterResource(AppResImages.ic_views),
-            null,
+            painter = painterResource(image),
+            contentDescription = contentDescription,
             modifier = Modifier.size(16.dp)
         )
     }

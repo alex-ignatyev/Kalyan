@@ -1,7 +1,6 @@
-package ui.components
+package screens.main.tobacco.tobacco_feed.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,42 +16,33 @@ import androidx.compose.ui.unit.dp
 import com.kalyan.shared.images.AppResImages
 import com.kalyan.shared.strings.AppResStrings
 import io.github.skeptick.libres.compose.painterResource
+import screens.main.tobacco.tobacco_feed.TobaccoFeedEvent.OnAddTobaccoRequest
 import ui.KalyanTheme
+import ui.components.KalyanButton
+import utils.mvi.Event
 
 @Composable
-fun ErrorScreen(onRepeatClick: () -> Unit) {
+fun TobaccoFeedEmptyView(obtainEvent: (Event) -> Unit) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(KalyanTheme.colors.background),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
-                painter = painterResource(AppResImages.ic_error),
-                contentDescription = "Error",
-                colorFilter = ColorFilter.tint(KalyanTheme.colors.error),
+                painterResource(AppResImages.ic_empty),
+                null,
+                colorFilter = ColorFilter.tint(KalyanTheme.colors.surfaceVariant),
                 modifier = Modifier.size(128.dp)
             )
-
+            Text(text = AppResStrings.text_empty_list, style = KalyanTheme.typography.header)
             Text(
-                text = AppResStrings.error_something_went_wrong_screen_title,
-                style = KalyanTheme.typography.header,
-                textAlign = TextAlign.Center
-            )
-
-            Text(
-                text = AppResStrings.error_something_went_wrong_screen_hint,
+                text = AppResStrings.text_cant_find,
                 style = KalyanTheme.typography.hint,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(horizontal = 32.dp)
             )
-
-            KalyanButton(
-                text = AppResStrings.text_repeat,
-                modifier = Modifier.padding(top = 32.dp)
-            ) {
-                onRepeatClick()
+            KalyanButton(text = AppResStrings.title_create_request, modifier = Modifier.padding(top = 32.dp)) {
+                obtainEvent(OnAddTobaccoRequest())
             }
         }
     }

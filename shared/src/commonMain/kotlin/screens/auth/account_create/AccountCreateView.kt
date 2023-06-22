@@ -28,7 +28,7 @@ import screens.auth.account_create.AccountCreateEvent.CreateAccountClick
 import screens.auth.account_create.AccountCreateEvent.OnBackClick
 import screens.auth.account_create.AccountCreateEvent.ShowPasswordClick
 import screens.auth.account_create.AccountCreateEvent.ShowPasswordRepeatClick
-import screens.auth.view.PasswordShowIcon
+import ui.view.PasswordShowIcon
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress

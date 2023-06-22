@@ -33,7 +33,7 @@ import screens.auth.account_login.AccountLoginEvent.CreateAccountClick
 import screens.auth.account_login.AccountLoginEvent.ForgotPasswordClick
 import screens.auth.account_login.AccountLoginEvent.LoginClick
 import screens.auth.account_login.AccountLoginEvent.ShowPasswordClick
-import screens.auth.view.PasswordShowIcon
+import ui.view.PasswordShowIcon
 import ui.KalyanTheme
 import ui.components.KalyanButton
 import ui.components.KalyanCircularProgress

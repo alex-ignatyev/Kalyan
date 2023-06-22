@@ -36,6 +36,9 @@
     <string name="text_admin_empty_choose">Has not chose</string>
     <string name="text_admin_manually">Manually</string>
 
+    // Tobacco feed
+    <string name="title_create_request">Create request</string>
+
     // Tobacco info
     <string name="title_tobacco_info">Tobacco info</string>
 
@@ -48,8 +51,9 @@
     <string name="text_smokiness">Smokiness</string>
     <string name="text_aroma">Aroma</string>
     <string name="text_search">Search</string>
-    <string name="text_empty_list">Список пуст</string>
-    <string name="text_cant_find">Не нашли ваш любимый табак ? Вы можете создать запрос и мы обязательно его добавим</string>
+    <string name="text_empty_list">List is empty</string>
+    <string name="text_cant_find">Can't find your favorite tobacco ? You can create request and we will add soon</string>
+    <string name="text_repeat">Repeat</string>
 
     //Settings
     <string name="action_dark_theme_enable">Enable dark theme</string>
@@ -57,6 +61,6 @@
 
     // Error
     <string name="error_something_went_wrong">Something went wrong, try later</string>
-    <string name="error_something_went_wrong_screen_title">Ой...Что-то пошло не так</string>
+    <string name="error_something_went_wrong_screen_title">Ohh...Что-то пошло не так</string>
     <string name="error_something_went_wrong_screen_hint">Попробуйте еще раз или повторите позже</string>
 </resources>
