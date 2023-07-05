@@ -1,3 +1,5 @@
+//TODO Разобраться что тут происходит
+
 pluginManagement {
     repositories {
         google()
@@ -18,6 +20,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Kalyan"
 
-include(":androidApp")
-include(":shared")
-include(":iosAppp")
+include(
+    ":androidApp",
+    ":iosAppp",
+    ":shared"
+)

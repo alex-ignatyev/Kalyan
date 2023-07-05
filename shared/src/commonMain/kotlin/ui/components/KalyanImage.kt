@@ -1,13 +1,14 @@
 package ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -31,6 +32,7 @@ fun KalyanImage(
     url: String,
     modifier: Modifier = Modifier,
     size: Int = 48,
+    contentScale: ContentScale = ContentScale.Fit,
     blurRadius: Int = 0,
 ) {
     val settings = LocalSettingsEventBus.current
@@ -51,7 +53,7 @@ fun KalyanImage(
         Image(
             painter = painter,
             contentDescription = null,
-            contentScale = ContentScale.Fit,
+            contentScale = contentScale,
             modifier = modifier.size(size.dp),
         )
 

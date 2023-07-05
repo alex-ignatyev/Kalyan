@@ -1,8 +1,12 @@
+//TODO Разобраться что тут происходит
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
 }
+
+
 
 kotlin {
     android()

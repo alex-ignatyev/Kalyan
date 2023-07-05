@@ -12,8 +12,7 @@ sealed class TobaccoInfoEvent {
 
 data class TobaccoInfoState(
     val isLoading: Boolean = true,
-    val data: TobaccoInfo = TobaccoInfo.EMPTY,
-    val error: String = ""
+    val data: TobaccoInfo = TobaccoInfo.EMPTY
 )
 
 sealed class TobaccoInfoAction {

@@ -41,6 +41,7 @@
 
     // Tobacco info
     <string name="title_tobacco_info">Информация о табаке</string>
+    <string name="title_vote">Оценить</string>
 
     // All
     <string name="text_taste">Вкус</string>

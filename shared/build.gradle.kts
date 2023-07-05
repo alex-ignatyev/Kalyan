@@ -1,3 +1,5 @@
+//TODO Разобраться что тут происходит
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.multiplatform)

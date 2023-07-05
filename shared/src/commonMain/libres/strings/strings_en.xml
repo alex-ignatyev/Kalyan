@@ -41,6 +41,7 @@
 
     // Tobacco info
     <string name="title_tobacco_info">Tobacco info</string>
+    <string name="title_vote">Vote</string>
 
     // All
     <string name="text_taste">Taste</string>

@@ -23,11 +23,11 @@ import androidx.compose.ui.unit.sp
 import kotlin.math.absoluteValue
 
 @Composable
-fun Rating(value: Int, modifier: Modifier, changeRating: (Int) -> Unit) {
+fun Rating(value: Int, modifier: Modifier = Modifier, changeRating: (Int) -> Unit) {
     val valuedIndex = value - 1
 
     AnimatedInfiniteList(
-        modifier = modifier.fillMaxWidth().wrapContentHeight(),
+        modifier = modifier.fillMaxWidth().wrapContentHeight().padding(vertical = 32.dp),
         items = listOf(-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
         initialFirstVisibleIndex = if (valuedIndex == -1) 0 else valuedIndex,
         activeItemSize = 48.dp,
@@ -118,8 +118,7 @@ internal fun <T> AnimatedInfiniteList(
 ) {
     val inactiveItemScale = inactiveItemSize.value / activeItemSize.value
 
-    val listDimension =
-        activeItemSize * visibleItemCount + spaceBetweenItems * (visibleItemCount - 1)
+    val listDimension = activeItemSize * visibleItemCount + spaceBetweenItems * (visibleItemCount - 1)
 
     val listModifier = if (orientation == Orientation.Horizontal) {
         Modifier.width(listDimension)

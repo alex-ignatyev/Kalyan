@@ -47,6 +47,6 @@ fun KalyanSelect(title: String, text: String = "", modifier: Modifier = Modifier
             modifier = Modifier.size(16.dp).align(Alignment.CenterEnd)
         )
 
-        KalyanDivider(modifier.padding(top = 8.dp).align(Alignment.BottomCenter))
+        KalyanDivider(modifier = modifier.padding(top = 8.dp).align(Alignment.BottomCenter))
     }
 }

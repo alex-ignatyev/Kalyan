@@ -1,50 +1,55 @@
 package screens.main.tobacco.tobacco_info
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
+import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
+import com.kalyan.shared.images.AppResImages
 import com.kalyan.shared.strings.AppResStrings
 import com.moriatsushi.insetsx.navigationBars
 import com.moriatsushi.insetsx.statusBars
-import ktor.getBaseUrl
-import model.data.tobacco.TobaccoVoteRequest.VoteType
+import io.github.skeptick.libres.compose.painterResource
+import io.github.skeptick.libres.images.Image
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Aroma
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Rating
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Smokiness
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Strength
 import model.data.tobacco.TobaccoVoteRequest.VoteType.Taste
 import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.OnBackClick
-import screens.main.tobacco.tobacco_info.TobaccoInfoEvent.VoteForTobacco
-import screens.main.tobacco.tobacco_info.view.Rating
+import screens.main.tobacco.tobacco_info.view.VoteBottomSheet
 import ui.KalyanTheme
-import ui.components.KalyanButton
 import ui.components.KalyanDivider
 import ui.components.KalyanImage
 import ui.components.KalyanToolbar
+import ui.components.android.AndroidBottomBarHeight
 
 @Composable
 internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoEvent) -> Unit) {
@@ -54,37 +59,50 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
     Scaffold(
         modifier = Modifier
             .background(KalyanTheme.colors.background)
-            .windowInsetsPadding(WindowInsets.statusBars),
+            .windowInsetsPadding(WindowInsets.statusBars)
+            .windowInsetsPadding(WindowInsets.navigationBars.add(WindowInsets(bottom = AndroidBottomBarHeight))),
         backgroundColor = KalyanTheme.colors.background,
         topBar = {
             KalyanToolbar(
                 title = AppResStrings.title_tobacco_info,
+                isTransparent = true,
                 onBackClick = {
                     obtainEvent(OnBackClick())
                 })
         }
     ) {
-        Column(Modifier.fillMaxSize()) {
-            TobaccoInfo(
-                image = data.image,
-                taste = data.taste,
-                company = data.company,
-                line = data.line,
-                strengthByCompany = data.strength
-            )
+        Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
+            TobaccoBlock(state = state, modifier = Modifier.fillMaxWidth()) {
 
-            KalyanDivider(modifier = Modifier.padding(horizontal = 32.dp).padding(top = 16.dp))
+            }
+
+            InfoBlock(state = state, modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
+
+            }
+
+            Text(
+                text = "Оценки пользователей",
+                style = KalyanTheme.typography.caption,
+                color = KalyanTheme.colors.secondaryText,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+            )
+            KalyanDivider(modifier = Modifier.fillMaxWidth(0.5f).padding(start = 16.dp))
 
             RatingInfoUsers(
-                ratingByUsers = data.ratingByUsers,
-                strengthByUsers = data.strengthByUsers,
-                smokinessByUsers = data.smokinessByUsers,
-                aromaByUsers = data.aromaByUsers,
-                tasteByUsers = data.tasteByUsers,
-                votes = data.votes
+                data.strengthByUsers.toString(),
+                data.smokinessByUsers.toString(),
+                data.aromaByUsers.toString(),
+                data.tasteByUsers.toString(),
+                modifier = Modifier.padding(top = 16.dp)
             )
 
-            KalyanDivider(modifier = Modifier.padding(horizontal = 32.dp).padding(top = 16.dp))
+            Text(
+                text = "Ваши оценки",
+                style = KalyanTheme.typography.caption,
+                color = KalyanTheme.colors.secondaryText,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+            )
+            KalyanDivider(modifier = Modifier.fillMaxWidth(0.5f).padding(start = 16.dp))
 
             RatingInfoUser(
                 ratingByUser = data.ratingByUser,
@@ -92,46 +110,7 @@ internal fun TobaccoInfoView(state: TobaccoInfoState, obtainEvent: (TobaccoInfoE
                 smokinessByUser = data.smokinessByUser,
                 aromaByUser = data.aromaByUser,
                 tasteByUser = data.tasteByUser,
-                obtainEvent = obtainEvent
-            )
-
-            Text(
-                text = "error: ${state.error}",
-                color = KalyanTheme.colors.error,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
-            )
-        }
-    }
-}
-
-@Composable
-fun TobaccoInfo(image: String, taste: String, company: String, line: String, strengthByCompany: Int) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        KalyanImage(getBaseUrl() + image, modifier = Modifier.padding(8.dp).size(128.dp)) //TODO Перенести в маппинг
-
-        Column {
-            Text(
-                text = "${AppResStrings.text_taste}: $taste",
-                style = KalyanTheme.typography.body,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
-            )
-
-            Text(
-                text = "${AppResStrings.text_company}: $company",
-                style = KalyanTheme.typography.body,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
-            )
-
-            Text(
-                text = "${AppResStrings.text_line}: $line",
-                style = KalyanTheme.typography.body,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
-            )
-
-            Text(
-                text = "${AppResStrings.text_strength}: $strengthByCompany",
-                style = KalyanTheme.typography.body,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
+                obtainEvent = {}
             )
         }
     }
@@ -139,61 +118,47 @@ fun TobaccoInfo(image: String, taste: String, company: String, line: String, str
 
 @Composable
 fun RatingInfoUsers(
-    ratingByUsers: Float,
-    strengthByUsers: Float,
-    smokinessByUsers: Float,
-    aromaByUsers: Float,
-    tasteByUsers: Float,
-    votes: Long
+    strengthByUsers: String,
+    smokinessByUsers: String,
+    aromaByUsers: String,
+    tasteByUsers: String,
+    modifier: Modifier = Modifier
 ) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Row {
-            Text(
-                text = "${AppResStrings.text_rating}: $ratingByUsers",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
-            )
-            Spacer(Modifier.width(8.dp))
-            Text(
-                text = "$votes",
-                style = KalyanTheme.typography.caption,
-                color = KalyanTheme.colors.secondaryText,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
-            )
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            RatingValue(
+                value = strengthByUsers,
+                title = AppResStrings.text_strength,
+                modifier = Modifier.weight(1f)
+            ) {
+
+            }
+
+            RatingValue(
+                value = smokinessByUsers,
+                title = AppResStrings.text_smokiness,
+                modifier = Modifier.weight(1f)
+            ) {
+
+            }
         }
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "${AppResStrings.text_strength}: $strengthByUsers",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f)
-            )
+        Row(modifier = Modifier.padding(vertical = 16.dp)) {
+            RatingValue(
+                value = aromaByUsers,
+                title = AppResStrings.text_aroma,
+                modifier = Modifier.weight(1f)
+            ) {
 
-            Text(
-                text = "${AppResStrings.text_smokiness}: $smokinessByUsers",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f)
-            )
-        }
+            }
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "${AppResStrings.text_aroma}: $aromaByUsers",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f)
-            )
+            RatingValue(
+                value = tasteByUsers,
+                title = AppResStrings.text_taste,
+                modifier = Modifier.weight(1f)
+            ) {
 
-            Text(
-                text = "${AppResStrings.text_taste}: $tasteByUsers",
-                style = KalyanTheme.typography.caption,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).wrapContentHeight().weight(1f)
-            )
+            }
         }
     }
 }
@@ -261,26 +226,151 @@ fun RatingInfoUser(
     }
 }
 
-data class VoteBottomSheet(val type: VoteType, val value: Long, val obtainEvent: (TobaccoInfoEvent) -> Unit) : Screen {
+@Composable
+fun TobaccoBlock(state: TobaccoInfoState, modifier: Modifier = Modifier, obtainEvent: (TobaccoInfoEvent) -> Unit) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        KalyanImage(
+            state.data.image,
+            modifier = Modifier.padding(top = 16.dp).clip(CircleShape),
+            size = 160,
+            contentScale = ContentScale.Inside
+        )
 
-    @Composable
-    override fun Content() {
-        val bottomSheetNavigator = LocalBottomSheetNavigator.current
-        var rate by remember { mutableStateOf(1) }
+        Text(
+            text = state.data.taste,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(top = 16.dp).wrapContentHeight()
+        )
 
-        Column(
-            modifier = Modifier.windowInsetsPadding(
-                WindowInsets.navigationBars.add(WindowInsets.navigationBars).add(WindowInsets(bottom = 48.dp))
-            )
+        Row(
+            modifier = Modifier.padding(top = 4.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Rating(value.toInt(), modifier = Modifier.height(120.dp)) {
-                rate = it
-            }
+            Text(
+                text = state.data.company,
+                style = KalyanTheme.typography.caption,
+                color = KalyanTheme.colors.secondaryText
+            )
 
-            KalyanButton(text = "Vote") {
-                obtainEvent(VoteForTobacco(type, rate.toLong()))
-                bottomSheetNavigator.hide()
-            }
+            Text(
+                text = " / ",
+                style = KalyanTheme.typography.caption,
+                color = KalyanTheme.colors.secondaryText
+            )
+
+            Text(
+                text = state.data.line,
+                style = KalyanTheme.typography.caption,
+                color = KalyanTheme.colors.secondaryText
+            )
         }
+    }
+}
+
+@Composable
+fun InfoBlock(state: TobaccoInfoState, modifier: Modifier = Modifier, obtainEvent: (TobaccoInfoEvent) -> Unit) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        RatingBlockValue(state.data.ratingByUsers.toString(), state.data.votes.toString(), modifier = Modifier.weight(1f)) {}
+        RatingValueImage(state.data.commentsSize.toString(), AppResImages.ic_comments, modifier = Modifier.weight(1f)) {}
+        RatingValueImage(state.data.strength.toString(), AppResImages.ic_strentgh, modifier = Modifier.weight(1f)) {}
+    }
+}
+
+@Composable
+fun RatingValue(value: String, title: String, modifier: Modifier = Modifier, obtainEvent: (TobaccoInfoEvent) -> Unit) {
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = value,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            style = KalyanTheme.typography.caption
+        )
+
+        Text(
+            text = title,
+            fontSize = 12.sp,
+            style = KalyanTheme.typography.caption,
+            color = KalyanTheme.colors.secondaryText
+        )
+    }
+}
+
+@Composable
+fun RatingBlockValue(
+    ratingByUsers: String,
+    votes: String,
+    modifier: Modifier = Modifier,
+    obtainEvent: (TobaccoInfoEvent) -> Unit
+) {
+    Column(
+        modifier = modifier.clickable {
+
+        },
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row {
+            Text(
+                text = ratingByUsers,
+                fontSize = 18.sp,
+                style = KalyanTheme.typography.caption,
+                color = KalyanTheme.colors.backgroundOn,
+                textAlign = TextAlign.Center
+            )
+            Spacer(Modifier.width(4.dp))
+            Text(
+                text = "($votes)",
+                fontSize = 18.sp,
+                style = KalyanTheme.typography.caption,
+                color = KalyanTheme.colors.secondaryText
+            )
+        }
+
+        Image(
+            painter = painterResource(AppResImages.ic_star),
+            contentDescription = "", //TODO,
+            colorFilter = ColorFilter.tint(KalyanTheme.colors.secondaryText),
+            modifier = Modifier.size(36.dp)
+        )
+    }
+}
+
+@Composable
+fun RatingValueImage(
+    value: String,
+    image: Image,
+    contentDescription: String = "",
+    modifier: Modifier = Modifier,
+    obtainEvent: (TobaccoInfoEvent) -> Unit
+) {
+    Column(
+        modifier = modifier.clickable {
+
+        },
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = value,
+            fontSize = 18.sp,
+            style = KalyanTheme.typography.hint,
+            color = KalyanTheme.colors.backgroundOn,
+            textAlign = TextAlign.Center
+        )
+
+        Image(
+            painter = painterResource(image),
+            contentDescription = contentDescription,
+            colorFilter = ColorFilter.tint(KalyanTheme.colors.secondaryText),
+            modifier = Modifier.size(36.dp)
+        )
     }
 }

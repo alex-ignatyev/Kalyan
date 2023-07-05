@@ -36,7 +36,7 @@ class TobaccoInfoViewModel : KoinComponent, BaseSharedViewModel<TobaccoInfoState
             repo.getTobaccoInfo(tobaccoId).onSuccess {
                 viewState = viewState.copy(isLoading = false, data = it)
             }.onFailure {
-                viewState = viewState.copy(isLoading = false, error = "Ошибка")
+                viewState = viewState.copy(isLoading = false)
             }
         }
     }

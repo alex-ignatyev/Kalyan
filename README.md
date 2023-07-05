@@ -1,11 +1,11 @@
 # Kalyan
 
 ### Tech Stack:
-- Navigation. Odyssey
+- Navigation: Voyager
 - Presentation: KViewModel
 - Database: SqlDelight
 - Resources: LibRes
-- DI: Kodein
+- DI: Koin
 - UI: Compose Multiplatform
 
 ### Supported Platforms

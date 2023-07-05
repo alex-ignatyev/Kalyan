@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
@@ -33,8 +31,6 @@ import ui.KalyanTheme
 import ui.components.KalyanSearch
 import utils.mvi.Event
 
-//TODO Добавить иконки на пустой и ошибки экраны
-//TODO Добавить кнопку и переводы для текстов пустыого экрана
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun TobaccoFeedView(state: TobaccoFeedState, obtainEvent: (Event) -> Unit) {

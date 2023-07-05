@@ -1,16 +1,18 @@
 package model.domain
 
+import ktor.getBaseUrl
 import model.data.tobacco.TobaccoInfoResponse
 import utils.orZero
 
 data class TobaccoInfo(
     val id: String,
+    var image: String,
     val taste: String,
     val company: String,
     val line: String,
     val strength: Int,
 
-    var image: String,
+    val commentsSize: Int,
 
     val strengthByUsers: Float,
     val smokinessByUsers: Float,
@@ -30,11 +32,14 @@ data class TobaccoInfo(
     companion object {
         val EMPTY = TobaccoInfo(
             id = "",
+            image = "",
             taste = "",
             company = "",
             line = "",
             strength = 0,
-            image = "",
+
+            commentsSize = 0,
+
             strengthByUsers = 0.0f,
             smokinessByUsers = 0.0f,
             aromaByUsers = 0.0f,
@@ -53,11 +58,14 @@ data class TobaccoInfo(
 fun TobaccoInfoResponse.toDomain(): TobaccoInfo {
     return TobaccoInfo(
         id = id.orEmpty(),
+        image = getBaseUrl() + image.orEmpty(),
         taste = taste.orEmpty(),
         company = company.orEmpty(),
         line = line.orEmpty(),
         strength = strength.orZero(),
-        image = image.orEmpty(),
+
+        commentsSize = 0, //TODO
+
         strengthByUsers = strengthByUsers.orZero(),
         smokinessByUsers = smokinessByUsers.orZero(),
         aromaByUsers = aromaByUsers.orZero(),
